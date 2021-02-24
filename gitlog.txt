@@ -1,0 +1,35 @@
+commit 1a533563a5b48de03fe7bb9674322d6e601b9427
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 13:53:16 2021 -0700
+
+    4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
+
+commit 67c396e33e8206736b331b50343dbe41957de5dd
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 23:26:22 2021 -0700
+
+    changed build path for JUint 5
+
+commit 84a54c7ff60b9f4735f6e052c4ab7dd89ea8304c
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 19:45:17 2021 -0700
+
+    Created adjacency tests methods
+
+commit a8af3250966436a8d5ab5f06c0c26c823fbca4f5
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:43:05 2021 -0700
+
+    Created Experiment classes: TestBoardCell and TestBoard
+
+commit 53437e2b610e76e929d3a5b2eb9885602fce1c9c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:05:02 2021 -0700
+
+    Initial State
+
+commit 2ee0fc118b21e854f22d67c89f94d929f35c0f28
+Author: Colin Short <78009530+colinshort@users.noreply.github.com>
+Date:   Tue Feb 23 17:42:36 2021 -0700
+
+    Initial commit
