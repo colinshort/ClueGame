@@ -1,8 +1,52 @@
+commit 6a6de69282340da441a879711ec3b1e5ff20431c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:04:53 2021 -0700
+
+    Added checks for rooms and occupied cells to calcTargets()
+
+commit 543f3088a472fab6bfb251a4b7c32f72449de773
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 22:40:40 2021 -0700
+
+    Added functionality to pass adjacency tests!
+
+commit b19b3ec0def6f22d0a96de3130e866c15525cd1e
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 18:48:12 2021 -0700
+
+    Revert "Removed eclipse project files from remote repo"
+    
+    This reverts commit 92834e4849ca1591403b9b572aa98b213110c250.
+
+commit f7e8a9407fd3506a98aabe6d4dbe217a5d882213
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Feb 25 18:12:48 2021 -0700
+
+    Added ClueSetup.txt
+
+commit 92834e4849ca1591403b9b572aa98b213110c250
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 15:32:41 2021 -0700
+
+    Removed eclipse project files from remote repo
+
+commit 007563bafd823e118306a55dac34d5d74cabf094
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:07:16 2021 -0700
+
+    Updated .gitignore
+
+commit a8ee473440fcf819947a71bbe289696062713bb8
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:00:07 2021 -0700
+
+    Updated .gitignore
+
 commit 1a533563a5b48de03fe7bb9674322d6e601b9427
 Author: Colin Short <colinshort@mymail.mines.edu>
 Date:   Wed Feb 24 13:53:16 2021 -0700
 
-    Cameron: 4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | Colin: 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
+    4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
 
 commit 67c396e33e8206736b331b50343dbe41957de5dd
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
