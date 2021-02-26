@@ -34,24 +34,9 @@ public class TestBoard {
 		this.grid[1][3] = new TestBoardCell(1,3);
 	}
 	
+	//Calculate the adjacencies for a given cell and add them to adjacency list in TestBoardCell
 	public void calcAdjacencies(TestBoardCell cell) {
-//		for(int i= 0; i < ROWS; i++) {
-//			for (int j = 0; j < COLS; j++) {
-//				if(i - 1 >= 0 && j - 1 >= 0) {
-//					grid[i][j].addAdj(grid[i - 1][j - 1]);
-//				}
-//				if(i - 1 >= 0 && j + 1 <= 3) {
-//					grid[i][j].addAdj(grid[i - 1][j + 1]);
-//				}
-//				if(i + 1 <= 3 && j -1 >= 0) {
-//					grid[i][j].addAdj(grid[i + 1][j - 1]);
-//				}
-//				if(i + 1 <= 3 && j +1 <= 3) {
-//					grid[i][j].addAdj(grid[i + 1][j + 1]);
-//				}
-//				
-//			}
-//		}
+
 		if(cell.getRow() - 1 >= 0) {
 			cell.addAdj(grid[cell.getRow() - 1][cell.getCol()]);
 		}
@@ -69,20 +54,22 @@ public class TestBoard {
 		}
 	}
 	
-	//empty calc targets method
+	//Calculate valid target cells for a given cell and path length
 	public void calcTargets(TestBoardCell startCell, int pathlength) {
 		visited.add(startCell);
 		findAllTargets(startCell, pathlength);
 	}
 	
-	//empty find all targets method
+	//find all targets method
+	//take into account Rooms and occupied cells
 	public void findAllTargets(TestBoardCell cell, int pathlength) {
-		Set<TestBoardCell> temp = cell.getAdjList();
+		calcAdjacencies(cell);
+		Set<TestBoardCell> Adjs = cell.getAdjList();
 		
-		for(TestBoardCell c : temp) {
-			if(!visited.contains(c)) {
+		for(TestBoardCell c : Adjs) {
+			if(!visited.contains(c) && !c.getOccupied()) {
 				visited.add(c);
-				if(pathlength == 1) {
+				if(pathlength == 1 || c.isRoom()) {
 					targets.add(c);
 				}else{
 					findAllTargets(c, pathlength - 1);
@@ -93,17 +80,13 @@ public class TestBoard {
 	}
 	
 	
-	//return empty set targets
+	//return targets list
 	public Set<TestBoardCell> getTargets(){
 		return targets;
 	}
 	
-	//return empty board cell at [4][4]
+	//return cell from grid
 	public TestBoardCell getCell(int row, int col) {
 		return grid[row][col];
 	} 
-	
-	public static void main(String[] args) {
-		
-	}
 }

@@ -33,7 +33,6 @@ public class BoardTestsExp {
 		TestBoardCell cell = board.getCell(3,3);
 		board.calcAdjacencies(cell);
 		Set<TestBoardCell> testList = cell.getAdjList();
-		System.out.println("hi");
 		assertTrue(testList.contains(board.getCell(3,2)));
 		assertTrue(testList.contains(board.getCell(2,3)));
 		assertEquals(2, testList.size());
