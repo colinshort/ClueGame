@@ -3,28 +3,27 @@ package experiment;
 import java.util.*;
 
 public class TestBoardCell {
-	private int row;
-	private int col;
-	private boolean isRoom;
-	private boolean isOccupied;
+	private int row, col;
+	private boolean isRoom, isOccupied;
+	private Set <TestBoardCell> mycells;
 	
-	private Set <TestBoardCell> mycells = new HashSet<TestBoardCell>();
 	
 	//intialize board cell at given row and column
 	public TestBoardCell(int row, int col) {
 		super();
+		this.mycells = new HashSet<TestBoardCell>();
 		this.row = row;
 		this.col = col;
 	}
 	
 	//add adjacent cell to set of adjacent cells
-	public void addAdjacency(TestBoardCell cell) {
+	public void addAdj(TestBoardCell cell) {
 		mycells.add(cell);
 	}
 	
-	//return empty adjacency list
+	//return set of adjacent cells
 	public Set<TestBoardCell> getAdjList(){
-		return new HashSet<TestBoardCell>();
+		return mycells;
 	}
 	
 	//set isRoom to true/false
@@ -46,5 +45,14 @@ public class TestBoardCell {
 	public boolean getOccupied() {
 		return isOccupied;
 	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
 	
 }

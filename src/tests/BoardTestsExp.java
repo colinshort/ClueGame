@@ -19,6 +19,7 @@ public class BoardTestsExp {
 	@Test
 	public void testAdjTopLeft() {
 		TestBoardCell cell = board.getCell(0,0);
+		board.calcAdjacencies(cell);
 		Set<TestBoardCell> testList = cell.getAdjList();
 		assertTrue(testList.contains(board.getCell(1,0)));
 		assertTrue(testList.contains(board.getCell(0,1)));
@@ -30,7 +31,9 @@ public class BoardTestsExp {
 	@Test
 	public void testAdjBottomRight() {
 		TestBoardCell cell = board.getCell(3,3);
+		board.calcAdjacencies(cell);
 		Set<TestBoardCell> testList = cell.getAdjList();
+		System.out.println("hi");
 		assertTrue(testList.contains(board.getCell(3,2)));
 		assertTrue(testList.contains(board.getCell(2,3)));
 		assertEquals(2, testList.size());
@@ -40,10 +43,11 @@ public class BoardTestsExp {
 	@Test
 	public void testAdjRightEdge() {
 		TestBoardCell cell = board.getCell(1,3);
+		board.calcAdjacencies(cell);
 		Set<TestBoardCell> testList = cell.getAdjList();
-		assertTrue(testList.contains(board.getCell(3,0)));
-		assertTrue(testList.contains(board.getCell(2,1)));
-		assertTrue(testList.contains(board.getCell(3,2)));
+		assertTrue(testList.contains(board.getCell(0,3)));
+		assertTrue(testList.contains(board.getCell(2,3)));
+		assertTrue(testList.contains(board.getCell(1,2)));
 		assertEquals(3, testList.size());
 	}
 	
@@ -51,10 +55,11 @@ public class BoardTestsExp {
 	@Test
 	public void testAdjLeftEdge() {
 		TestBoardCell cell = board.getCell(3,0);
+		board.calcAdjacencies(cell);
 		Set<TestBoardCell> testList = cell.getAdjList();
 		assertTrue(testList.contains(board.getCell(2,0)));
 		assertTrue(testList.contains(board.getCell(3,1)));
-		assertEquals(3, testList.size());
+		assertEquals(2, testList.size());
 	}
 	
 	/*
