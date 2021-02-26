@@ -1,0 +1,14 @@
+//Rooms and room cards
+Room, Coolbaugh, C
+Room, Alderson, A
+Room, Hill, H
+Room, Brown, B
+Room, Student Center, S
+Room, Green, G
+Room, CoorsTek, T
+Room, Marquez, M
+Room, Geology Museum, G
+
+//other spaces on board
+Space, Unused, X
+Space, Walkway, W
