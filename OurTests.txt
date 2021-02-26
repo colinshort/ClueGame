@@ -1,0 +1,28 @@
+Rooms:
+We choose to test Coolbaugh (2,3) because this cell is a Coolbaugh room and is not a Label, Center, or Door
+We choose to test Alderson (21,1) becalse this room has an Alderson label
+We choose to test Student Center (22, 13) because this cell is a Student Center center cell
+We choose to test Alderson (24,3) because this cell is an Alderson secret passage
+We choose to test cell (5,0) because this cell is a walkway
+We choose to test cell (4,0) because this cell is unused
+
+
+Room Labels:
+	We chose to use Coolbaugh and Engineering Hall because they appear first and last in the file, respectively.
+	We chose to use the Student Center and Brown because they appear at the top and bottom of the board.
+	We chose to use the Geology Museum because it appears in a corner that is not first or last in the file.
+	
+Board Dimensions:
+	We tested that getNumRows() returns 26, since we have 26 rows on our board.
+	We tested that getNumColumns() returns 23, since we have 23 columns on our board.
+	
+Four Door Directions:
+	We chose cell (4,2) because it faces left into Coolbaugh and is close to the top and corner.
+	We chose cell (13, 1) because it faces up into Hill and is close to an edge.
+	We chose cell (3,8) because it faces right into Brown and is next to another door cell.
+	We chose cell (13, 2) because it faces down into Marquez and is next to another door cell.
+	We chose cell (5, 7) as a random walkway cell to check that walkways aren't considered as doors.
+	
+Test Number of Doorways:
+	We're counting all of the doors on the board and checking that we count 19 doors, which is how many doors are on our game board.
+	
