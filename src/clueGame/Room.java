@@ -5,6 +5,12 @@ public class Room {
 	private BoardCell centerCell;
 	private BoardCell labelCell;
 	
+	
+	public Room(String name) {
+		super();
+		this.name = name;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -15,5 +21,13 @@ public class Room {
 	
 	public BoardCell getCenterCell() {
 		return centerCell;
+	}
+	
+	public void setLabelCell(BoardCell label) {
+		this.labelCell = label;
+	}
+	
+	public void setCenterCell(BoardCell center) {
+		this.centerCell = center;
 	}
 }
