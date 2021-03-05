@@ -16,39 +16,41 @@ public class BoardCell {
 	private boolean roomCenter;
 	private char secretPassage;
 	private Set<BoardCell> adjList;
-	
+	private boolean isOccupied, isRoom;
+
 	//intialize board cell at given row and column
 	public BoardCell(int row, int col) {
 		super();
+		this.adjList = new HashSet<BoardCell>();
 		this.row = row;
 		this.col = col;
 	}
-	
-	
+
+
 	public void addAdj(BoardCell adj) {
 		adjList.add(adj);
 	}
-	
+
 	public boolean isDoorway() {
 		return doorWay;
 	}
-	
+
 	public DoorDirection getDoorDirection() {
 		return doorDirection;
 	}
-	
+
 	public boolean isLabel() {
 		return roomLabel;
 	}
-	
-    public boolean isRoomCenter() {
+
+	public boolean isRoomCenter() {
 		return roomCenter;
 	}
 
 	public char getSecretPassage() {
 		return secretPassage;
 	}
-	
+
 	public char getInitial() {
 		return initial;
 	}
@@ -56,30 +58,53 @@ public class BoardCell {
 	public void setInitial(char initial) {
 		this.initial = initial;
 	}
-	
+
 	public void setDoorWay(boolean isDoor) {
 		this.doorWay = isDoor;
 	}
-	
+
 	public void setDoorDirection(DoorDirection doorDir) {
 		this.doorDirection = doorDir;
 	}
-	
+
 	public void setRoomLabel(boolean label) {
 		this.roomLabel = label;
 	}
-	
+
 	public void setCenter(boolean center) {
 		this.roomCenter = center;
 	}
-	
+
 	public void setSecretPassage(char
 			passage) {
 		this.secretPassage = passage;
 	}
-	
-	
-	
 
+
+	public int getRow() {
+		return row;
+	}
+
+
+	public int getCol() {
+		return col;
+	}
+
+	//set isOccupied to true/false
+	public void setOccupied(boolean occupied) {
+		isOccupied = occupied;
+	}
+
+	public boolean getOccupied() {
+		return isOccupied;
+	}
+
+	public Set<BoardCell> getAdjList(){
+		return adjList;
+	}
+
+	public boolean isRoom() {
+		return isRoom;
+	}
 }
 

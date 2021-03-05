@@ -5,8 +5,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 import experiment.TestBoardCell;
 
@@ -17,6 +19,8 @@ public class Board {
 	private int numColumns;
 	private String layoutConfigFile;
 	private String setupConfigFile;
+	private Set<BoardCell> targets;
+	private Set<BoardCell> visited;
 
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<Character,Room>();
@@ -29,6 +33,8 @@ public class Board {
 	// constructor is private to ensure only one can be created
 	private Board() {
 		super() ;
+		this.targets = new HashSet<BoardCell>();
+		this.visited = new HashSet<BoardCell>();
 	}
 	// this method returns the only Board
 	public static Board getInstance() {
@@ -162,6 +168,63 @@ public class Board {
 		setupConfigFile = str2;	
 	}
 
+	//Calculate the adjacencies for a given cell and add them to adjacency list in BoardCell
+	public void calcAdjacencies(BoardCell cell) {
+		
+		if(cell.isRoomCenter()) {
+			
+		}
+
+		if(cell.getRow() - 1 >= 0) {
+			cell.addAdj(grid[cell.getRow() - 1][cell.getCol()]);
+		}
+
+		if(cell.getCol() - 1 >= 0) {
+			cell.addAdj(grid[cell.getRow()][cell.getCol() - 1]);
+		}
+
+		if(cell.getRow() + 1 <= numRows - 1) {
+			cell.addAdj(grid[cell.getRow() + 1][cell.getCol()]);
+		}
+
+		if(cell.getCol() + 1 <= numColumns - 1) {
+			cell.addAdj(grid[cell.getRow()][cell.getCol() + 1]);
+		}
+	}
+
+	//Calculate valid target cells for a given cell and path length
+	public void calcTargets(BoardCell startCell, int pathlength) {
+		visited.add(startCell);
+		findAllTargets(startCell, pathlength);
+	}
+
+	public void findAllTargets(BoardCell cell, int pathlength) {
+		calcAdjacencies(cell);
+		Set<BoardCell> Adjs = cell.getAdjList();
+
+		for(BoardCell c : Adjs) {
+			if(!visited.contains(c) && !c.getOccupied()) {
+				visited.add(c);
+				if(pathlength == 1 || c.isRoom()) {
+					targets.add(c);
+				}else{
+					findAllTargets(c, pathlength - 1);
+				}
+				visited.remove(c);
+			}
+		}
+	}
+
+	public Set<BoardCell> getAdjList(int row, int col){
+		Set<BoardCell> myAdjs = new HashSet<BoardCell>();
+		calcAdjacencies(grid[row][col]);
+		myAdjs = grid[row][col].getAdjList();
+		return myAdjs;
+	}
+
+	public Set<BoardCell> getTargets(){
+		return targets;
+	}
 	public Room getRoom(BoardCell cell) {
 		return roomMap.get(cell.getInitial());
 	}
@@ -181,10 +244,4 @@ public class Board {
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
 	}
-
-
-
-
-
-
 }
