@@ -1,3 +1,52 @@
+commit a28fe14f419251e844cec41a5b53b5b424f7e6f8
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 5 14:55:19 2021 -0700
+
+    Include Adjacency Tests
+
+commit 27bdc0d1f93da0d7e0e92254f3af5e9d65507724
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 5 12:57:17 2021 -0700
+
+    Added 306 target test
+
+commit af3182377b8c02210499c413f3bd8dedd8e16671
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Mar 4 18:47:22 2021 -0700
+
+    Passed exception and file init tests
+
+commit 1b9eb74a9bb2abe4471d45f91fc8242fd8f7a9ec
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Mar 4 17:18:24 2021 -0700
+
+    added functionality to pass FileInitTests306
+
+commit 3f1eba79ed87e04cadcdd1eec837fe5031d45669
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 16:39:24 2021 -0700
+
+    Created skeleton classes for Clue Game. Created unit tests for file intialization
+
+commit 9a323c2911282c50fcf18f44009334c7ac2da308
+Merge: ace5180 9a791ff
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:13:54 2021 -0700
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit ace518007cb78ba151bf58b0b1e8b28475d90fe9
+Author: Colingit  Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:09:41 2021 -0700
+
+    Updated gitlog.txt
+
+commit 9a791ff05bb836109cfe9a5135c23d84d01362f0
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:08:18 2021 -0700
+
+    Update gitlog.txt
+
 commit 6a6de69282340da441a879711ec3b1e5ff20431c
 Author: Colin Short <colinshort@mymail.mines.edu>
 Date:   Fri Feb 26 15:04:53 2021 -0700
