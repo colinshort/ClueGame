@@ -34,7 +34,7 @@ class FileInitTest {
 		//first
 		assertEquals("Coolbaugh", board.getRoom('C').getName() );
 		//a couple others
-		assertEquals("Geology Museum", board.getRoom('G').getName() );
+		assertEquals("Engineering Hall", board.getRoom('E').getName() );
 		assertEquals("Student Center", board.getRoom('S').getName() );
 		assertEquals("Brown", board.getRoom('B').getName() );
 		//last
@@ -51,7 +51,7 @@ class FileInitTest {
 	@Test
 	public void FourDoorDirections() {
 		//check left-facing door
-		BoardCell cell = board.getCell(4, 2);
+		BoardCell cell = board.getCell(7, 5);
 		assertTrue(cell.isDoorway());
 		assertEquals(DoorDirection.LEFT, cell.getDoorDirection());
 		//check door facing up
@@ -106,7 +106,7 @@ class FileInitTest {
 		assertTrue( room.getLabelCell() == cell );
 		
 		// this is a room center cell to test
-		cell = board.getCell(22, 13);
+		cell = board.getCell(22, 12);
 		room = board.getRoom( cell ) ;
 		assertTrue( room != null );
 		assertEquals( room.getName(), "Student Center" ) ;

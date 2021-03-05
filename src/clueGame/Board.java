@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 import experiment.TestBoardCell;
 
+
 public class Board {
 	private BoardCell[][] grid;
 	private int numRows;
@@ -39,25 +40,28 @@ public class Board {
 	public void initialize() {
 		try {
 			loadConfigFiles();
-		} catch (FileNotFoundException e) {
+		} catch (BadConfigFormatException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 	}
 	
-	public void loadConfigFiles() throws FileNotFoundException {
+	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException {
 		loadSetupConfig();
 		loadLayoutConfig();
 	}
 	
 	
-	public void loadSetupConfig() throws FileNotFoundException  {
+	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException  {
 		FileReader reader = new FileReader(setupConfigFile);
 		Scanner in = new Scanner(reader);
 		while(in.hasNextLine()) {
 			String line = in.nextLine();
-			if(!line.startsWith("/")) {
+ 			if(!line.startsWith("/")) {
 				String[] setUp = line.split(",");
+				if (!setUp[0].equals("Room") && !setUp[0].equals("Space")) {
+					throw new BadConfigFormatException("Error: Invalid card type");
+				}
 				Room room = new Room(setUp[1].trim());
 				roomMap.put(setUp[2].charAt(1), room);
 			}
@@ -66,7 +70,7 @@ public class Board {
 	}
 	
 	
-	public void loadLayoutConfig() throws FileNotFoundException {
+	public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
 		ArrayList<String> rows = new ArrayList<String>();
 		FileReader reader = new FileReader(layoutConfigFile);
 		Scanner in = new Scanner(reader);
@@ -89,10 +93,15 @@ public class Board {
 		while(in2.hasNextLine()) {
 			String line = in2.nextLine();
 			String[] setUp = line.split(",");
+			if(setUp.length != numColumns) {
+				throw new BadConfigFormatException("Error: Invalid number of columns on row " + count);
+			}
 			for(int i = 0; i < numColumns; i++) {
+				if(!roomMap.containsKey(setUp[i].charAt(0))) {
+					throw new BadConfigFormatException("Error: Invalid board cell initial");
+				}
 				grid[count][i] = new BoardCell(count,i);
 				grid[count][i].setInitial(setUp[i].charAt(0));
-				
 				if(setUp[i].length()==2) {
 					if(setUp[i].charAt(1) == '<') { 
 						grid[count][i].setDoorWay(true);
@@ -125,6 +134,7 @@ public class Board {
 					
 				}
 			}
+			
 			count++;
 		}
 			

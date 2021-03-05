@@ -7,8 +7,7 @@ Room, Student Center, S
 Room, Green, G
 Room, CoorsTek, T
 Room, Marquez, M
-Room, Geology Museum, G
-
+Room, Engineering Hall, E
 //other spaces on board
 Space, Unused, X
 Space, Walkway, W
