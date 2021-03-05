@@ -1,3 +1,4 @@
+//Authors:Cameron Fitzgerald, Colin Short
 package clueGame;
 
 public class Room {

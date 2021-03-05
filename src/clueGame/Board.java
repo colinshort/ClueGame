@@ -1,3 +1,4 @@
+//Authors:Cameron Fitzgerald, Colin Short
 package clueGame;
 
 import java.io.FileNotFoundException;
@@ -16,92 +17,107 @@ public class Board {
 	private int numColumns;
 	private String layoutConfigFile;
 	private String setupConfigFile;
-	
+
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<Character,Room>();
-	
+
 	/*
-     * variable and methods used for singleton pattern
-     */
-     private static Board theInstance = new Board();
-     
-     // constructor is private to ensure only one can be created
-     private Board() {
-            super() ;
-     }
-     // this method returns the only Board
-     public static Board getInstance() {
-            return theInstance;
-     }
-	
-	 /*
-     * initialize the board (since we are using singleton pattern)
-     */
+	 * variable and methods used for singleton pattern
+	 */
+	private static Board theInstance = new Board();
+
+	// constructor is private to ensure only one can be created
+	private Board() {
+		super() ;
+	}
+	// this method returns the only Board
+	public static Board getInstance() {
+		return theInstance;
+	}
+
+	/*
+	 * initialize the board (since we are using singleton pattern)
+	 */
 	public void initialize() {
 		try {
 			loadConfigFiles();
 		} catch (BadConfigFormatException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException {
 		loadSetupConfig();
 		loadLayoutConfig();
 	}
-	
-	
+
+	//load in setup file
 	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException  {
 		FileReader reader = new FileReader(setupConfigFile);
 		Scanner in = new Scanner(reader);
+
 		while(in.hasNextLine()) {
 			String line = in.nextLine();
- 			if(!line.startsWith("/")) {
+
+			if(!line.startsWith("/")) {
 				String[] setUp = line.split(",");
+
+				//if card is not "Room" or "Space", throw Exception
 				if (!setUp[0].equals("Room") && !setUp[0].equals("Space")) {
 					throw new BadConfigFormatException("Error: Invalid card type");
 				}
+
 				Room room = new Room(setUp[1].trim());
 				roomMap.put(setUp[2].charAt(1), room);
 			}
 		}
 		in.close();
 	}
-	
-	
+
+	//load in layout file
 	public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
 		ArrayList<String> rows = new ArrayList<String>();
 		FileReader reader = new FileReader(layoutConfigFile);
 		Scanner in = new Scanner(reader);
+
 		while(in.hasNextLine()) {
 			String line = in.nextLine();
 			rows.add(line);
 		}
+
 		in.close();
-		
+
 		String[] cols = rows.get(0).split(",");
 		numColumns = cols.length;
 		numRows = rows.size();
-		
+
 		grid = new BoardCell[numRows][numColumns];
-		
+
 		//add Boardcells to the grid
 		FileReader reader2 = new FileReader(layoutConfigFile);
 		Scanner in2 = new Scanner(reader2);
 		int count = 0;
+
 		while(in2.hasNextLine()) {
 			String line = in2.nextLine();
 			String[] setUp = line.split(",");
+
+			//row has improper number of columns, throw exception
 			if(setUp.length != numColumns) {
 				throw new BadConfigFormatException("Error: Invalid number of columns on row " + count);
 			}
+
 			for(int i = 0; i < numColumns; i++) {
+				//if cell contains invalid initial, throw exception
 				if(!roomMap.containsKey(setUp[i].charAt(0))) {
 					throw new BadConfigFormatException("Error: Invalid board cell initial");
 				}
+
 				grid[count][i] = new BoardCell(count,i);
 				grid[count][i].setInitial(setUp[i].charAt(0));
+
+				//handle doorways, room label cells, room center cells, and secret passage cells
 				if(setUp[i].length()==2) {
 					if(setUp[i].charAt(1) == '<') { 
 						grid[count][i].setDoorWay(true);
@@ -127,50 +143,48 @@ public class Board {
 						grid[count][i].setCenter(true);
 						roomMap.get(setUp[i].charAt(0)).setCenterCell(grid[count][i]);
 					}
-					
+
 					else {
 						grid[count][i].setSecretPassage(setUp[i].charAt(1));
 					}
-					
+
 				}
 			}
-			
+
 			count++;
 		}
-			
-		in2.close();
+		in2.close();	
 	}
-	
-	
+
+	//Set configuration file names
 	public void setConfigFiles(String str, String str2) {
 		layoutConfigFile = str;
-		setupConfigFile = str2;
-		
+		setupConfigFile = str2;	
 	}
-	
+
 	public Room getRoom(BoardCell cell) {
 		return roomMap.get(cell.getInitial());
 	}
-	
+
 	public Room getRoom(char initial) {
 		return roomMap.get(initial);
 	}
-	
+
 	public int getNumRows() {
 		return numRows;
 	}
-	
+
 	public int getNumColumns() {
 		return numColumns;
 	}
-	
+
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 }

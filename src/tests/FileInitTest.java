@@ -1,3 +1,4 @@
+//Authors:Cameron Fitzgerald, Colin Short
 package tests;
 
 import static org.junit.Assert.assertEquals;

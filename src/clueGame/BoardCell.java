@@ -1,3 +1,4 @@
+//Authors:Cameron Fitzgerald, Colin Short
 package clueGame;
 
 import java.util.HashSet;
@@ -72,7 +73,8 @@ public class BoardCell {
 		this.roomCenter = center;
 	}
 	
-	public void setSecretPassage(char passage) {
+	public void setSecretPassage(char
+			passage) {
 		this.secretPassage = passage;
 	}
 	
