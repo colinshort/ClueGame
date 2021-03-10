@@ -5,6 +5,7 @@ public class Room {
 	private String name;
 	private BoardCell centerCell;
 	private BoardCell labelCell;
+	private char secretPassage;
 	
 	
 	public Room(String name) {
@@ -30,5 +31,13 @@ public class Room {
 	
 	public void setCenterCell(BoardCell center) {
 		this.centerCell = center;
+	}
+	
+	public char getSecretPassage() {
+		return secretPassage;
+	}
+	
+	public void setSecretPassage(char passage) {
+		this.secretPassage = passage;
 	}
 }

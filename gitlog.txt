@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 commit a28fe14f419251e844cec41a5b53b5b424f7e6f8
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
 Date:   Fri Mar 5 14:55:19 2021 -0700
@@ -37,6 +38,404 @@ Date:   Fri Feb 26 15:13:54 2021 -0700
 
 commit ace518007cb78ba151bf58b0b1e8b28475d90fe9
 Author: Colingit  Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:09:41 2021 -0700
+
+    Updated gitlog.txt
+
+commit 9a791ff05bb836109cfe9a5135c23d84d01362f0
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:08:18 2021 -0700
+
+    Update gitlog.txt
+
+commit 6a6de69282340da441a879711ec3b1e5ff20431c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:04:53 2021 -0700
+
+    Added checks for rooms and occupied cells to calcTargets()
+
+commit 543f3088a472fab6bfb251a4b7c32f72449de773
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 22:40:40 2021 -0700
+
+    Added functionality to pass adjacency tests!
+
+commit b19b3ec0def6f22d0a96de3130e866c15525cd1e
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 18:48:12 2021 -0700
+
+    Revert "Removed eclipse project files from remote repo"
+    
+    This reverts commit 92834e4849ca1591403b9b572aa98b213110c250.
+
+commit f7e8a9407fd3506a98aabe6d4dbe217a5d882213
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Feb 25 18:12:48 2021 -0700
+
+    Added ClueSetup.txt
+
+commit 92834e4849ca1591403b9b572aa98b213110c250
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 15:32:41 2021 -0700
+
+    Removed eclipse project files from remote repo
+
+commit 007563bafd823e118306a55dac34d5d74cabf094
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:07:16 2021 -0700
+
+    Updated .gitignore
+
+commit a8ee473440fcf819947a71bbe289696062713bb8
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:00:07 2021 -0700
+
+    Updated .gitignore
+
+commit 1a533563a5b48de03fe7bb9674322d6e601b9427
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 13:53:16 2021 -0700
+
+    4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
+
+commit 67c396e33e8206736b331b50343dbe41957de5dd
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 23:26:22 2021 -0700
+
+    changed build path for JUint 5
+
+commit 84a54c7ff60b9f4735f6e052c4ab7dd89ea8304c
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 19:45:17 2021 -0700
+
+    Created adjacency tests methods
+
+commit a8af3250966436a8d5ab5f06c0c26c823fbca4f5
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:43:05 2021 -0700
+
+    Created Experiment classes: TestBoardCell and TestBoard
+
+commit 53437e2b610e76e929d3a5b2eb9885602fce1c9c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:05:02 2021 -0700
+
+    Initial State
+
+commit 2ee0fc118b21e854f22d67c89f94d929f35c0f28
+Author: Colin Short <78009530+colinshort@users.noreply.github.com>
+Date:   Tue Feb 23 17:42:36 2021 -0700
+
+    Initial commit
+=======
+commit a28fe14f419251e844cec41a5b53b5b424f7e6f8
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 5 14:55:19 2021 -0700
+
+    Include Adjacency Tests
+
+commit 27bdc0d1f93da0d7e0e92254f3af5e9d65507724
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 5 12:57:17 2021 -0700
+
+    Added 306 target test
+
+commit af3182377b8c02210499c413f3bd8dedd8e16671
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Mar 4 18:47:22 2021 -0700
+
+    Passed exception and file init tests
+
+commit 1b9eb74a9bb2abe4471d45f91fc8242fd8f7a9ec
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Mar 4 17:18:24 2021 -0700
+
+    added functionality to pass FileInitTests306
+
+commit 3f1eba79ed87e04cadcdd1eec837fe5031d45669
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 16:39:24 2021 -0700
+
+    Created skeleton classes for Clue Game. Created unit tests for file intialization
+
+commit 9a323c2911282c50fcf18f44009334c7ac2da308
+Merge: ace5180 9a791ff
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:13:54 2021 -0700
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit ace518007cb78ba151bf58b0b1e8b28475d90fe9
+Author: Colingit  Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:09:41 2021 -0700
+
+    Updated gitlog.txt
+
+commit 9a791ff05bb836109cfe9a5135c23d84d01362f0
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:08:18 2021 -0700
+
+    Update gitlog.txt
+
+commit 6a6de69282340da441a879711ec3b1e5ff20431c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:04:53 2021 -0700
+
+    Added checks for rooms and occupied cells to calcTargets()
+
+commit 543f3088a472fab6bfb251a4b7c32f72449de773
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 22:40:40 2021 -0700
+
+    Added functionality to pass adjacency tests!
+
+commit b19b3ec0def6f22d0a96de3130e866c15525cd1e
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 18:48:12 2021 -0700
+
+    Revert "Removed eclipse project files from remote repo"
+    
+    This reverts commit 92834e4849ca1591403b9b572aa98b213110c250.
+
+commit f7e8a9407fd3506a98aabe6d4dbe217a5d882213
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Feb 25 18:12:48 2021 -0700
+
+    Added ClueSetup.txt
+
+commit 92834e4849ca1591403b9b572aa98b213110c250
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 15:32:41 2021 -0700
+
+    Removed eclipse project files from remote repo
+
+commit 007563bafd823e118306a55dac34d5d74cabf094
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:07:16 2021 -0700
+
+    Updated .gitignore
+
+commit a8ee473440fcf819947a71bbe289696062713bb8
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:00:07 2021 -0700
+
+    Updated .gitignore
+
+commit 1a533563a5b48de03fe7bb9674322d6e601b9427
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 13:53:16 2021 -0700
+
+    4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
+
+commit 67c396e33e8206736b331b50343dbe41957de5dd
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 23:26:22 2021 -0700
+
+    changed build path for JUint 5
+
+commit 84a54c7ff60b9f4735f6e052c4ab7dd89ea8304c
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 19:45:17 2021 -0700
+
+    Created adjacency tests methods
+
+commit a8af3250966436a8d5ab5f06c0c26c823fbca4f5
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:43:05 2021 -0700
+
+    Created Experiment classes: TestBoardCell and TestBoard
+
+commit 53437e2b610e76e929d3a5b2eb9885602fce1c9c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:05:02 2021 -0700
+
+    Initial State
+
+commit 2ee0fc118b21e854f22d67c89f94d929f35c0f28
+Author: Colin Short <78009530+colinshort@users.noreply.github.com>
+Date:   Tue Feb 23 17:42:36 2021 -0700
+
+    Initial commit
+>>>>>>> eb2e07537d760430d68b7b41371ffa1d04b34fd8
+commit 0b2cf7f1f823c04c60bc6f59d8edc07c69a5d45b
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 10 14:24:33 2021 -0700
+
+    Implemented adjacency and target tests. All tests pass
+
+commit a28fe14f419251e844cec41a5b53b5b424f7e6f8
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 5 14:55:19 2021 -0700
+
+    Include Adjacency Tests
+
+commit 27bdc0d1f93da0d7e0e92254f3af5e9d65507724
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 5 12:57:17 2021 -0700
+
+    Added 306 target test
+
+commit af3182377b8c02210499c413f3bd8dedd8e16671
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Mar 4 18:47:22 2021 -0700
+
+    Passed exception and file init tests
+
+commit 1b9eb74a9bb2abe4471d45f91fc8242fd8f7a9ec
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Mar 4 17:18:24 2021 -0700
+
+    added functionality to pass FileInitTests306
+
+commit 3f1eba79ed87e04cadcdd1eec837fe5031d45669
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 16:39:24 2021 -0700
+
+    Created skeleton classes for Clue Game. Created unit tests for file intialization
+
+commit 9a323c2911282c50fcf18f44009334c7ac2da308
+Merge: ace5180 9a791ff
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:13:54 2021 -0700
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit ace518007cb78ba151bf58b0b1e8b28475d90fe9
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:09:41 2021 -0700
+
+    Updated gitlog.txt
+
+commit 9a791ff05bb836109cfe9a5135c23d84d01362f0
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:08:18 2021 -0700
+
+    Update gitlog.txt
+
+commit 6a6de69282340da441a879711ec3b1e5ff20431c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:04:53 2021 -0700
+
+    Added checks for rooms and occupied cells to calcTargets()
+
+commit 543f3088a472fab6bfb251a4b7c32f72449de773
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 22:40:40 2021 -0700
+
+    Added functionality to pass adjacency tests!
+
+commit b19b3ec0def6f22d0a96de3130e866c15525cd1e
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Feb 25 18:48:12 2021 -0700
+
+    Revert "Removed eclipse project files from remote repo"
+    
+    This reverts commit 92834e4849ca1591403b9b572aa98b213110c250.
+
+commit f7e8a9407fd3506a98aabe6d4dbe217a5d882213
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Feb 25 18:12:48 2021 -0700
+
+    Added ClueSetup.txt
+
+commit 92834e4849ca1591403b9b572aa98b213110c250
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 15:32:41 2021 -0700
+
+    Removed eclipse project files from remote repo
+
+commit 007563bafd823e118306a55dac34d5d74cabf094
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:07:16 2021 -0700
+
+    Updated .gitignore
+
+commit a8ee473440fcf819947a71bbe289696062713bb8
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 14:00:07 2021 -0700
+
+    Updated .gitignore
+
+commit 1a533563a5b48de03fe7bb9674322d6e601b9427
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Feb 24 13:53:16 2021 -0700
+
+    4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
+
+commit 67c396e33e8206736b331b50343dbe41957de5dd
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 23:26:22 2021 -0700
+
+    changed build path for JUint 5
+
+commit 84a54c7ff60b9f4735f6e052c4ab7dd89ea8304c
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Tue Feb 23 19:45:17 2021 -0700
+
+    Created adjacency tests methods
+
+commit a8af3250966436a8d5ab5f06c0c26c823fbca4f5
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:43:05 2021 -0700
+
+    Created Experiment classes: TestBoardCell and TestBoard
+
+commit 53437e2b610e76e929d3a5b2eb9885602fce1c9c
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Tue Feb 23 18:05:02 2021 -0700
+
+    Initial State
+
+commit 2ee0fc118b21e854f22d67c89f94d929f35c0f28
+Author: Colin Short <78009530+colinshort@users.noreply.github.com>
+Date:   Tue Feb 23 17:42:36 2021 -0700
+
+    Initial commit
+commit 0b2cf7f1f823c04c60bc6f59d8edc07c69a5d45b
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 10 14:24:33 2021 -0700
+
+    Implemented adjacency and target tests. All tests pass
+
+commit a28fe14f419251e844cec41a5b53b5b424f7e6f8
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 5 14:55:19 2021 -0700
+
+    Include Adjacency Tests
+
+commit 27bdc0d1f93da0d7e0e92254f3af5e9d65507724
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 5 12:57:17 2021 -0700
+
+    Added 306 target test
+
+commit af3182377b8c02210499c413f3bd8dedd8e16671
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Mar 4 18:47:22 2021 -0700
+
+    Passed exception and file init tests
+
+commit 1b9eb74a9bb2abe4471d45f91fc8242fd8f7a9ec
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Mar 4 17:18:24 2021 -0700
+
+    added functionality to pass FileInitTests306
+
+commit 3f1eba79ed87e04cadcdd1eec837fe5031d45669
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 16:39:24 2021 -0700
+
+    Created skeleton classes for Clue Game. Created unit tests for file intialization
+
+commit 9a323c2911282c50fcf18f44009334c7ac2da308
+Merge: ace5180 9a791ff
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Feb 26 15:13:54 2021 -0700
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit ace518007cb78ba151bf58b0b1e8b28475d90fe9
+Author: Colin Short <colinshort@mymail.mines.edu>
 Date:   Fri Feb 26 15:09:41 2021 -0700
 
     Updated gitlog.txt
