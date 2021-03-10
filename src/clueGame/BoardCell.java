@@ -14,9 +14,17 @@ public class BoardCell {
 	private boolean doorWay = false;
 	private boolean roomLabel;
 	private boolean roomCenter;
+	@Override
+	public String toString() {
+		return "BoardCell [row=" + row + ", col=" + col + ", initial=" + initial + "]";
+	}
+
 	private char secretPassage;
 	private Set<BoardCell> adjList;
 	private boolean isOccupied, isRoom;
+	
+	public static final char C_WALKWAY = 'W';
+	public static final char C_UNUSED = 'X';
 
 	//intialize board cell at given row and column
 	public BoardCell(int row, int col) {
@@ -45,6 +53,14 @@ public class BoardCell {
 
 	public boolean isRoomCenter() {
 		return roomCenter;
+	}
+	
+	public boolean isWalkway() {
+		return (getInitial() == C_WALKWAY);
+	}
+	
+	public boolean isUnused() {
+		return (getInitial() == C_UNUSED);
 	}
 
 	public char getSecretPassage() {
@@ -105,6 +121,10 @@ public class BoardCell {
 
 	public boolean isRoom() {
 		return isRoom;
+	}
+	
+	public void setIsRoom(boolean room) {
+		isRoom = room;
 	}
 }
 
