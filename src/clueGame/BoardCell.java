@@ -14,11 +14,6 @@ public class BoardCell {
 	private boolean doorWay = false;
 	private boolean roomLabel;
 	private boolean roomCenter;
-	@Override
-	public String toString() {
-		return "BoardCell [row=" + row + ", col=" + col + ", initial=" + initial + "]";
-	}
-
 	private char secretPassage;
 	private Set<BoardCell> adjList;
 	private boolean isOccupied, isRoom;
