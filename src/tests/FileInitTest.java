@@ -10,10 +10,10 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import clueGame.Board;
-import clueGame.BoardCell;
-import clueGame.DoorDirection;
-import clueGame.Room;
+import cluegame.Board;
+import cluegame.BoardCell;
+import cluegame.DoorDirection;
+import cluegame.Room;
 
 class FileInitTest {
 
