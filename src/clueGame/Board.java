@@ -202,60 +202,59 @@ public class Board {
 	Doorways are adjacent to room centers.
 	Secret passages are adjacent to room centers */
 	public void calcAdjacencies(BoardCell cell) {
-		Set<BoardCell> surroundingCells = new HashSet<BoardCell>();
-
-		if(cell.getRow() - 1 >= 0 ) {
-			surroundingCells.add(grid[cell.getRow() - 1][cell.getCol()]);
+		if(cell.getRow() - 1 >= 0) {
+			BoardCell above = (grid[cell.getRow() - 1][cell.getCol()]);
+			findAdjacentCells(cell, above);
 		}
 
-
 		if(cell.getCol() - 1 >= 0) {
-			surroundingCells.add(grid[cell.getRow()][cell.getCol() - 1]);
+			BoardCell left = (grid[cell.getRow()][cell.getCol() - 1]);
+			findAdjacentCells(cell, left);
 		}
 
 		if(cell.getRow() + 1 <= numRows - 1) {
-			surroundingCells.add(grid[cell.getRow() + 1][cell.getCol()]);
+			BoardCell below = (grid[cell.getRow() + 1][cell.getCol()]);
+			findAdjacentCells(cell, below);
 		}
 
-
-		if(cell.getCol() + 1 <= numColumns - 1 ) {
-			surroundingCells.add(grid[cell.getRow()][cell.getCol() + 1]);
+		if(cell.getCol() + 1 <= numColumns - 1) {
+			BoardCell right = (grid[cell.getRow()][cell.getCol() + 1]);
+			findAdjacentCells(cell, right);
 		}
-
-		if(cell.isWalkway()) {
-			for(BoardCell c : surroundingCells) {
-				if(c.isRoom() && cell.isDoorway()) {
-					if(cell.getRow() > c.getRow() && cell.getDoorDirection() == DoorDirection.UP) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-
-					}
-					else if(cell.getRow() < c.getRow() && cell.getDoorDirection() == DoorDirection.DOWN) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-
-					}
-					else if(cell.getCol() < c.getCol() && cell.getDoorDirection() == DoorDirection.RIGHT) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-
-					}
-					else if(cell.getCol() > c.getCol() && cell.getDoorDirection() == DoorDirection.LEFT) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-					}
-				}else if(c.isWalkway()) {
-					cell.addAdj(c);
+		
+	}
+	
+	//Find adjacent doorways and secret passages and add corresponding room center cells to adjancency list
+	public void findAdjacentCells(BoardCell current, BoardCell target) {
+		if(current.isWalkway()) {
+			if(target.isRoom() && current.isDoorway()) {
+				if(current.getRow() > target.getRow() && current.getDoorDirection() == DoorDirection.UP) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
 				}
+				else if(current.getRow() < target.getRow() && current.getDoorDirection() == DoorDirection.DOWN) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
+				}
+				else if(current.getCol() < target.getCol() && current.getDoorDirection() == DoorDirection.RIGHT) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
+				}
+				else if(current.getCol() > target.getCol() && current.getDoorDirection() == DoorDirection.LEFT) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
+				}
+			}else if(target.isWalkway()) {
+				current.addAdj(target);
 			}
-		}else if(cell.isRoomCenter()) {
-			char sP = roomMap.get(cell.getInitial()).getSecretPassage();
-			if(sP != '\0') {
-				cell.addAdj(roomMap.get(sP).getCenterCell());
-			}
+	}else if(current.isRoomCenter()) {
+		char sP = roomMap.get(current.getInitial()).getSecretPassage();
+		if(sP != '\0') {
+			current.addAdj(roomMap.get(sP).getCenterCell());
 		}
 	}
-
+	}
+	
 	/* Calculate valid target cells for a given cell and path length
 	first clear targets and visited sets, add current cell to visited list
 	make a call to findAllTargets*/
