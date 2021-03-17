@@ -62,15 +62,15 @@ public class Board {
 				String line = in.nextLine();
 
 				if(!line.startsWith("/")) {
-					String[] setUp = line.split(",");
+					String[] setUp = line.split(", ");
 
 					//if card is not "Room" or "Space", throw Exception
 					if (!setUp[0].equals("Room") && !setUp[0].equals("Space")) {
 						throw new BadConfigFormatException("Error: Invalid card type");
 					}
 
-					Room room = new Room(setUp[1].trim());
-					roomMap.put(setUp[2].charAt(1), room);
+					Room room = new Room(setUp[1]);
+					roomMap.put(setUp[2].charAt(0), room);
 				}
 			}
 		}finally {
