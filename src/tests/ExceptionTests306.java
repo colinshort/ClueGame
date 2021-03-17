@@ -9,8 +9,8 @@ import java.io.FileNotFoundException;
 
 import org.junit.Test;
 
-import cluegame.BadConfigFormatException;
-import cluegame.Board;
+import clueGame.BadConfigFormatException;
+import clueGame.Board;
 
 public class ExceptionTests306 {
 

@@ -1,5 +1,5 @@
 //Authors:Cameron Fitzgerald, Colin Short
-package cluegame;
+package clueGame;
 
 import java.util.HashSet;
 import java.util.Set;

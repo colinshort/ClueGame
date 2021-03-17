@@ -9,8 +9,8 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import cluegame.Board;
-import cluegame.BoardCell;
+import clueGame.Board;
+import clueGame.BoardCell;
 
 public class BoardAdjTargetTest { 
 		private static Board board;
