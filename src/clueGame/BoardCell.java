@@ -1,5 +1,5 @@
 //Authors:Cameron Fitzgerald, Colin Short
-package clueGame;
+package cluegame;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +14,8 @@ public class BoardCell {
 	private boolean roomCenter;
 	private char secretPassage;
 	private Set<BoardCell> adjList;
-	private boolean isOccupied, isRoom;
+	private boolean isOccupied;
+	private boolean isRoom;
 	
 	public static final char C_WALKWAY = 'W';
 	public static final char C_UNUSED = 'X';
@@ -22,7 +23,7 @@ public class BoardCell {
 	//intialize board cell at given row and column
 	public BoardCell(int row, int col) {
 		super();
-		this.adjList = new HashSet<BoardCell>();
+		this.adjList = new HashSet<>();
 		this.row = row;
 		this.col = col;
 	}

@@ -1,5 +1,5 @@
 //Authors:Cameron Fitzgerald, Colin Short
-package clueGame;
+package cluegame;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

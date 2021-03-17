@@ -1,5 +1,5 @@
 //Authors:Cameron Fitzgerald, Colin Short
-package clueGame;
+package cluegame;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -21,7 +21,7 @@ public class Board {
 	private Set<BoardCell> visited;
 
 	//Stores Character as key and Room as entry
-	private Map<Character, Room> roomMap = new HashMap<Character,Room>();
+	private Map<Character, Room> roomMap = new HashMap<>();
 
 	//variable and methods used for singleton pattern
 	private static Board theInstance = new Board();
@@ -29,10 +29,10 @@ public class Board {
 	// constructor is private to ensure only one can be created
 	private Board() {
 		super() ;
-		this.targets = new HashSet<BoardCell>();
-		this.visited = new HashSet<BoardCell>();
+		this.targets = new HashSet<>();
+		this.visited = new HashSet<>();
 	}
-	
+
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
@@ -62,31 +62,30 @@ public class Board {
 				String line = in.nextLine();
 
 				if(!line.startsWith("/")) {
-					String[] setUp = line.split(", ");
+					String[] setUp = line.split(",");
 
 					//if card is not "Room" or "Space", throw Exception
 					if (!setUp[0].equals("Room") && !setUp[0].equals("Space")) {
 						throw new BadConfigFormatException("Error: Invalid card type");
 					}
 
-					Room room = new Room(setUp[1]);
-					roomMap.put(setUp[2].charAt(0), room);
+					Room room = new Room(setUp[1].trim());
+					roomMap.put(setUp[2].charAt(1), room);
 				}
 			}
 		}finally {
-			if(in != null) in.close();
-			if(reader != null)
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			in.close();
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	//load in layout file
 	public void loadLayoutConfig() throws FileNotFoundException, BadConfigFormatException {
-		ArrayList<String> rows = new ArrayList<String>();
+		ArrayList<String> rows = new ArrayList<>();
 		FileReader reader = new FileReader(layoutConfigFile);
 		Scanner in = new Scanner(reader);
 		try {
@@ -95,13 +94,12 @@ public class Board {
 				rows.add(line);
 			}
 		}finally {
-			if(in != null) in.close();
-			if(reader != null)
-				try {
-					reader.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			in.close();
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		String[] cols = rows.get(0).split(",");
@@ -174,13 +172,12 @@ public class Board {
 			count++;
 			}
 		}finally{
-			if(in2 != null) in2.close();
-			if(reader2 != null)
-				try {
-					reader2.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			in2.close();
+			try {
+				reader2.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 
@@ -197,62 +194,61 @@ public class Board {
 		layoutConfigFile = str;
 		setupConfigFile = str2;	
 	}
-	
-	
+
+
 	/* Calculate the adjacencies for a given cell and add them to adjacency list in BoardCell
 	Doorways are adjacent to room centers.
 	Secret passages are adjacent to room centers */
 	public void calcAdjacencies(BoardCell cell) {
-		Set<BoardCell> surroundingCells = new HashSet<BoardCell>();
-
-		if(cell.getRow() - 1 >= 0 ) {
-			surroundingCells.add(grid[cell.getRow() - 1][cell.getCol()]);
+		if(cell.getRow() - 1 >= 0) {
+			BoardCell above = (grid[cell.getRow() - 1][cell.getCol()]);
+			findAdjacentCells(cell, above);
 		}
 
-
 		if(cell.getCol() - 1 >= 0) {
-			surroundingCells.add(grid[cell.getRow()][cell.getCol() - 1]);
+			BoardCell left = (grid[cell.getRow()][cell.getCol() - 1]);
+			findAdjacentCells(cell, left);
 		}
 
 		if(cell.getRow() + 1 <= numRows - 1) {
-			surroundingCells.add(grid[cell.getRow() + 1][cell.getCol()]);
+			BoardCell below = (grid[cell.getRow() + 1][cell.getCol()]);
+			findAdjacentCells(cell, below);
 		}
 
-
-		if(cell.getCol() + 1 <= numColumns - 1 ) {
-			surroundingCells.add(grid[cell.getRow()][cell.getCol() + 1]);
+		if(cell.getCol() + 1 <= numColumns - 1) {
+			BoardCell right = (grid[cell.getRow()][cell.getCol() + 1]);
+			findAdjacentCells(cell, right);
 		}
 
-		if(cell.isWalkway()) {
-			for(BoardCell c : surroundingCells) {
-				if(c.isRoom() && cell.isDoorway()) {
-					if(cell.getRow() > c.getRow() && cell.getDoorDirection() == DoorDirection.UP) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
+	}
 
-					}
-					else if(cell.getRow() < c.getRow() && cell.getDoorDirection() == DoorDirection.DOWN) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-
-					}
-					else if(cell.getCol() < c.getCol() && cell.getDoorDirection() == DoorDirection.RIGHT) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-
-					}
-					else if(cell.getCol() > c.getCol() && cell.getDoorDirection() == DoorDirection.LEFT) {
-						cell.addAdj(roomMap.get(c.getInitial()).getCenterCell());
-						roomMap.get(c.getInitial()).getCenterCell().addAdj(cell);
-					}
-				}else if(c.isWalkway()) {
-					cell.addAdj(c);
+	//Find adjacent doorways and secret passages and add corresponding room center cells to adjancency list
+	public void findAdjacentCells(BoardCell current, BoardCell target) {
+		if(current.isWalkway()) {
+			if(target.isRoom() && current.isDoorway()) {
+				if(current.getRow() > target.getRow() && current.getDoorDirection() == DoorDirection.UP) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
 				}
+				else if(current.getRow() < target.getRow() && current.getDoorDirection() == DoorDirection.DOWN) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
+				}
+				else if(current.getCol() < target.getCol() && current.getDoorDirection() == DoorDirection.RIGHT) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
+				}
+				else if(current.getCol() > target.getCol() && current.getDoorDirection() == DoorDirection.LEFT) {
+					current.addAdj(roomMap.get(target.getInitial()).getCenterCell());
+					roomMap.get(target.getInitial()).getCenterCell().addAdj(current);
+				}
+			}else if(target.isWalkway()) {
+				current.addAdj(target);
 			}
-		}else if(cell.isRoomCenter()) {
-			char sP = roomMap.get(cell.getInitial()).getSecretPassage();
+		}else if(current.isRoomCenter()) {
+			char sP = roomMap.get(current.getInitial()).getSecretPassage();
 			if(sP != '\0') {
-				cell.addAdj(roomMap.get(sP).getCenterCell());
+				current.addAdj(roomMap.get(sP).getCenterCell());
 			}
 		}
 	}
@@ -261,21 +257,21 @@ public class Board {
 	first clear targets and visited sets, add current cell to visited list
 	make a call to findAllTargets*/
 	public void calcTargets(BoardCell startCell, int pathlength) {
-		if(targets.size() > 0) {
+		if(targets.isEmpty()) {
 			targets.clear();
 		}
-		if(visited.size() > 0) {
+		if(visited.isEmpty()) {
 			visited.clear();
 		}
 		visited.add(startCell);
 		findAllTargets(startCell, pathlength);
 	}
-	
+
 	//search for and store (in targets set) all cells that are a certain pathlength away
 	public void findAllTargets(BoardCell cell, int pathlength) {
-		Set<BoardCell> Adjs = cell.getAdjList();
+		Set<BoardCell> adjs = cell.getAdjList();
 		if(pathlength >= 1) {
-			for(BoardCell c : Adjs) {
+			for(BoardCell c : adjs) {
 				if(!visited.contains(c) && (!c.getOccupied() || c.isRoomCenter())) {
 					visited.add(c);
 					if(pathlength == 1 || c.isRoomCenter()) {

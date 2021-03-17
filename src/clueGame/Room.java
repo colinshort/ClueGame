@@ -1,5 +1,5 @@
 //Authors:Cameron Fitzgerald, Colin Short
-package clueGame;
+package cluegame;
 
 public class Room {
 	private String name;
