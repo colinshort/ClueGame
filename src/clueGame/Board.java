@@ -114,7 +114,6 @@ public class Board {
 		try{
 			int count = 0;
 
-
 			while(in2.hasNextLine()) {
 				String line = in2.nextLine();
 				String[] setUp = line.split(",");
@@ -150,8 +149,12 @@ public class Board {
 			}
 		}
 
-
-
+		preprocessAdjs();
+		
+	}
+	
+	//calculate adjacencies for each cell on the board
+	public void preprocessAdjs() {
 		for(int i = 0; i < numColumns; i++) {
 			for(int j = 0; j < numRows; j++) {
 				calcAdjacencies(grid[j][i]);
@@ -159,7 +162,6 @@ public class Board {
 		}
 	}
 	
-
 	//handle doorways, room label cells, room center cells, and secret passage cells
 	public void handleSpecialCells(String label, int row, int col) {
 		if(label.length()==2) {
