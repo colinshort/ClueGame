@@ -136,37 +136,8 @@ public class Board {
 						grid[count][i].setIsRoom(true);
 					}
 
-					//handle doorways, room label cells, room center cells, and secret passage cells
-					if(setUp[i].length()==2) {
-						if(setUp[i].charAt(1) == '<') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.LEFT);
-						}
-						else if(setUp[i].charAt(1) == '>') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.RIGHT);
-						}
-						else if(setUp[i].charAt(1) == 'v') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.DOWN);
-						}
-						else if(setUp[i].charAt(1) == '^') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.UP);
-						}
-						else if(setUp[i].charAt(1) == '#') { 
-							grid[count][i].setRoomLabel(true);
-							roomMap.get(setUp[i].charAt(0)).setLabelCell(grid[count][i]);
-						}
-						else if(setUp[i].charAt(1) == '*') { 
-							grid[count][i].setCenter(true);
-							roomMap.get(setUp[i].charAt(0)).setCenterCell(grid[count][i]);
-						}
-						else {
-							grid[count][i].setSecretPassage(setUp[i].charAt(1));
-							roomMap.get(setUp[i].charAt(0)).setSecretPassage(setUp[i].charAt(1));
-						}
-					}
+					handleSpecialCells(setUp[i], count, i);
+					
 				}
 				count++;
 			}
@@ -184,6 +155,41 @@ public class Board {
 		for(int i = 0; i < numColumns; i++) {
 			for(int j = 0; j < numRows; j++) {
 				calcAdjacencies(grid[j][i]);
+			}
+		}
+	}
+	
+
+	//handle doorways, room label cells, room center cells, and secret passage cells
+	public void handleSpecialCells(String label, int row, int col) {
+		if(label.length()==2) {
+			if(label.charAt(1) == '<') { 
+				grid[row][col].setDoorWay(true);
+				grid[row][col].setDoorDirection(DoorDirection.LEFT);
+			}
+			else if(label.charAt(1) == '>') { 
+				grid[row][col].setDoorWay(true);
+				grid[row][col].setDoorDirection(DoorDirection.RIGHT);
+			}
+			else if(label.charAt(1) == 'v') { 
+				grid[row][col].setDoorWay(true);
+				grid[row][col].setDoorDirection(DoorDirection.DOWN);
+			}
+			else if(label.charAt(1) == '^') { 
+				grid[row][col].setDoorWay(true);
+				grid[row][col].setDoorDirection(DoorDirection.UP);
+			}
+			else if(label.charAt(1) == '#') { 
+				grid[row][col].setRoomLabel(true);
+				roomMap.get(label.charAt(0)).setLabelCell(grid[row][col]);
+			}
+			else if(label.charAt(1) == '*') { 
+				grid[row][col].setCenter(true);
+				roomMap.get(label.charAt(0)).setCenterCell(grid[row][col]);
+			}
+			else {
+				grid[row][col].setSecretPassage(label.charAt(1));
+				roomMap.get(label.charAt(0)).setSecretPassage(label.charAt(1));
 			}
 		}
 	}
@@ -256,10 +262,10 @@ public class Board {
 	first clear targets and visited sets, add current cell to visited list
 	make a call to findAllTargets*/
 	public void calcTargets(BoardCell startCell, int pathlength) {
-		if(targets.isEmpty()) {
+		if(!targets.isEmpty()) {
 			targets.clear();
 		}
-		if(visited.isEmpty()) {
+		if(!visited.isEmpty()) {
 			visited.clear();
 		}
 		visited.add(startCell);
