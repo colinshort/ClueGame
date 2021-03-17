@@ -140,37 +140,38 @@ public class Board {
 
 					//handle doorways, room label cells, room center cells, and secret passage cells
 					if(setUp[i].length()==2) {
-						if(setUp[i].charAt(1) == '<') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.LEFT);
-						}
-						else if(setUp[i].charAt(1) == '>') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.RIGHT);
-						}
-						else if(setUp[i].charAt(1) == 'v') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.DOWN);
-						}
-						else if(setUp[i].charAt(1) == '^') { 
-							grid[count][i].setDoorWay(true);
-							grid[count][i].setDoorDirection(DoorDirection.UP);
-						}
-						else if(setUp[i].charAt(1) == '#') { 
-							grid[count][i].setRoomLabel(true);
-							roomMap.get(setUp[i].charAt(0)).setLabelCell(grid[count][i]);
-						}
-						else if(setUp[i].charAt(1) == '*') { 
-							grid[count][i].setCenter(true);
-							roomMap.get(setUp[i].charAt(0)).setCenterCell(grid[count][i]);
-						}
-						else {
-							grid[count][i].setSecretPassage(setUp[i].charAt(1));
-							roomMap.get(setUp[i].charAt(0)).setSecretPassage(setUp[i].charAt(1));
-						}
+						switch(setUp[i].charAt(1)) {
+							case '<':
+								grid[count][i].setDoorWay(true);
+								grid[count][i].setDoorDirection(DoorDirection.LEFT);
+								break;
+							case '>':
+								grid[count][i].setDoorWay(true);
+								grid[count][i].setDoorDirection(DoorDirection.RIGHT);
+								break;
+							case 'v':
+								grid[count][i].setDoorWay(true);
+								grid[count][i].setDoorDirection(DoorDirection.DOWN);
+								break;
+							case '^':
+								grid[count][i].setDoorWay(true);
+								grid[count][i].setDoorDirection(DoorDirection.UP);
+								break;
+							case '#':
+								grid[count][i].setRoomLabel(true);
+								roomMap.get(setUp[i].charAt(0)).setLabelCell(grid[count][i]);
+								break;
+							case '*':
+								grid[count][i].setCenter(true);
+								roomMap.get(setUp[i].charAt(0)).setCenterCell(grid[count][i]);
+								break;
+							default:
+								grid[count][i].setSecretPassage(setUp[i].charAt(1));
+								roomMap.get(setUp[i].charAt(0)).setSecretPassage(setUp[i].charAt(1));	
 					}
 				}
-				count++;
+			}
+			count++;
 			}
 		}finally{
 			if(in2 != null) in2.close();
