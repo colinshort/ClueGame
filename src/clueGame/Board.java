@@ -137,9 +137,8 @@ public class Board {
 
 					handleSpecialCells(setUp[i], count, i);
 				}
-			}
-			
-			count++;
+				count++;
+			}	
 			
 		}finally{
 			in2.close();
@@ -158,7 +157,7 @@ public class Board {
 	public void preprocessAdjs() {
 		for(int i = 0; i < numColumns; i++) {
 			for(int j = 0; j < numRows; j++) {
-				calcAdjacencies(grid[j][i]);
+				calcAdjacencies(grid[j][i]);	
 			}
 		}
 	}
