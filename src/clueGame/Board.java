@@ -25,9 +25,7 @@ public class Board {
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<Character,Room>();
 
-	/*
-	 * variable and methods used for singleton pattern
-	 */
+	//variable and methods used for singleton pattern
 	private static Board theInstance = new Board();
 
 	// constructor is private to ensure only one can be created
@@ -36,14 +34,13 @@ public class Board {
 		this.targets = new HashSet<BoardCell>();
 		this.visited = new HashSet<BoardCell>();
 	}
+	
 	// this method returns the only Board
 	public static Board getInstance() {
 		return theInstance;
 	}
 
-	/*
-	 * initialize the board (since we are using singleton pattern)
-	 */
+	//initialize the board (since we are using singleton pattern)
 	public void initialize() {
 		try {
 			loadConfigFiles();
@@ -177,8 +174,11 @@ public class Board {
 		layoutConfigFile = str;
 		setupConfigFile = str2;	
 	}
-
-	//Calculate the adjacencies for a given cell and add them to adjacency list in BoardCell
+	
+	
+	/* Calculate the adjacencies for a given cell and add them to adjacency list in BoardCell
+	Doorways are adjacent to room centers.
+	Secret passages are adjacent to room centers */
 	public void calcAdjacencies(BoardCell cell) {
 		Set<BoardCell> surroundingCells = new HashSet<BoardCell>();
 
@@ -234,7 +234,9 @@ public class Board {
 		}
 	}
 
-	//Calculate valid target cells for a given cell and path length
+	/* Calculate valid target cells for a given cell and path length
+	first clear targets and visited sets, add current cell to visited list
+	make a call to findAllTargets*/
 	public void calcTargets(BoardCell startCell, int pathlength) {
 		if(targets.size() > 0) {
 			targets.clear();
@@ -245,7 +247,8 @@ public class Board {
 		visited.add(startCell);
 		findAllTargets(startCell, pathlength);
 	}
-
+	
+	//search for and store (in targets set) all cells that are a certain pathlength away
 	public void findAllTargets(BoardCell cell, int pathlength) {
 		Set<BoardCell> Adjs = cell.getAdjList();
 		if(pathlength >= 1) {
