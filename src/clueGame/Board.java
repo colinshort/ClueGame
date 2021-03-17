@@ -136,10 +136,11 @@ public class Board {
 					}
 
 					handleSpecialCells(setUp[i], count, i);
-					
 				}
-				count++;
 			}
+			
+			count++;
+			
 		}finally{
 			in2.close();
 			try {
