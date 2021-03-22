@@ -19,6 +19,9 @@ public class Board {
 	private String setupConfigFile;
 	private Set<BoardCell> targets;
 	private Set<BoardCell> visited;
+	private Solution theAnswer;
+	private ArrayList<Player> players;
+	private ArrayList<Card> deck;
 
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<>();
@@ -291,6 +294,11 @@ public class Board {
 				}
 			}
 		}
+	}
+	
+	//deal cards
+	public void deal() {
+		
 	}
 
 	public Set<BoardCell> getAdjList(int row, int col){

@@ -1,0 +1,59 @@
+commit 019c7c6d8353b900fce3116bb98ab3345fcd6ebf
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 16:00:24 2021 -0600
+
+    Refactored clueGame package name
+
+commit 29b4de19d244dbb0b7cac7b4c711270bfc6f9875
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:50:42 2021 -0600
+
+    Moved count iteration in loadLayoutConfig() into while loop
+
+commit 7959628c645b6cf98edc96878ba6b54fcb0bcfbc
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:32:36 2021 -0600
+
+    Reduced loadLayoutConfig() Cognitive Complexity
+
+commit a0eda2d0e74b0e67a2810706dc99e59d69209d62
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:29:45 2021 -0600
+
+    Fixed calcTargets logic errors
+
+commit 3aea0d251b24173cd21eaa0cd608168feca7d90b
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 15:24:00 2021 -0600
+
+    REfactoring: simplified identifying doors with switch statement
+
+commit be8bbf5016cffed111ac6bc4fefbd1398d08ab58
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:07:18 2021 -0600
+
+    Made minor changes to follow conventions reccommended by SonarLint
+
+commit ae36331197474ed911ae9d037290c84adb0d5518
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 14:51:03 2021 -0600
+
+    Removed SurroundingCells set from calcAdjacencies(). Moved adjacency logic algorithm to its own method: findAdjacencyCells()
+
+commit 9dc07d157a2176c15c1220fefc87fee4b5f69f0e
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 14:48:58 2021 -0600
+
+    Refactoring: simplified loadSetupConfig string splitting
+
+commit 2c9c15ec3a1915a0b77d14ad2aa0de2a265140ef
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 14:29:23 2021 -0600
+
+    Added try/catch blocks for Scanners and FileReaders
+
+commit ffe3eeaaf3df9960ab8a7ab7f15e30a9ee7fb13a
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 14:27:30 2021 -0600
+
+    Refactoring: added comments to Board class methods
