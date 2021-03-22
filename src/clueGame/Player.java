@@ -11,15 +11,33 @@ public abstract class Player {
 	private ArrayList<Card> hand;
 	private boolean isHuman;
 	
-	public Player(String name, Color color, int row, int col) {
+	public Player(String name, String color, int row, int col) {
 		this.name  = name;
-		this.color = color;
+		this.color = colorConvert(color);
 		this.row = row;
 		this.column = col;
 	}
 	
 	public void updateHand(Card card) {
 		
+	}
+	
+	public Color colorConvert(String colorName) {
+		if(colorName.equals("red")) {
+			return Color.RED;
+		}else if(colorName.equals("blue")) {
+			return Color.BLUE;
+		}else if(colorName.equals("yellow")) {
+			return Color.YELLOW;
+		}else if(colorName.equals("purple")) {
+			return Color.MAGENTA;
+		}else if(colorName.equals("white")) {
+			return Color.WHITE;
+		}else if(colorName.equals("orange")) {
+			return Color.ORANGE;
+		}else {
+			return null;
+		}
 	}
 	
 	public String getName() {
