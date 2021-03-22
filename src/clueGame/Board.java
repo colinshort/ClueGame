@@ -51,7 +51,6 @@ public class Board {
 		} catch (BadConfigFormatException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		deal();
 	}
 
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException {
@@ -114,6 +113,10 @@ public class Board {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		if(deck.size() > 9) {
+			deal();
 		}
 	}
 
@@ -328,9 +331,25 @@ public class Board {
 	
 	//deal cards
 	public void deal() {
-		Card person = deck.get((int)Math.random()%deck.size());
-		Card room = deck.get((int)Math.random()%deck.size());
-		Card weapon = deck.get((int)Math.random()%deck.size());
+		ArrayList<Card> people = new ArrayList<Card>();
+		ArrayList<Card> rooms = new ArrayList<Card>();
+		ArrayList<Card> weapons = new ArrayList<Card>();
+		
+		for(int i = 0; i < deck.size(); i++) {
+			if(deck.get(i).getCardType() == CardType.PERSON) {
+				people.add(deck.get(i));
+			}
+			else if(deck.get(i).getCardType() == CardType.ROOM) {
+				rooms.add(deck.get(i));
+			}
+			else if(deck.get(i).getCardType() == CardType.WEAPON) {
+				weapons.add(deck.get(i));
+			}
+		}
+		
+		Card person = people.get((int)Math.random()%people.size());
+		Card room = rooms.get((int)Math.random()%rooms.size());
+		Card weapon = weapons.get((int)Math.random()%weapons.size());
 		
 		theAnswer.setSolution(person, room, weapon);
 	}
