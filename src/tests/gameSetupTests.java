@@ -22,7 +22,7 @@ class gameSetupTests {
 	@Test
 	public void testPlayers() {
 		ArrayList<Player> myPlayers = board.getPlayers();
-		assertEquals(myPlayers.size(), 6);
+		assertEquals(6, myPlayers.size());
 		int numHuman = 0;
 		int numComputer = 0;
 		for(Player p : myPlayers) {

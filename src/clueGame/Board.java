@@ -80,17 +80,20 @@ public class Board {
 					roomMap.put(setUp[2].charAt(0), room);
 					}
 					
-					if(setUp[3].equals('H')) {
-						HumanPlayer human = new HumanPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
-						players.add(human);
-						human.setHuman(true);
-						
-					}
+					else if(setUp[0].equals("Person")) {
 					
-					if(setUp[3].equals('C')) {
-						ComputerPlayer computer = new ComputerPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
-						players.add(computer);
-						computer.setHuman(false);
+						if(setUp[3].charAt(0) == 'H') {
+							HumanPlayer human = new HumanPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
+							players.add(human);
+							human.setHuman(true);
+						
+						}
+					
+						if(setUp[3].charAt(0) == 'C') {
+							ComputerPlayer computer = new ComputerPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
+							players.add(computer);
+							computer.setHuman(false);
+						}
 					}
 				}
 			}
