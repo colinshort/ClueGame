@@ -51,7 +51,7 @@ public class Board {
 		} catch (BadConfigFormatException | FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
+		deal();
 	}
 
 	public void loadConfigFiles() throws FileNotFoundException, BadConfigFormatException {
@@ -236,7 +236,6 @@ public class Board {
 		setupConfigFile = str2;	
 	}
 
-
 	/* Calculate the adjacencies for a given cell and add them to adjacency list in BoardCell
 	Doorways are adjacent to room centers.
 	Secret passages are adjacent to room centers */
@@ -329,7 +328,11 @@ public class Board {
 	
 	//deal cards
 	public void deal() {
+		Card person = deck.get((int)Math.random()%deck.size());
+		Card room = deck.get((int)Math.random()%deck.size());
+		Card weapon = deck.get((int)Math.random()%deck.size());
 		
+		theAnswer.setSolution(person, room, weapon);
 	}
 
 	public Set<BoardCell> getAdjList(int row, int col){
@@ -365,5 +368,9 @@ public class Board {
 	
 	public ArrayList<Card> getDeck(){
 		return deck;
+	}
+	
+	public Solution getAnswer() {
+		return theAnswer;
 	}
 }
