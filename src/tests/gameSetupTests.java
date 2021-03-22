@@ -36,5 +36,30 @@ class gameSetupTests {
 		assertEquals(numHuman, 1);
 		assertEquals(numComputer, 5);
 	}
+	
+	@Test
+	public void testDeck() {
+		ArrayList <Card> myCards = board.getDeck();
+		assertEquals(21, myCards.size());
+		int rooms = 0;
+		int weapons = 0;
+		int people = 0;
+		for(Card c : myCards) {
+			if(c.getCardType() == CardType.ROOM) {
+				rooms++;
+			}
+			else if(c.getCardType() == CardType.WEAPON) {
+				weapons++;
+			}
+			else if (c.getCardType() == CardType.PERSON) {
+				people++;
+			}
+		}
+		
+		assertEquals(9, rooms);
+		assertEquals(6, weapons);
+		assertEquals(9, people);
+		
+	}
 
 }

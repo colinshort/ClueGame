@@ -61,6 +61,8 @@ public class Board {
 
 	//load in setup file
 	public void loadSetupConfig() throws FileNotFoundException, BadConfigFormatException {
+		players.clear();
+		deck.clear();
 		FileReader reader = new FileReader(setupConfigFile);
 		Scanner in = new Scanner(reader);
 		try {
@@ -351,5 +353,9 @@ public class Board {
 	
 	public ArrayList<Player> getPlayers(){
 		return players;
+	}
+	
+	public ArrayList<Card> getDeck(){
+		return deck;
 	}
 }
