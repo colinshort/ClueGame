@@ -10,6 +10,13 @@ public abstract class Player {
 	protected int column;
 	private ArrayList<Card> hand;
 	
+	public Player(String name, Color color, int row, int col) {
+		this.name  = name;
+		this.color = color;
+		this.row = row;
+		this.column = col;
+	}
+	
 	public void updateHand(Card card) {
 		
 	}
