@@ -34,6 +34,9 @@ public class Board {
 		super() ;
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
+		this.players = new ArrayList<>();
+		this.deck = new ArrayList<>();
+		this.theAnswer = new Solution();
 	}
 
 	// this method returns the only Board
@@ -326,5 +329,9 @@ public class Board {
 
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
+	}
+	
+	public ArrayList<Player> getPlayers(){
+		return players;
 	}
 }
