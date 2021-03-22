@@ -352,6 +352,14 @@ public class Board {
 		Card weapon = weapons.get((int)Math.random()%weapons.size());
 		
 		theAnswer.setSolution(person, room, weapon);
+		int j = 0;
+		for(int i = 0; i < deck.size(); i++) {
+			if (j >= players.size()) {
+				j = 0;
+			}
+			players.get(j).updateHand(deck.get(i));
+			j++;
+		}
 	}
 
 	public Set<BoardCell> getAdjList(int row, int col){

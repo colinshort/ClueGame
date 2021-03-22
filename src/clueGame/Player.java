@@ -16,10 +16,11 @@ public abstract class Player {
 		this.color = colorConvert(color);
 		this.row = row;
 		this.column = col;
+		this.hand = new ArrayList<Card>();
 	}
 	
 	public void updateHand(Card card) {
-		
+		hand.add(card);
 	}
 	
 	public Color colorConvert(String colorName) {
@@ -50,5 +51,9 @@ public abstract class Player {
 	
 	public boolean isHuman() {
 		return this.isHuman;
+	}
+	
+	public ArrayList<Card> getHand(){
+		return hand;
 	}
 }

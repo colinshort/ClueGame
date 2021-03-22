@@ -68,5 +68,25 @@ class gameSetupTests {
 		assertEquals(CardType.ROOM, solution.getRoom().getCardType());
 		assertEquals(CardType.WEAPON, solution.getWeapon().getCardType());
 	}
+	
+	@Test
+	public void testDeal() {
+		ArrayList<Card> deck = board.getDeck();
+		ArrayList<Player> players = board.getPlayers();
+		int cardsLeft = deck.size() - 3;
+		int min = cardsLeft / players.size();
+		int count = 0;
+		int sum = 0;
+		for(int i = 0; i < players.size(); i++) {
+			ArrayList<Card> myCards = players.get(i).getHand();
+			sum += myCards.size();
+			if(myCards.size() > min + 1 || myCards.size() < min) {
+				count++;
+			}
+		}
+		assert(count == 0);
+		assert(sum == deck.size() - 3);
+		
+	}
 
 }
