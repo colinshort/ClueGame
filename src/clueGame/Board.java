@@ -68,15 +68,30 @@ public class Board {
 				String line = in.nextLine();
 
 				if(!line.startsWith("/")) {
-					String[] setUp = line.split(",");
+					String[] setUp = line.split(", ");
 
 					//if card is not "Room" or "Space", throw Exception
-					if (!setUp[0].equals("Room") && !setUp[0].equals("Space")) {
+					if (!setUp[0].equals("Room") && !setUp[0].equals("Space") && !setUp[0].equals("Person") && !setUp[0].equals("Weapon")) {
 						throw new BadConfigFormatException("Error: Invalid card type");
 					}
-
-					Room room = new Room(setUp[1].trim());
-					roomMap.put(setUp[2].charAt(1), room);
+					
+					if(setUp[0].equals("Room")) {
+					Room room = new Room(setUp[1]);
+					roomMap.put(setUp[2].charAt(0), room);
+					}
+					
+					if(setUp[3].equals('H')) {
+						HumanPlayer human = new HumanPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
+						players.add(human);
+						human.setHuman(true);
+						
+					}
+					
+					if(setUp[3].equals('C')) {
+						ComputerPlayer computer = new ComputerPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
+						players.add(computer);
+						computer.setHuman(false);
+					}
 				}
 			}
 		}finally {
