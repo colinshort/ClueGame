@@ -58,7 +58,7 @@ class gameSetupTests {
 		
 		assertEquals(9, rooms);
 		assertEquals(6, weapons);
-		assertEquals(9, people);
+		assertEquals(6, people);
 		
 	}
 

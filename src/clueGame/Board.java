@@ -80,6 +80,10 @@ public class Board {
 					if(setUp[0].equals("Room") || setUp[0].equals("Space")) {
 						Room room = new Room(setUp[1]);
 						roomMap.put(setUp[2].charAt(0), room);
+						if(setUp[0].equals("Room")){
+							Card c = new Card(setUp[1], CardType.ROOM);
+							deck.add(c);
+						}
 					}
 					
 					else if(setUp[0].equals("Person")) {
@@ -88,14 +92,18 @@ public class Board {
 							HumanPlayer human = new HumanPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
 							players.add(human);
 							human.setHuman(true);
-						
-						}
-					
-						if(setUp[3].charAt(0) == 'C') {
+							
+						}else if(setUp[3].charAt(0) == 'C') {
 							ComputerPlayer computer = new ComputerPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
 							players.add(computer);
 							computer.setHuman(false);
 						}
+						
+						Card c = new Card(setUp[1], CardType.PERSON);
+						deck.add(c);
+					}else if(setUp[0].equals("Weapon")) {
+						Card c = new Card(setUp[1], CardType.WEAPON);
+						deck.add(c);
 					}
 				}
 			}
