@@ -38,7 +38,7 @@ class FileInitTest {
 		assertEquals("Engineering Hall", board.getRoom('E').getName() );
 		assertEquals("Student Center", board.getRoom('S').getName() );
 		assertEquals("Brown", board.getRoom('B').getName() );
-		//last
+		//last 
 		assertEquals("Engineering Hall", board.getRoom('E').getName() );
 	}
 

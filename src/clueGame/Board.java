@@ -75,9 +75,9 @@ public class Board {
 						throw new BadConfigFormatException("Error: Invalid card type");
 					}
 					
-					if(setUp[0].equals("Room")) {
-					Room room = new Room(setUp[1]);
-					roomMap.put(setUp[2].charAt(0), room);
+					if(setUp[0].equals("Room") || setUp[0].equals("Space")) {
+						Room room = new Room(setUp[1]);
+						roomMap.put(setUp[2].charAt(0), room);
 					}
 					
 					else if(setUp[0].equals("Person")) {
