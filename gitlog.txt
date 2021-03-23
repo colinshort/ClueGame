@@ -1,168 +1,201 @@
-commit 3e569698d4d9985617ae0167ab5f2beb703f85d2
-Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Wed Mar 10 14:28:56 2021 -0700
-
-    Added functionality to pass Adjacency tests
-
-commit fb248e2584ce2545116a78643aa4a62e88560624
-Merge: 0b2cf7f eb2e075
+commit e93f781449984bc55b95fd54e266465a38b0af79
 Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Wed Mar 10 14:28:55 2021 -0700
-
-    Resolved mege conflicts
-
-commit 0b2cf7f1f823c04c60bc6f59d8edc07c69a5d45b
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Wed Mar 10 14:24:33 2021 -0700
-
-    Implemented adjacency and target tests
-
-commit eb2e07537d760430d68b7b41371ffa1d04b34fd8
-Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Tue Mar 9 17:56:06 2021 -0700
-
-    added BoardAdjTargetTest.java file to be tracked
-
-commit 72668dadedcb77e513634c25aaa74fe1bd21e7d8
-Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Fri Mar 5 15:19:14 2021 -0700
-
-    Modified Excel ClueBoard
-
-commit 2b6efcad580a06ad8d2e5286525e278d8a83a20d
-Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Fri Mar 5 14:59:53 2021 -0700
-
-    added ClueBoard to be tracked
-
-commit a28fe14f419251e844cec41a5b53b5b424f7e6f8
-Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Fri Mar 5 14:55:19 2021 -0700
-
-    Include Adjacency Tests
-
-commit 27bdc0d1f93da0d7e0e92254f3af5e9d65507724
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Fri Mar 5 12:57:17 2021 -0700
-
-    Added 306 target test
-
-commit af3182377b8c02210499c413f3bd8dedd8e16671
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Thu Mar 4 18:47:22 2021 -0700
-
-    Passed exception and file init tests
-
-commit 1b9eb74a9bb2abe4471d45f91fc8242fd8f7a9ec
-Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Thu Mar 4 17:18:24 2021 -0700
-
-    added functionality to pass FileInitTests306
-
-commit 3f1eba79ed87e04cadcdd1eec837fe5031d45669
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Fri Feb 26 16:39:24 2021 -0700
-
-    Created skeleton classes for Clue Game. Created unit tests for file intialization
-
-commit 9a323c2911282c50fcf18f44009334c7ac2da308
-Merge: ace5180 9a791ff
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Fri Feb 26 15:13:54 2021 -0700
-
-    Merge branch 'main' of https://github.com/colinshort/ClueGame
-
-commit ace518007cb78ba151bf58b0b1e8b28475d90fe9
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Fri Feb 26 15:09:41 2021 -0700
+Date:   Mon Mar 22 18:11:07 2021 -0600
 
     Updated gitlog.txt
 
-commit 9a791ff05bb836109cfe9a5135c23d84d01362f0
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Fri Feb 26 15:08:18 2021 -0700
-
-    Update gitlog.txt
-
-commit 6a6de69282340da441a879711ec3b1e5ff20431c
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Fri Feb 26 15:04:53 2021 -0700
-
-    Added checks for rooms and occupied cells to calcTargets()
-
-commit 543f3088a472fab6bfb251a4b7c32f72449de773
+commit fc51983d11b77b84010b2b853b4cd647bcba7c28
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Thu Feb 25 22:40:40 2021 -0700
+Date:   Mon Mar 22 18:10:09 2021 -0600
 
-    Added functionality to pass adjacency tests!
+     Added functionality to pass dealing cards to players
 
-commit b19b3ec0def6f22d0a96de3130e866c15525cd1e
+commit 8527cd104b8496a3bf0911c47b3e817b38835d11
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Thu Feb 25 18:48:12 2021 -0700
+Date:   Mon Mar 22 17:58:22 2021 -0600
 
-    Revert "Removed eclipse project files from remote repo"
-    
-    This reverts commit 92834e4849ca1591403b9b572aa98b213110c250.
+    Added test to test dealing cards to players
 
-commit f7e8a9407fd3506a98aabe6d4dbe217a5d882213
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Thu Feb 25 18:12:48 2021 -0700
-
-    Added ClueSetup.txt
-
-commit 92834e4849ca1591403b9b572aa98b213110c250
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Wed Feb 24 15:32:41 2021 -0700
-
-    Removed eclipse project files from remote repo
-
-commit 007563bafd823e118306a55dac34d5d74cabf094
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Wed Feb 24 14:07:16 2021 -0700
-
-    Updated .gitignore
-
-commit a8ee473440fcf819947a71bbe289696062713bb8
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Wed Feb 24 14:00:07 2021 -0700
-
-    Updated .gitignore
-
-commit 1a533563a5b48de03fe7bb9674322d6e601b9427
-Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Wed Feb 24 13:53:16 2021 -0700
-
-    4 Adjacency Tests: Top Left, Bottom Right, Left Edge, Right Edge | 5 Target Calculation Tests: 2 Mixed Scenarios, Empty Board, Occupied Cells, Rooms
-
-commit 67c396e33e8206736b331b50343dbe41957de5dd
+commit a64c81b528607ec3ac2aa5bbfb74a3b013880e30
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Tue Feb 23 23:26:22 2021 -0700
+Date:   Mon Mar 22 17:29:25 2021 -0600
 
-    changed build path for JUint 5
+     Added functionality to pass solution creation test
 
-commit 84a54c7ff60b9f4735f6e052c4ab7dd89ea8304c
+commit 19e9b393378beef0fefcfccd3e242bce3991ac6f
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 17:12:11 2021 -0600
+
+    Created failing test for solution
+
+commit 162143fcf1cd485c3162d07a42c017653b65b5cd
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 16:55:32 2021 -0600
+
+    Implemented deck and adding to deck. All tests pass
+
+commit 49381e50bd555c714694a2f5059c7a71eeb0ef03
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
-Date:   Tue Feb 23 19:45:17 2021 -0700
+Date:   Mon Mar 22 16:51:00 2021 -0600
 
-    Created adjacency tests methods
+     added test for deck
 
-commit a8af3250966436a8d5ab5f06c0c26c823fbca4f5
+commit bac114d8aa65863de3e594cf0d7f831024eba657
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 16:33:46 2021 -0600
+
+    added spaces to room map
+
+commit 3b53cadb1a528372d8d16133f4bf82c3748ed1dc
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 16:09:50 2021 -0600
+
+    added functionality to pass testPlayers
+
+commit 0718561ebb903dd53b776849c9a8349744f65056
+Merge: 30406c7 e9922eb
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 15:44:42 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame into main
+    Including constructor merge. Incorporating color handling.
+
+commit 30406c796de676a159e6727c8023e5553fbc3d50
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 15:44:23 2021 -0600
+
+    updated setUp config files to read in players
+
+commit e9922ebc1a31f9eacb677a290da7d1c8df337c75
 Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Tue Feb 23 18:43:05 2021 -0700
+Date:   Mon Mar 22 15:41:29 2021 -0600
 
-    Created Experiment classes: TestBoardCell and TestBoard
+    Added color conversion
 
-commit 53437e2b610e76e929d3a5b2eb9885602fce1c9c
+commit 34feca5d48c23e539664567c196d5e2dcee7c197
 Author: Colin Short <colinshort@mymail.mines.edu>
-Date:   Tue Feb 23 18:05:02 2021 -0700
+Date:   Mon Mar 22 15:15:17 2021 -0600
 
-    Initial State
+    Added failing test for loading players
 
-commit 2ee0fc118b21e854f22d67c89f94d929f35c0f28
-Author: Colin Short <78009530+colinshort@users.noreply.github.com>
-Date:   Tue Feb 23 17:42:36 2021 -0700
+commit 430cff6511efeb0927040d76bdd80d37ea2c1af1
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 14:56:41 2021 -0600
 
-    Initial commit
+    Added player-type class basic constructors
+
+commit dc7425b4b239e04a169e10399e73e7d59fcb0291
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 14:45:01 2021 -0600
+
+    modified ClueSetup file
+
+commit f275686f2c5e1cfd7e0c031a1f01f8f2bd261a19
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 14:31:54 2021 -0600
+
+    Added card class and cardType
+
+commit 16c8f56b89abf2f68f7e5a8433fa0dfc20788347
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 14:23:05 2021 -0600
+
+    Added Solution, Player, HumanPlayer, and ComputerPlayer skeleton classes. Added appropriate aggregations to Board
+
+commit 019c7c6d8353b900fce3116bb98ab3345fcd6ebf
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 16:00:24 2021 -0600
+
+    Refactored clueGame package name
+
+commit 29b4de19d244dbb0b7cac7b4c711270bfc6f9875
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:50:42 2021 -0600
+
+    Moved count iteration in loadLayoutConfig() into while loop
+
+commit a70b2645ad8a6fd269b21838d58e4d95f8a35de0
+Merge: 7959628 6ceb4cf
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:34:24 2021 -0600
+
+    Merged origin/main, updated Board to most recent commit
+
+commit 7959628c645b6cf98edc96878ba6b54fcb0bcfbc
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:32:36 2021 -0600
+
+    Reduced loadLayoutConfig() Cognitive Complexity
+
+commit a0eda2d0e74b0e67a2810706dc99e59d69209d62
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:29:45 2021 -0600
+
+    Fixed calcTargets logic errors
+
+commit 6ceb4cfb1d4bb897c88878fd87a4d3aa99ce7bc9
+Merge: 3aea0d2 be8bbf5
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 15:24:55 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame into main
+
+commit 3aea0d251b24173cd21eaa0cd608168feca7d90b
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 15:24:00 2021 -0600
+
+    REfactoring: simplified identifying doors with switch statement
+
+commit be8bbf5016cffed111ac6bc4fefbd1398d08ab58
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 15:07:18 2021 -0600
+
+    Made minor changes to follow conventions reccommended by SonarLint
+
+commit 17a908f12191323f0914106965a44a8a1f2c5a06
+Merge: ae36331 9dc07d1
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 14:51:07 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit ae36331197474ed911ae9d037290c84adb0d5518
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 14:51:03 2021 -0600
+
+    Removed SurroundingCells set from calcAdjacencies(). Moved adjacency logic algorithm to its own method: findAdjacencyCells()
+
+commit 9dc07d157a2176c15c1220fefc87fee4b5f69f0e
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 14:48:58 2021 -0600
+
+    Refactoring: simplified loadSetupConfig string splitting
+
+commit 6da7ed38a04f5fd110309f1c6e585f20c33def2d
+Merge: 2c9c15e ffe3eea
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 14:29:30 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit 2c9c15ec3a1915a0b77d14ad2aa0de2a265140ef
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 17 14:29:23 2021 -0600
+
+    Added try/catch blocks for Scanners and FileReaders
+
+commit ffe3eeaaf3df9960ab8a7ab7f15e30a9ee7fb13a
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Mar 17 14:27:30 2021 -0600
+
+    Refactoring: added comments to Board class methods
+
+commit ce07ce737cf1d220c34567711e95f464489b7144
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Mar 10 14:35:19 2021 -0700
+
+    updated gitlog.txt
+
 commit bf86a822dd1f6797dea760b2ec7236e10b4ab665
 Merge: fb248e2 3e56969
 Author: Colin Short <colinshort@mymail.mines.edu>
