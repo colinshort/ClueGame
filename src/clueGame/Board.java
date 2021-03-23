@@ -348,17 +348,24 @@ public class Board {
 		}
 		
 		Card person = people.get((int)Math.random()%people.size());
+		person.setDealt(true);
 		Card room = rooms.get((int)Math.random()%rooms.size());
+		room.setDealt(true);
 		Card weapon = weapons.get((int)Math.random()%weapons.size());
+		weapon.setDealt(true);
 		
 		theAnswer.setSolution(person, room, weapon);
+		
 		int j = 0;
 		for(int i = 0; i < deck.size(); i++) {
 			if (j >= players.size()) {
 				j = 0;
 			}
-			players.get(j).updateHand(deck.get(i));
-			j++;
+			if(deck.get(i).getDealt()== false) {
+				players.get(j).updateHand(deck.get(i));
+				deck.get(i).setDealt(true);
+				j++;
+			}
 		}
 	}
 

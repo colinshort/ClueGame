@@ -86,7 +86,6 @@ class gameSetupTests {
 		}
 		assert(count == 0);
 		assert(sum == deck.size() - 3);
-		
 	}
 
 }
