@@ -22,7 +22,7 @@ public abstract class Player {
 	public void updateHand(Card card) {
 		hand.add(card);
 	}
-	
+	// converts color string to Color class
 	public Color colorConvert(String colorName) {
 		if(colorName.equals("red")) {
 			return Color.RED;

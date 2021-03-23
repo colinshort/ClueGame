@@ -329,7 +329,7 @@ public class Board {
 		}
 	}
 	
-	//deal cards
+	//create the solution hand, and deal a hand of cards to each player
 	public void deal() {
 		ArrayList<Card> people = new ArrayList<Card>();
 		ArrayList<Card> rooms = new ArrayList<Card>();
