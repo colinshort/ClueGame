@@ -18,7 +18,8 @@ class gameSetupTests {
 		board.setConfigFiles("ClueBoard.csv", "ClueSetup.txt");
 		board.initialize();
 	}
-
+	
+	//
 	@Test
 	public void testPlayers() {
 		ArrayList<Player> myPlayers = board.getPlayers();
