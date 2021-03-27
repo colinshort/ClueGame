@@ -45,12 +45,8 @@ public class ComputerPlayer extends Player{
 	}
 	
 	
-	
-	
-	
-
-	public void selectMove() {
-
+	public BoardCell selectMove(ArrayList<BoardCell> targets) {
+		return new BoardCell(9,8);
 	}
 
 	public boolean findCard(ArrayList<Card> list, Card card) {

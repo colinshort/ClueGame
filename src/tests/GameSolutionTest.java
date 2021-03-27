@@ -128,7 +128,7 @@ class GameSolutionTest {
 		Card card2 = board.handleSuggestion(testSoln, human, myPlayers);
 		assertEquals(null, card2);
 		
-		testSoln.setSolution(person, room, weapon);
+		testSoln.setSolution(person, new Card("Brown", CardType.ROOM), weapon);
 		Card card3 = board.handleSuggestion(testSoln, human, myPlayers);
 		assertEquals(person, card3);
 	}

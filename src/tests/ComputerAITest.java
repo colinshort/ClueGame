@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import clueGame.Board;
+import clueGame.BoardCell;
 import clueGame.Card;
 import clueGame.CardType;
 import clueGame.ComputerPlayer;
@@ -59,5 +60,23 @@ class ComputerAITest {
 		}
 		
 		assertEquals(0, matches);
+	}
+	
+	@Test
+	public void testSelectTargets() {
+		ComputerPlayer computer = new ComputerPlayer("Cameron", "red", 9, 10);
+		ArrayList<BoardCell> testTargets = new ArrayList<>();
+		testTargets.add(new BoardCell(1,2));
+		testTargets.add(new BoardCell(4,1));
+		testTargets.add(new BoardCell(10,13));
+	
+		BoardCell targetCell = computer.selectMove(testTargets);
+		assert(testTargets.indexOf(targetCell) != -1);
+		
+		BoardCell testRoom = new BoardCell(5, 3);
+		testRoom.setIsRoom(true);
+		testTargets.add(testRoom);
+		
+		assertEquals(testRoom, computer.selectMove(testTargets));
 	}
 }
