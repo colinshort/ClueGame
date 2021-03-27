@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ComputerPlayer extends Player{
+	private static Random rn = new Random();
+	
 	public ComputerPlayer(String name, String color, int row, int col) {
 		super(name, color, row, col);
 	}
@@ -46,7 +48,23 @@ public class ComputerPlayer extends Player{
 	
 	
 	public BoardCell selectMove(ArrayList<BoardCell> targets) {
-		return new BoardCell(9,8);
+		ArrayList<BoardCell> rooms = new ArrayList<>();
+		
+		for(BoardCell bc : targets) {
+			if(bc.isRoom()) {
+				rooms.add(bc);
+			}
+		}
+		
+		if(!rooms.isEmpty()) {
+			if(rooms.size() == 1) {
+				return rooms.get(0);
+			}else {
+				return rooms.get(rn.nextInt(rooms.size()));
+			}
+		}
+		
+		return targets.get(rn.nextInt(targets.size()));
 	}
 
 	public boolean findCard(ArrayList<Card> list, Card card) {
