@@ -7,8 +7,8 @@ public class ComputerPlayer extends Player{
 		super(name, color, row, col);
 	}
 	
-	public void createSuggestion(Room room) {
-		
+	public Solution createSuggestion(Room room) {
+		return null;
 	}
 	
 	public void selectMove() {

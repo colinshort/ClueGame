@@ -385,7 +385,7 @@ public class Board {
 	}
 	
 	//
-	public Card handSuggestion() {
+	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> players) {
 		return null;
 	}
 	

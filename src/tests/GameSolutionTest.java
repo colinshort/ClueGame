@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.CardType;
+import clueGame.ComputerPlayer;
 import clueGame.HumanPlayer;
 import clueGame.Player;
 import clueGame.Solution;
@@ -47,7 +48,6 @@ class GameSolutionTest {
 
 	@Test 
 	public void testDisproveSuggestion() {
-		Solution testSoln = new Solution();
 		Card person = new Card("John", CardType.PERSON);
 		Card room = new Card("Brown", CardType.ROOM);
 		Card weapon = new Card("Knife", CardType.WEAPON);
@@ -89,5 +89,47 @@ class GameSolutionTest {
 		player.updateHand(new Card("Coolbaugh", CardType.ROOM));
 		player.updateHand(new Card("Spoon", CardType.WEAPON));
 		assertEquals(null, player.disproveSuggestion(testSoln));
+	}
+	
+	@Test
+	public void testHandlingSuggestion() {
+		HumanPlayer human = new HumanPlayer("Cameron", "red", 7, 8);
+		ComputerPlayer comput1 = new ComputerPlayer("Colin", "orange", 9, 10);
+		ComputerPlayer comput2 = new ComputerPlayer("Mark", "blue", 11, 12);
+		
+		Card person = new Card("Mark", CardType.PERSON);
+		Card person1 = new Card("Colin", CardType.PERSON);
+		Card room = new Card("Alderson", CardType.ROOM);
+		Card weapon = new Card("Nuke", CardType.WEAPON);
+		
+		
+		human.updateHand(person1);
+		human.updateHand(new Card("Coolbaugh", CardType.ROOM));
+		human.updateHand(new Card("Spoon", CardType.WEAPON));
+		
+		comput1.updateHand(person);
+		comput1.updateHand(room);
+		comput1.updateHand(new Card("Rocket", CardType.WEAPON));
+		
+		comput2.updateHand(new Card("Cameron", CardType.PERSON));
+		comput2.updateHand(new Card("Green Center", CardType.ROOM));
+		comput2.updateHand(weapon);
+		
+		ArrayList<Player> myPlayers = new ArrayList<Player>();
+		myPlayers.add(human);
+		myPlayers.add(comput1);
+		myPlayers.add(comput2);
+		
+		testSoln.setSolution(new Card("Adam", CardType.PERSON), new Card("CoorsTek", CardType.ROOM), new Card("slingshot", CardType.WEAPON));
+		Card card = board.handleSuggestion(testSoln, human, myPlayers);
+		assertEquals(null, card);
+		
+		testSoln.setSolution(person1, new Card("CoorsTek", CardType.ROOM), new Card("Slingshot", CardType.WEAPON));
+		Card card2 = board.handleSuggestion(testSoln, human, myPlayers);
+		assertEquals(null, card2);
+		
+		testSoln.setSolution(person, room, weapon);
+		Card card3 = board.handleSuggestion(testSoln, human, myPlayers);
+		assertEquals(person, card3);
 	}
 }
