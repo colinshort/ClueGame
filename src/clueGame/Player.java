@@ -48,7 +48,28 @@ public abstract class Player {
 	}
 	
 	public Card disproveSuggestion(Solution suggestion) {
-		return null;
+		ArrayList<Card> myHand = this.getHand();
+		Card person = suggestion.getPerson();
+		Card room = suggestion.getRoom();
+		Card weapon = suggestion.getWeapon();
+		
+		if(myHand.indexOf(person) == -1 && myHand.indexOf(room) == -1 && myHand.indexOf(weapon) == -1) {
+			return null;
+		}else {
+			ArrayList<Card> matches = new ArrayList<>();
+			for(Card c : myHand) {
+				if(c.equals(room) || c.equals(weapon) || c.equals(person)) {
+					matches.add(c);
+				}
+			}
+			
+			if(matches.size() == 1) {
+				return matches.get(0);
+			}else {
+				Random rn = new Random();
+				return matches.get(rn.nextInt(matches.size()));
+			}
+		}
 	}
 	
 	public String getName() {
