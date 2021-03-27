@@ -384,8 +384,16 @@ public class Board {
 		return match;
 	}
 	
-	//
-	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> players) {
+	//returns first card that can disprove a suggestion
+	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> myPlayers) {
+		for(Player p : myPlayers) {
+			if(!p.equals(accuser)) {
+				Card givenCard = p.disproveSuggestion(suggestion);
+				if(givenCard != null) {
+					return givenCard;
+				}
+			}
+		}
 		return null;
 	}
 	
