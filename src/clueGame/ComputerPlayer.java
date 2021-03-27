@@ -11,6 +11,9 @@ public class ComputerPlayer extends Player{
 		super(name, color, row, col);
 	}
 
+	//creates a suggestion for computer
+	//room is contrainted to be room computer player is in
+	//pick a weapon and person card
 	public Solution createSuggestion(ArrayList<Card> deck, Room room) {
 		Random rn = new Random();
 		boolean personFound = false;
@@ -46,7 +49,7 @@ public class ComputerPlayer extends Player{
 		return solution;
 	}
 	
-	
+	//select a move from possible targets. Prioritize rooms
 	public BoardCell selectMove(ArrayList<BoardCell> targets) {
 		ArrayList<BoardCell> rooms = new ArrayList<>();
 		
@@ -67,6 +70,7 @@ public class ComputerPlayer extends Player{
 		return targets.get(rn.nextInt(targets.size()));
 	}
 
+	//helper method to determine if Card is in a list of Cards
 	public boolean findCard(ArrayList<Card> list, Card card) {
 		for(Card c : list) {
 			if(c.equals(card)) {

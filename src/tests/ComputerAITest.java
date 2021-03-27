@@ -26,6 +26,8 @@ class ComputerAITest {
 		board.initialize();
 	}
 	
+	//Tests the computers ability to create suggestion
+	//Suggestions cannot contain cards that are in seen or hands lists
 	@Test
 	public void testCreateSuggestion() {
 		ComputerPlayer computer = new ComputerPlayer("Colin", "red", 9, 11);
@@ -62,6 +64,7 @@ class ComputerAITest {
 		assertEquals(0, matches);
 	}
 	
+	//test that computer player selects a move from targets and that it prioritizes rooms if they are targets
 	@Test
 	public void testSelectTargets() {
 		ComputerPlayer computer = new ComputerPlayer("Cameron", "red", 9, 10);

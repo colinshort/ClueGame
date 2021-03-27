@@ -46,6 +46,8 @@ class GameSolutionTest {
 		assertTrue(board.checkAccusation(testSoln, accusation));
 	}
 
+	//test a players ability to disprove a suggestion
+	//has to return first disproved card
 	@Test 
 	public void testDisproveSuggestion() {
 		Card person = new Card("John", CardType.PERSON);
@@ -76,7 +78,7 @@ class GameSolutionTest {
 		//assert that the matching card is returned if only one
 		player.clearHand();
 		player.updateHand(person);
-		Card room2 = new Card("Green Center", CardType.ROOM);
+		Card room2 = new Card("Green", CardType.ROOM);
 		player.updateHand(room2);
 		Card weapon2 = new Card("Spoon", CardType.WEAPON);
 		player.updateHand(weapon2);
@@ -91,6 +93,8 @@ class GameSolutionTest {
 		assertEquals(null, player.disproveSuggestion(testSoln));
 	}
 	
+	//tests that card that can disprove is a suggestion is only returned by one player, if it exists.
+	//also tests that the accusing player cannot disprove a suggestions
 	@Test
 	public void testHandlingSuggestion() {
 		HumanPlayer human = new HumanPlayer("Cameron", "red", 7, 8);

@@ -49,6 +49,7 @@ public abstract class Player {
 		}
 	}
 	
+	//looks for card in a players hand that can disprove a suggestion
 	public Card disproveSuggestion(Solution suggestion) {
 		ArrayList<Card> myHand = this.getHand();
 		Card person = suggestion.getPerson();
