@@ -12,7 +12,7 @@ public class Card {
 	}
 
 	public boolean equals(Card target) {
-		return true;
+		return (target.getCardType() == this.getCardType() && target.getName().equals(this.getName()));
 	}
 	
 	public CardType getCardType() {
@@ -21,6 +21,10 @@ public class Card {
 	
 	public void setDealt(boolean b) {
 		this.dealt = b;
+	}
+	
+	public String getName() {
+		return cardName;
 	}
 	
 	public boolean getDealt() {

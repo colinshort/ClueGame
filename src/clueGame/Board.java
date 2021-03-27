@@ -368,6 +368,34 @@ public class Board {
 			}
 		}
 	}
+	
+	//returns true if accusation matches the answer
+	public boolean checkAccusation(Solution answer, Solution solution) {
+		boolean match = true;
+		if(!answer.getWeapon().equals(solution.getWeapon())) {
+			match = false;
+		}
+		if(!answer.getPerson().equals(solution.getPerson())) {
+			match = false;
+		}
+		if(!answer.getRoom().equals(solution.getRoom())) {
+			match = false;
+		}
+		return match;
+	}
+	
+	//returns null if player cannot disprove the suggestion
+	//returns the Card if player can disprove the suggestion
+	public Card disproveSuggestion() {
+		return null;
+	}
+	
+	//
+	public Card handSuggestion() {
+		return null;
+	}
+	
+	
 
 	public Set<BoardCell> getAdjList(int row, int col){
 		return grid[row][col].getAdjList();
