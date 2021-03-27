@@ -11,6 +11,7 @@ public abstract class Player {
 	protected int column;
 	private ArrayList<Card> hand;
 	private boolean isHuman;
+	private ArrayList<Card> seenCards;
 	
 	public Player(String name, String color, int row, int col) {
 		this.name  = name;
@@ -18,6 +19,7 @@ public abstract class Player {
 		this.row = row;
 		this.column = col;
 		this.hand = new ArrayList<Card>();
+		this.seenCards = new ArrayList<>();
 	}
 	
 	public void updateHand(Card card) {
@@ -86,5 +88,13 @@ public abstract class Player {
 	
 	public ArrayList<Card> getHand(){
 		return hand;
+	}
+	
+	public void updateSeen(Card seen) {
+		this.seenCards.add(seen);
+	}
+	
+	public ArrayList<Card> getSeenCards(){
+		return seenCards;
 	}
 }

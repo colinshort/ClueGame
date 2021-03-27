@@ -8,7 +8,9 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public Solution createSuggestion(Room room) {
-		return null;
+		Solution test = new Solution();
+		test.setSolution(new Card("Cameron", CardType.PERSON), new Card("Green", CardType.ROOM), new Card("Bazooka", CardType.WEAPON));
+		return test;
 	}
 	
 	public void selectMove() {
