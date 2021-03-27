@@ -1,3 +1,95 @@
+commit 9877fe3456f17d07e5da9c8b3fe6790cce054942
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 26 21:52:45 2021 -0600
+
+    Implemented select targets. All tests pass
+
+commit 9bc491bb8fb1d8b84fec8bb25a377d3dae8a6007
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 26 21:48:45 2021 -0600
+
+    Added failing select target test
+
+commit 46cdc4d8160acaf81817f9e1e44d781254592476
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 26 21:25:13 2021 -0600
+
+    Implemented create suggestion. All test pass
+
+commit f211d214e39821c21512d0965261426801951736
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 26 20:58:59 2021 -0600
+
+    Added failing suggestion creation test
+
+commit 5f2ba7ebc5165c7bb2fcda39e69ec6ef9dca7d69
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 26 20:24:05 2021 -0600
+
+    Implemented suggestion handling. All tests pass
+
+commit 1a6dfb5bf30cd70cb956a6e75cabb7eb47f4e790
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 26 20:20:24 2021 -0600
+
+    Failing handle suggestion test
+
+commit 0f6a7794b16463385ebbbe19211e6de0c75ae322
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 26 19:46:51 2021 -0600
+
+    Implemented suggestion disproval. All tests pass
+
+commit aeaff3c5a845c2f344a9d251dcff7be2d9844f36
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 26 19:46:13 2021 -0600
+
+    Player disprove suggestion test. Failing
+
+commit 1bed8ffd3192950a0bd85c5ef4f7c879065f3689
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Mar 26 18:42:12 2021 -0600
+
+    Implemented checkAccusation(). All tests pass
+
+commit 6935e7473dbd27f5ad937d5d022e2f1c3663cc04
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Mar 26 18:13:46 2021 -0600
+
+    add solution and AI test files
+
+commit 6755781d4ee48fa77611031902d1a0c3251a81af
+Merge: 6e6b6cf 3e5b5f5
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 18:22:11 2021 -0600
+
+    merged test comments
+
+commit 6e6b6cf74e42c32339fa72ac1ebb68e1b6e70ef7
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 18:21:12 2021 -0600
+
+    gameSetUpTests comments
+
+commit 3e5b5f507cd4808b8c4df2493aa3d721842ca86c
+Merge: 7668ab4 24bbf34
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 18:18:26 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame into main
+
+commit 7668ab40f7829aa238b1589e5365537514fd3368
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Mar 22 18:18:10 2021 -0600
+
+    Refactor: added comments
+
+commit 24bbf3483a4322ffcbf3b0be7b6c0cdab7d0b5c8
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Mar 22 18:13:53 2021 -0600
+
+    Updated gitlog.txt for real this time
+
 commit e93f781449984bc55b95fd54e266465a38b0af79
 Author: Colin Short <colinshort@mymail.mines.edu>
 Date:   Mon Mar 22 18:11:07 2021 -0600
