@@ -38,7 +38,7 @@ class ComputerAITest {
 		
 		Room room = new Room("Green Center");
 		
-		Solution suggestion = computer.createSuggestion(room);
+		Solution suggestion = computer.createSuggestion(board.getDeck(), room);
 		
 		Card person = suggestion.getPerson();
 		Card weapon = suggestion.getWeapon();
