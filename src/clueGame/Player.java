@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Player {
 	private String name;
@@ -22,6 +23,11 @@ public abstract class Player {
 	public void updateHand(Card card) {
 		hand.add(card);
 	}
+	
+	public void clearHand() {
+		hand.clear();
+	}
+	
 	// converts color string to Color class
 	public Color colorConvert(String colorName) {
 		if(colorName.equals("red")) {
@@ -39,6 +45,10 @@ public abstract class Player {
 		}else {
 			return null;
 		}
+	}
+	
+	public Card disproveSuggestion(Solution suggestion) {
+		return null;
 	}
 	
 	public String getName() {

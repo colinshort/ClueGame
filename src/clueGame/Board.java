@@ -384,12 +384,6 @@ public class Board {
 		return match;
 	}
 	
-	//returns null if player cannot disprove the suggestion
-	//returns the Card if player can disprove the suggestion
-	public Card disproveSuggestion() {
-		return null;
-	}
-	
 	//
 	public Card handSuggestion() {
 		return null;
