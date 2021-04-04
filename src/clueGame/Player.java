@@ -7,6 +7,7 @@ import java.util.Random;
 public abstract class Player {
 	private String name;
 	private Color color;
+	private String colorName;
 	protected int row;
 	protected int column;
 	private ArrayList<Card> hand;
@@ -15,6 +16,7 @@ public abstract class Player {
 	
 	public Player(String name, String color, int row, int col) {
 		this.name  = name;
+		this.colorName = color;
 		this.color = colorConvert(color);
 		this.row = row;
 		this.column = col;
@@ -34,8 +36,8 @@ public abstract class Player {
 	public Color colorConvert(String colorName) {
 		if(colorName.equals("red")) {
 			return Color.RED;
-		}else if(colorName.equals("blue")) {
-			return Color.BLUE;
+		}else if(colorName.equals("cyan")) {
+			return Color.CYAN;
 		}else if(colorName.equals("yellow")) {
 			return Color.YELLOW;
 		}else if(colorName.equals("purple")) {
@@ -97,5 +99,9 @@ public abstract class Player {
 	
 	public ArrayList<Card> getSeenCards(){
 		return seenCards;
+	}
+	
+	public String getColor() {
+		return colorName;
 	}
 }

@@ -13,7 +13,7 @@ Space, Unused, X
 Space, Walkway, W
 //People
 Person, John, red, C, 5, 5
-Person, Mark, blue, C, 12, 6
+Person, Mark, cyan, C, 12, 6
 Person, Adam, yellow, C, 21, 6
 Person, Cameron, purple, C, 2, 15
 Person, Colin, white, C, 9, 14

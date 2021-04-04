@@ -34,7 +34,7 @@ public class GameControlPanel extends JPanel {
 		frame.setVisible(true); // make it visible
 
 		// test filling in the data
-		panel.setTurn(new ComputerPlayer("Mark", "blue", 12, 6), 5);
+		panel.setTurn(new ComputerPlayer("Mark", "cyan", 12, 6), 5);
 		panel.setGuess( "I have no guess!");
 		panel.setGuessResult( "So you have nothing?");
 	}
@@ -47,14 +47,14 @@ public class GameControlPanel extends JPanel {
 		//inside upper panel
 		JPanel turnPanel = new JPanel();
 		JLabel turnLabel = new JLabel("Whose turn?");
-		turnField = new JTextField(10);
+		turnField = new JTextField(15);
 		turnPanel.add(turnLabel);
 		turnPanel.add(turnField);
 		controlPanel.add(turnPanel);
 		
 		JPanel rollPanel = new JPanel();
 		JLabel roll = new JLabel("Roll: ");
-		rollField = new JTextField(10);
+		rollField = new JTextField(5);
 		rollPanel.add(roll);
 		rollPanel.add(rollField);
 		controlPanel.add(rollPanel);
@@ -92,6 +92,7 @@ public class GameControlPanel extends JPanel {
 	public void setTurn(ComputerPlayer player, int roll) {
 		turnField.setText(player.getName());
 		rollField.setText("" + roll);
+		turnField.setBackground(player.colorConvert(player.getColor()));
 	}
 
 	public void setGuess(String guess) {
