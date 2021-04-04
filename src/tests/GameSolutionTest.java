@@ -7,13 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import clueGame.Board;
-import clueGame.Card;
-import clueGame.CardType;
-import clueGame.ComputerPlayer;
-import clueGame.HumanPlayer;
-import clueGame.Player;
-import clueGame.Solution;
+import clueGame.*;
 
 class GameSolutionTest {
 
@@ -78,7 +72,8 @@ class GameSolutionTest {
 		//assert that the matching card is returned if only one
 		player.clearHand();
 		player.updateHand(person);
-		Card room2 = new Card("Green", CardType.ROOM);
+		Card room2 = new Card("Green"
+				+ "", CardType.ROOM);
 		player.updateHand(room2);
 		Card weapon2 = new Card("Spoon", CardType.WEAPON);
 		player.updateHand(weapon2);
