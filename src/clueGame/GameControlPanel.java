@@ -45,6 +45,7 @@ public class GameControlPanel extends JPanel {
 		controlPanel.setLayout(new GridLayout(1,4));
 		
 		//inside upper panel
+		//create panel to show whose turn it is
 		JPanel turnPanel = new JPanel();
 		JLabel turnLabel = new JLabel("Whose turn?");
 		turnField = new JTextField(15);
@@ -52,6 +53,7 @@ public class GameControlPanel extends JPanel {
 		turnPanel.add(turnField);
 		controlPanel.add(turnPanel);
 		
+		//create panel to display roll number
 		JPanel rollPanel = new JPanel();
 		JLabel roll = new JLabel("Roll: ");
 		rollField = new JTextField(5);
@@ -59,6 +61,7 @@ public class GameControlPanel extends JPanel {
 		rollPanel.add(rollField);
 		controlPanel.add(rollPanel);
 		
+		//create buttons to make accusation or move to next turn
 		JButton accusation = new JButton("Make Accusation");
 		JButton next = new JButton("NEXT!");
 		controlPanel.add(accusation);
@@ -71,18 +74,23 @@ public class GameControlPanel extends JPanel {
 		//lower panel
 		JPanel guessPanel = new JPanel();
 		guessPanel.setLayout(new GridLayout(0,2));
+		
 		//inside lower panel
+		//create panel to show guess
 		JPanel myGuessPanel = new JPanel();
 		myGuessPanel.setLayout(new GridLayout(1,0));
 		myGuessPanel.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+		//display guess
 		theGuess = new JTextField(20);
 		myGuessPanel.add(theGuess);
 		guessPanel.add(myGuessPanel);
 		
+		//create panel to show guess result
 		JPanel guessResultPanel = new JPanel();
 		guessResultPanel.setLayout(new GridLayout(1,0));
 		guessResultPanel.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		guessPanel.add(guessResultPanel);
+		//display result
 		theResult = new JTextField(20);
 		guessResultPanel.add(theResult);
 		guessPanel.add(guessResultPanel);
@@ -90,16 +98,19 @@ public class GameControlPanel extends JPanel {
 	}
 
 	public void setTurn(ComputerPlayer player, int roll) {
+		//set roll and player turn
 		turnField.setText(player.getName());
 		rollField.setText("" + roll);
 		turnField.setBackground(player.colorConvert(player.getColor()));
 	}
 
 	public void setGuess(String guess) {
+		//set guess
 		theGuess.setText(guess);
 	}
 
 	public void setGuessResult(String result) {
+		//set result of guess
 		theResult.setText(result);
 	}
 }
