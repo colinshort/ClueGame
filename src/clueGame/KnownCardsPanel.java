@@ -80,20 +80,27 @@ public class KnownCardsPanel extends JPanel{
 	}
 
 	private void createPeoplePanel() {
+		//create people panel labels
 		JLabel peopleHandLabel = new JLabel("In Hand:");
 		JLabel peopleSeenLabel = new JLabel("Seen:");
 
+		//add labels and text fields
 		people.add(peopleHandLabel);
 		if(peopleHand.isEmpty()) {
+			//if no people in hand, display none
 			people.add(new JTextField("None", 15));
 		}else {
+			//add text field for each person in hand
 			addTextFields(people, peopleHand);
 		}
 
+		//add labels and text fields
 		people.add(peopleSeenLabel);
 		if(peopleSeen.isEmpty()) {
+			//if no people seen, display none
 			people.add(new JTextField("None", 15));
 		}else {
+			//add text field for each person seen
 			addTextFields(people, peopleSeen);
 		}
 
@@ -104,21 +111,27 @@ public class KnownCardsPanel extends JPanel{
 	private void createRoomPanel() {
 		rooms.setLayout(new GridLayout(4,1));
 		rooms.setBorder(new TitledBorder(new EtchedBorder(), "Room"));
-
+		//create room panels
+		
 		JLabel roomHandLabel = new JLabel("In Hand:");
 		JLabel roomSeenLabel = new JLabel("Seen:");
 		
+		//add labels and text fields
 		rooms.add(roomHandLabel);
 		if(roomHand.isEmpty()) {
+			//if no rooms in hand, display none
 			rooms.add(new JTextField("None",15));
 		}else {
+			//add text field for each room in hand
 			addTextFields(rooms, roomHand);
 		}
-
+		//add labels and text fields
 		rooms.add(roomSeenLabel);
 		if(roomSeen.isEmpty()) {
+			//if no room seen, display none
 			rooms.add(new JTextField("None", 15));
 		}else {
+			//add text field for each room seen
 			addTextFields(rooms, roomSeen);
 		}
 		
@@ -128,22 +141,26 @@ public class KnownCardsPanel extends JPanel{
 	}
 
 	private void createWeaponPanel() {
-		
-
 		JLabel weaponHandLabel = new JLabel("In Hand:");
 		JLabel weaponSeenLabel = new JLabel("Seen:");
 		
+		//add labels and text fields
 		weapons.add(weaponHandLabel);
 		if(weaponHand.isEmpty()) {
+			//if not weapons in hand, display none
 			weapons.add(new JTextField("None", 15));
 		}else {
+			//add text field for each weapon in hand
 			addTextFields(weapons, weaponHand);
 		}
 
+		//add labels and text fields
 		weapons.add(weaponSeenLabel);
 		if(weaponSeen.isEmpty()) {
+			//if not weapons seen, display none
 			weapons.add(new JTextField("None", 15));
 		}else {
+			//add text field for each weapon seen
 			addTextFields(weapons, weaponSeen);
 		}
 		
@@ -151,6 +168,8 @@ public class KnownCardsPanel extends JPanel{
 		weapons.setBorder(new TitledBorder(new EtchedBorder(), "Weapons"));
 	}
 
+	//clears the people, rooms, and weapons panels to prepare for update
+	//recreates panels with updated functionality
 	public void update() {
 		people.removeAll();
 		rooms.removeAll();
@@ -161,42 +180,48 @@ public class KnownCardsPanel extends JPanel{
 		createWeaponPanel();
 	}
 
+	//create list of text fields for each person in hand
 	public void setPeopleHand(ArrayList<Card> people) {
 		for(Card p : people) {
 			peopleHand.add(new JTextField(p.getName(), 15));	
 		}
 	}
 
+	//create list of text fields for each person seen
 	public void setPeopleSeen(ArrayList<Card> people) {
 		for(Card p : people) {
 			peopleSeen.add(new JTextField(p.getName(), 15));	
 		}
 	}
 
+	//create list of text fields for each room in hand
 	public void setRoomHand(ArrayList<Card> rooms) {
 		for(Card r : rooms) {
 			roomHand.add(new JTextField(r.getName(), 15));
 		}
 	}
 
+	//create list of text fields for each room seen
 	public void setRoomSeen(ArrayList<Card> rooms) {
 		for(Card r : rooms) {
 			roomSeen.add(new JTextField(r.getName(), 15));
 		}
 	}
 
+	//create list of text fields for each weapon in hand
 	public void setWeaponsHand(ArrayList<Card> weapons) {
 		for(Card w : weapons) {
 			weaponHand.add(new JTextField(w.getName(), 15));
 		}
 	}
-
+	//create list of text fields for each weapon seen
 	public void setWeaponSeen(ArrayList<Card> weapons) {
 		for(Card w : weapons) {
 			weaponSeen.add(new JTextField(w.getName(), 15));
 		}
 }
 
+	//add list of text fields to given panel
 	public void addTextFields(JPanel panel, ArrayList<JTextField> fields) {
 		for(JTextField f : fields) {
 			panel.add(f);
