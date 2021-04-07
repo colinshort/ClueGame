@@ -403,14 +403,17 @@ public class Board extends JPanel {
 		return null;
 	}
 	
+	//Paint the board
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
+		
+		//calculate dimensions of cells
 		int cellWidth = (int)(getWidth() / getNumColumns());
 		int cellHeight = (int)(getHeight() / getNumRows());
+		
+		//paint each cell
 		int x = 0;
 		int y = 0;
-		
 		for(BoardCell[] row : grid) {
 			for(BoardCell cell : row) {
 				cell.draw(g, cellWidth, cellHeight, x, y);
@@ -420,6 +423,7 @@ public class Board extends JPanel {
 			y += cellHeight;
 		}
 	
+		//paint room names
 		for(Map.Entry<Character, Room> entry : roomMap.entrySet()) {
 			Room r = entry.getValue();
 			Font font = new Font("Dialog", Font.BOLD, 14);
@@ -429,10 +433,23 @@ public class Board extends JPanel {
 			}
 		}
 		
+		//paint players
 		for(Player p : players) {
-			int x1 = p.getColumn() * cellWidth + cellWidth/8;
-			int y1 = p.getRow() * cellHeight + + cellHeight/16;
-			p.draw(g, 30, 30, x1, y1);
+			int x1 = p.getColumn() * cellWidth;
+			int y1 = p.getRow() * cellHeight;
+			p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
+		}
+		
+		//paint doors
+		x = 0;
+		y = 0;
+		for(BoardCell[] row : grid) {
+			for(BoardCell cell : row) {
+				cell.drawDoor(g, cellWidth, cellHeight, x, y);
+				x += cellWidth;
+			}
+			x = 0;
+			y += cellHeight;
 		}
 	}
 
