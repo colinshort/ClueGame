@@ -1,3 +1,78 @@
+commit 1612878a88dd71a5019dd4b8546d47809f8e1f8c
+Merge: 603ef11 a55e8d9
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 7 17:15:37 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame
+
+commit 603ef110d0febbf2633db0a342ee75e2a1d06fa8
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 7 17:15:34 2021 -0600
+
+    Finished board GUI
+
+commit a55e8d91284dd7eaf8f7a90ac0850b4f56051411
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Apr 7 17:14:42 2021 -0600
+
+    Added functionality to draw doorways
+
+commit dd3da196e79588bcffc5b587cdceeabf671c5b05
+Merge: 2d6f03c 8f4a63f
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Apr 7 16:47:38 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame into main
+
+commit 2d6f03cadc446228c99a55f48b4102018c103e41
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Apr 7 16:47:24 2021 -0600
+
+    merging
+
+commit 8f4a63f697a24e1af15abdfcee1eef5644721746
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 7 16:46:17 2021 -0600
+
+    Added Known Cards panel and Game Control Panel
+
+commit 84bf3e0ef2dca7f553afb177a1c1ccab33aef5a7
+Merge: a2952fe 9e17c48
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Apr 7 16:35:17 2021 -0600
+
+    fixed merge errors
+
+commit a2952fe1508482690bb1ba5a4c0f8d3f26684945
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Apr 7 16:29:20 2021 -0600
+
+    added ClueGame class
+
+commit d3ddd186d6d72b81fcd17bed7961f662ab9e8612
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Wed Apr 7 16:26:58 2021 -0600
+
+    Added functionality to show players and room names
+
+commit 9e17c4822e4edd42569baf1f48ffd7a4688cbb8d
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 7 15:42:33 2021 -0600
+
+    Added cell color
+
+commit c237bc12058159c1dddf60c8adf1e07b311aa77b
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 7 15:36:26 2021 -0600
+
+    Added cell drawing
+
+commit f77e2b3d444eadb679df1ac2a79ddc0bf88d3716
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Apr 5 20:12:04 2021 -0600
+
+    Updated git log
+
 commit cbbd1d1330ba961c923219169e6c6ee4d3f1bf9f
 Author: cameron-fitz <fitzgerald@mymail.mines.edu>
 Date:   Mon Apr 5 20:09:23 2021 -0600
