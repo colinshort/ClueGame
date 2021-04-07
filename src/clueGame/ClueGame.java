@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.awt.Dimension;
+
 import javax.swing.JFrame;
 
 public class ClueGame extends JFrame {
@@ -9,6 +11,7 @@ public class ClueGame extends JFrame {
 	public ClueGame() {
 		setSize(1000,1000);
 		board = Board.getInstance();
+		board.setPreferredSize(new Dimension(1000, 1000));
 		board.setConfigFiles("ClueBoard.csv", "ClueSetup.txt");		
 		board.initialize();
 		add(board);

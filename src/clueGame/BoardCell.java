@@ -130,10 +130,15 @@ public class BoardCell {
 			g.setColor(Color.GRAY);
 			g.fillRect(x + 1, y + 1, width - 2, height - 2);
 		}
-		if(isRoom()){
+		else if(isRoom()){
 			g.setColor(Color.CYAN);
 			g.drawRect(x, y, width, height);
 			g.setColor(Color.CYAN);
+			g.fillRect(x, y, width, height);
+		}else {
+			g.setColor(Color.BLACK);
+			g.drawRect(x, y, width, height);
+			g.setColor(Color.BLACK);
 			g.fillRect(x, y, width, height);
 		}
 	}
