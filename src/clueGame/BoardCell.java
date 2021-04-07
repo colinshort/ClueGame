@@ -142,6 +142,7 @@ public class BoardCell {
 			fill = Color.cyan;
 		}
 		
+		
 		g.setColor(fill);
 		g.fillRect(row, col, myWidth, myHeight);
 		g.setColor(border);

@@ -42,7 +42,7 @@ public class GameControlPanel extends JPanel {
 	private JPanel createControlPanel() {
 		//upper panel
 		JPanel controlPanel = new JPanel();
-		controlPanel.setLayout(new GridLayout(1,4));
+		controlPanel.setLayout(new GridLayout(0,4));
 		
 		//inside upper panel
 		//create panel to show whose turn it is
