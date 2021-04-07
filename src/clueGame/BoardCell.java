@@ -18,7 +18,7 @@ public class BoardCell {
 	private Set<BoardCell> adjList;
 	private boolean isOccupied;
 	private boolean isRoom;
-	
+
 	public static final char C_WALKWAY = 'W';
 	public static final char C_UNUSED = 'X';
 
@@ -50,11 +50,11 @@ public class BoardCell {
 	public boolean isRoomCenter() {
 		return roomCenter;
 	}
-	
+
 	public boolean isWalkway() {
 		return (getInitial() == C_WALKWAY);
 	}
-	
+
 	public boolean isUnused() {
 		return (getInitial() == C_UNUSED);
 	}
@@ -118,11 +118,13 @@ public class BoardCell {
 	public boolean isRoom() {
 		return isRoom;
 	}
-	
+
 	public void setIsRoom(boolean room) {
 		isRoom = room;
 	}
-	
+
+	//draws the boardcells
+	//sets the color corresponding to Walkways, Room, and unused cells
 	public void draw(Graphics g, int width, int height, int x, int y) {
 		Color border = Color.BLACK;
 		Color fill = Color.BLACK;
@@ -130,24 +132,41 @@ public class BoardCell {
 		int col = y;
 		int myWidth = width;
 		int myHeight = height;
-		
+
 		if(isWalkway()){
 			fill = Color.gray;
-			
+
 			myWidth -= 1;
 			myHeight -= 1;
-		}
-		else if(isRoom()){
+		}else if(isRoom()){
 			border = Color.cyan;
 			fill = Color.cyan;
 		}
-		
-		
+
+
 		g.setColor(fill);
 		g.fillRect(row, col, myWidth, myHeight);
 		g.setColor(border);
 		g.drawRect(row, col, width, height);
+		
+		
 
+	}
+	
+	//draw a doorway on the appropriate side of a cell
+	public void drawDoor(Graphics g, int width,int height, int row, int col) {
+		if(isDoorway()) {
+			g.setColor(Color.GREEN);
+			if(getDoorDirection() == DoorDirection.LEFT) {
+				g.fillRect(row - 5, col, 5, height);
+			}else if(getDoorDirection() == DoorDirection.RIGHT) {
+				g.fillRect(row + width, col, 5, height);
+			}else if(getDoorDirection() == DoorDirection.DOWN) {
+				g.fillRect(row, col + height, width, 5);
+			}else if(getDoorDirection() == DoorDirection.UP) {
+				g.fillRect(row, col - 5, width, 5);
+			}
+		}
 	}
 }
 

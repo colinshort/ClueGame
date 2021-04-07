@@ -115,6 +115,7 @@ public abstract class Player {
 		return column;
 	}
 
+	//draw a player
 	public void draw(Graphics g, int width, int height, int x, int y) {
 		Color color = Color.YELLOW;
 		switch(getName()){
