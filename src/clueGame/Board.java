@@ -1,6 +1,7 @@
 //Authors:Cameron Fitzgerald, Colin Short
 package clueGame;
 
+import java.awt.Graphics;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,7 +12,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
-public class Board {
+import javax.swing.JPanel;
+
+public class Board extends JPanel {
 	private BoardCell[][] grid;
 	private int numRows;
 	private int numColumns;
@@ -396,6 +399,24 @@ public class Board {
 		}
 		return null;
 	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		int cellWidth = (int)(getWidth() / getNumColumns());
+		int cellHeight = (int)(getHeight() / getNumRows());
+		int x = 0;
+		int y = 0;
+		
+		for(BoardCell[] row : grid) {
+			for(BoardCell cell : row) {
+				cell.draw(g, cellWidth, cellHeight, x, y);
+				x += cellWidth;
+			}
+			x = 0;
+			y += cellHeight;
+		}
+	}
 
 	public Set<BoardCell> getAdjList(int row, int col){
 		return grid[row][col].getAdjList();
@@ -435,4 +456,5 @@ public class Board {
 	public Solution getAnswer() {
 		return theAnswer;
 	}
+	
 }
