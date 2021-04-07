@@ -1,6 +1,8 @@
 //Authors:Cameron Fitzgerald, Colin Short
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -119,6 +121,31 @@ public class BoardCell {
 	
 	public void setIsRoom(boolean room) {
 		isRoom = room;
+	}
+	
+	public void draw(Graphics g, int width, int height, int x, int y) {
+		Color border = Color.BLACK;
+		Color fill = Color.BLACK;
+		int row = x;
+		int col = y;
+		int myWidth = width;
+		int myHeight = height;
+		
+		if(isWalkway()){
+			fill = Color.gray;
+			
+			myWidth -= 1;
+			myHeight -= 1;
+		}
+		else if(isRoom()){
+			border = Color.cyan;
+			fill = Color.cyan;
+		}
+		
+		g.setColor(fill);
+		g.fillRect(row, col, myWidth, myHeight);
+		g.setColor(border);
+		g.drawRect(row, col, width, height);
 	}
 }
 

@@ -51,8 +51,8 @@ public class KnownCardsPanel extends JPanel{
 		KnownCardsPanel panel = new KnownCardsPanel();
 		JFrame frame = new JFrame();
 		frame.setContentPane(panel); // put the panel in the frame
-		frame.setSize(200, 800);  // size the frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
+		frame.pack();
 		frame.setVisible(true); // make it visible
 
 		//test filling in the data
