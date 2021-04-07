@@ -146,6 +146,7 @@ public class BoardCell {
 		g.fillRect(row, col, myWidth, myHeight);
 		g.setColor(border);
 		g.drawRect(row, col, width, height);
+
 	}
 }
 

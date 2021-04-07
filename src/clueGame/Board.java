@@ -1,6 +1,7 @@
 //Authors:Cameron Fitzgerald, Colin Short
 package clueGame;
 
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.FileNotFoundException;
@@ -404,6 +405,7 @@ public class Board extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+
 		int cellWidth = (int)(getWidth() / getNumColumns());
 		int cellHeight = (int)(getHeight() / getNumRows());
 		int x = 0;
@@ -417,7 +419,7 @@ public class Board extends JPanel {
 			x = 0;
 			y += cellHeight;
 		}
-		
+	
 		for(Map.Entry<Character, Room> entry : roomMap.entrySet()) {
 			Room r = entry.getValue();
 			Font font = new Font("Dialog", Font.BOLD, 14);
@@ -432,8 +434,6 @@ public class Board extends JPanel {
 			int y1 = p.getRow() * cellHeight + + cellHeight/16;
 			p.draw(g, 30, 30, x1, y1);
 		}
-		
-		
 	}
 
 	public Set<BoardCell> getAdjList(int row, int col){

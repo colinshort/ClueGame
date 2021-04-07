@@ -25,3 +25,4 @@ public class ClueGame extends JFrame {
 		frame.setVisible(true); // make it visible
 	}
 }
+
