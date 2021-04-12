@@ -1,6 +1,9 @@
 package clueGame;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,13 +19,16 @@ public class GameControlPanel extends JPanel {
 	private JTextField turnField;
 	private JTextField rollField;
 	
+	private Board board;
+	
 	public GameControlPanel()  {
+		board = Board.getInstance();
+		
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createControlPanel();
 		add(panel);
 		panel = createGuessPanel();
 		add(panel);
-		
 	}
 
 	public static void main(String[] args) {
@@ -64,6 +70,7 @@ public class GameControlPanel extends JPanel {
 		//create buttons to make accusation or move to next turn
 		JButton accusation = new JButton("Make Accusation");
 		JButton next = new JButton("NEXT!");
+		next.addMouseListener(new ButtonListener());
 		controlPanel.add(accusation);
 		controlPanel.add(next);
 		
@@ -102,6 +109,18 @@ public class GameControlPanel extends JPanel {
 		turnField.setText(player.getName());
 		rollField.setText("" + roll);
 		turnField.setBackground(player.colorConvert(player.getColor()));
+	}
+	
+	private class ButtonListener implements MouseListener {
+	//  Empty definitions for unused event methods.
+		public void mousePressed (MouseEvent e) {
+			
+		}  
+		public void mouseReleased (MouseEvent e) {}  
+		public void mouseEntered (MouseEvent e) {}  
+		public void mouseExited (MouseEvent e) {}  
+		public void mouseClicked (MouseEvent e) { }
+		
 	}
 
 	public void setGuess(String guess) {

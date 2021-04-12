@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class ClueGame extends JFrame {
 	private static Board board;
@@ -25,6 +26,7 @@ public class ClueGame extends JFrame {
 		//create and add Game Control Panel
 		gcp = new GameControlPanel();
 		add(gcp, BorderLayout.SOUTH);
+		
 	}
 	
 	
@@ -35,6 +37,9 @@ public class ClueGame extends JFrame {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		frame.setVisible(true); // make it visible
+		
+		JOptionPane.showMessageDialog(null, "You are John.\nCan you find the solution before the Computer players?", "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
+
 	}
 }
 
