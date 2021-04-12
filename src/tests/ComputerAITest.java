@@ -3,6 +3,8 @@ package tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -68,13 +70,14 @@ class ComputerAITest {
 	@Test
 	public void testSelectTargets() {
 		ComputerPlayer computer = new ComputerPlayer("Cameron", "red", 9, 10);
-		ArrayList<BoardCell> testTargets = new ArrayList<>();
+		Set<BoardCell> testTargets = new HashSet<>();
 		testTargets.add(new BoardCell(1,2));
 		testTargets.add(new BoardCell(4,1));
 		testTargets.add(new BoardCell(10,13));
 	
 		BoardCell targetCell = computer.selectMove(testTargets);
-		assert(testTargets.indexOf(targetCell) != -1);
+		ArrayList<BoardCell> myTest = new ArrayList<BoardCell>(testTargets);
+		assert(myTest.indexOf(targetCell) != -1);
 		
 		BoardCell testRoom = new BoardCell(5, 3);
 		testRoom.setIsRoom(true);

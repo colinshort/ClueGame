@@ -4,6 +4,8 @@ package clueGame;
 
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -31,7 +33,7 @@ public class Board extends JPanel {
 	private ArrayList<Player> players;
 	private ArrayList<Card> deck;
 	private Player currentPlayer;
-	
+
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<>();
 
@@ -46,6 +48,7 @@ public class Board extends JPanel {
 		this.players = new ArrayList<>();
 		this.deck = new ArrayList<>();
 		this.theAnswer = new Solution();
+		this.addMouseListener(new BoardListener());
 	}
 
 	// this method returns the only Board
@@ -84,7 +87,7 @@ public class Board extends JPanel {
 					if (!setUp[0].equals("Room") && !setUp[0].equals("Space") && !setUp[0].equals("Person") && !setUp[0].equals("Weapon")) {
 						throw new BadConfigFormatException("Error: Invalid card type");
 					}
-					
+
 					if(setUp[0].equals("Room") || setUp[0].equals("Space")) {
 						Room room = new Room(setUp[1]);
 						roomMap.put(setUp[2].charAt(0), room);
@@ -93,20 +96,20 @@ public class Board extends JPanel {
 							deck.add(c);
 						}
 					}
-					
+
 					else if(setUp[0].equals("Person")) {
-					
+
 						if(setUp[3].charAt(0) == 'H') {
 							HumanPlayer human = new HumanPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
 							players.add(human);
 							human.setHuman(true);
-							
+
 						}else if(setUp[3].charAt(0) == 'C') {
 							ComputerPlayer computer = new ComputerPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
 							players.add(computer);
 							computer.setHuman(false);
 						}
-						
+
 						Card c = new Card(setUp[1], CardType.PERSON);
 						deck.add(c);
 					}else if(setUp[0].equals("Weapon")) {
@@ -114,7 +117,7 @@ public class Board extends JPanel {
 						deck.add(c);
 					}
 				}
-				
+
 			}
 		}finally {
 			in.close();
@@ -124,7 +127,7 @@ public class Board extends JPanel {
 				e.printStackTrace();
 			}
 		}
-		
+
 		if(deck.size() > 9) {
 			deal();
 		}
@@ -186,7 +189,7 @@ public class Board extends JPanel {
 				}
 				count++;
 			}	
-			
+
 		}finally{
 			in2.close();
 			try {
@@ -197,9 +200,9 @@ public class Board extends JPanel {
 		}
 
 		preprocessAdjs();
-		
+
 	}
-	
+
 	//calculate adjacencies for each cell on the board
 	public void preprocessAdjs() {
 		for(int i = 0; i < numColumns; i++) {
@@ -208,7 +211,7 @@ public class Board extends JPanel {
 			}
 		}
 	}
-	
+
 	//handle doorways, room label cells, room center cells, and secret passage cells
 	public void handleSpecialCells(String label, int row, int col) {
 		if(label.length()==2) {
@@ -339,13 +342,13 @@ public class Board extends JPanel {
 			}
 		}
 	}
-	
+
 	//create the solution hand, and deal a hand of cards to each player
 	public void deal() {
 		ArrayList<Card> people = new ArrayList<Card>();
 		ArrayList<Card> rooms = new ArrayList<Card>();
 		ArrayList<Card> weapons = new ArrayList<Card>();
-		
+
 		for(int i = 0; i < deck.size(); i++) {
 			if(deck.get(i).getCardType() == CardType.PERSON) {
 				people.add(deck.get(i));
@@ -357,16 +360,16 @@ public class Board extends JPanel {
 				weapons.add(deck.get(i));
 			}
 		}
-		
+
 		Card person = people.get((int)Math.random()%people.size());
 		person.setDealt(true);
 		Card room = rooms.get((int)Math.random()%rooms.size());
 		room.setDealt(true);
 		Card weapon = weapons.get((int)Math.random()%weapons.size());
 		weapon.setDealt(true);
-		
+
 		theAnswer.setSolution(person, room, weapon);
-		
+
 		int j = 0;
 		for(int i = 0; i < deck.size(); i++) {
 			if (j >= players.size()) {
@@ -379,7 +382,7 @@ public class Board extends JPanel {
 			}
 		}
 	}
-	
+
 	//returns true if accusation matches the answer
 	public boolean checkAccusation(Solution answer, Solution solution) {
 		boolean match = true;
@@ -394,7 +397,7 @@ public class Board extends JPanel {
 		}
 		return match;
 	}
-	
+
 	//returns first card that can disprove a suggestion
 	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> myPlayers) {
 		for(Player p : myPlayers) {
@@ -407,15 +410,15 @@ public class Board extends JPanel {
 		}
 		return null;
 	}
-	
+
 	//Paint the board
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		//calculate dimensions of cells
 		int cellWidth = (int)(getWidth() / getNumColumns());
 		int cellHeight = (int)(getHeight() / getNumRows());
-		
+
 		//paint each cell
 		int x = 0;
 		int y = 0;
@@ -432,7 +435,7 @@ public class Board extends JPanel {
 			x = 0;
 			y += cellHeight;
 		}
-	
+
 		//paint room names
 		for(Map.Entry<Character, Room> entry : roomMap.entrySet()) {
 			Room r = entry.getValue();
@@ -442,14 +445,14 @@ public class Board extends JPanel {
 				g.drawString(r.getName(), r.getLabelCell().getCol() * cellWidth, r.getLabelCell().getRow() * cellHeight);
 			}
 		}
-		
+
 		//paint players
 		for(Player p : players) {
 			int x1 = p.getColumn() * cellWidth;
 			int y1 = p.getRow() * cellHeight;
 			p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
 		}
-		
+
 		//paint doors
 		x = 0;
 		y = 0;
@@ -462,7 +465,7 @@ public class Board extends JPanel {
 			y += cellHeight;
 		}
 	}
-	
+
 	public void executeTurn(GameControlPanel panel) {
 		if(!currentPlayer.isFinished()) {
 			JOptionPane.showMessageDialog(null, "You must finish your turn!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -471,36 +474,80 @@ public class Board extends JPanel {
 		else {
 			currentPlayer = nextPlayer();
 			Random random = new Random();
-			int roll = random.nextInt(7) + 1;
+			int roll = random.nextInt(6) + 1;
 			calcTargets(grid[currentPlayer.getRow()][currentPlayer.getColumn()], roll);
 			panel.setTurn(currentPlayer, roll);
-			
+
 			if(currentPlayer.isHuman()) {
 				repaint();
 				currentPlayer.setFinished(false);
 			}else {
+				ComputerPlayer computer = (ComputerPlayer) currentPlayer;
 				//doAccustion()
-				currentPlayer = 
+				computer.selectMove(targets);
 				//doSuggestion();
+				currentPlayer.isFinished();
 			}
 		}
 	}
-	
+
 	public void firstTurnSetup(GameControlPanel panel) {
 		currentPlayer = players.get(0);
 		Random random = new Random();
-		int roll = random.nextInt(7) + 1;
+		int roll = random.nextInt(6) + 1;
 		calcTargets(grid[currentPlayer.getRow()][currentPlayer.getColumn()], roll);
 		panel.setTurn(currentPlayer, roll);
 		repaint();
-		
+
 	}
 
 	public Player nextPlayer() {
 		int idx = players.indexOf(currentPlayer);
 		return players.get(idx + 1);
 	}
-	
+
+	private class BoardListener implements MouseListener{
+		//  Empty definitions for unused event methods.
+		public void mousePressed (MouseEvent e) {}
+		public void mouseReleased (MouseEvent e) {}  
+		public void mouseEntered (MouseEvent e) {}  
+		public void mouseExited (MouseEvent e) {}  
+		public void mouseClicked (MouseEvent e) {
+			int x = e.getX();
+			int y = e.getY();
+			
+			//calculate dimensions of cells
+			int cellWidth = (int)(getWidth() / getNumColumns());
+			int cellHeight = (int)(getHeight() / getNumRows());
+
+			boolean selected = false;
+			for(BoardCell c : targets) {
+				int cellX = c.getCol() * cellWidth;
+				int cellY = c.getRow() * cellHeight;
+				if(x > cellX && y > cellY && y < cellY + cellHeight && x < cellX + cellWidth){
+					if(c.isRoom()) {
+						currentPlayer.setRow(roomMap.get(c.getInitial()).getCenterCell().getRow());
+						currentPlayer.setCol(roomMap.get(c.getInitial()).getCenterCell().getCol());
+					}else {
+						currentPlayer.setRow(c.getRow());
+						currentPlayer.setCol(c.getCol());
+					}
+					selected = true;
+					break;
+				}
+			}
+			
+			if(!selected) {
+				JOptionPane.showMessageDialog(null, "That is not a target", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			for(BoardCell c : targets) {
+				c.setTarget(false);
+			}
+			repaint();
+		} 
+	}
+
 	public Set<BoardCell> getAdjList(int row, int col){
 		return grid[row][col].getAdjList();
 	}
@@ -527,17 +574,17 @@ public class Board extends JPanel {
 	public BoardCell getCell(int row, int col) {
 		return grid[row][col];
 	}
-	
+
 	public ArrayList<Player> getPlayers(){
 		return players;
 	}
-	
+
 	public ArrayList<Card> getDeck(){
 		return deck;
 	}
-	
+
 	public Solution getAnswer() {
 		return theAnswer;
 	}
-	
+
 }

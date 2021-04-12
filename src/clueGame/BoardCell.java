@@ -19,6 +19,8 @@ public class BoardCell {
 	private boolean isOccupied;
 	private boolean isRoom;
 	private boolean isTarget;
+	private int x;
+	private int y;
 
 	public static final char C_WALKWAY = 'W';
 	public static final char C_UNUSED = 'X';
@@ -102,7 +104,7 @@ public class BoardCell {
 	public int getCol() {
 		return col;
 	}
-
+	
 	//set isOccupied to true/false
 	public void setOccupied(boolean occupied) {
 		isOccupied = occupied;
@@ -153,7 +155,7 @@ public class BoardCell {
 			fill = Color.cyan;
 		}
 		
-		if(target) {
+		if(isTarget()) {
 			border = Color.YELLOW;
 			fill = Color.YELLOW;
 		}

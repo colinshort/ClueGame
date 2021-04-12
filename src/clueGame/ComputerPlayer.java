@@ -2,7 +2,9 @@ package clueGame;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 public class ComputerPlayer extends Player{
 	private static Random rn = new Random();
@@ -50,7 +52,8 @@ public class ComputerPlayer extends Player{
 	}
 	
 	//select a move from possible targets. Prioritize rooms
-	public BoardCell selectMove(ArrayList<BoardCell> targets) {
+	public BoardCell selectMove(Set<BoardCell> targets) {
+		ArrayList<BoardCell> myTargets = new ArrayList<BoardCell>(targets);
 		ArrayList<BoardCell> rooms = new ArrayList<>();
 		
 		for(BoardCell bc : targets) {
@@ -67,7 +70,7 @@ public class ComputerPlayer extends Player{
 			}
 		}
 		
-		return targets.get(rn.nextInt(targets.size()));
+		return myTargets.get(rn.nextInt(myTargets.size()));
 	}
 
 	//helper method to determine if Card is in a list of Cards

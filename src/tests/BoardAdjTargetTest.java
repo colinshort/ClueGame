@@ -70,7 +70,7 @@ public class BoardAdjTargetTest {
 			testList = board.getAdjList(21, 17);
 			assertEquals(4, testList.size());
 			//room
-			assertTrue(testList.contains(board.getCell(22, 21)));
+			assertTrue(testList.contains(board.getCell(22, 20)));
 			//walkway
 			assertTrue(testList.contains(board.getCell(20, 17)));
 			assertTrue(testList.contains(board.getCell(21, 16)));

@@ -116,6 +116,14 @@ public abstract class Player {
 		return column;
 	}
 	
+	public void setRow(int r) {
+		row = r;
+	}
+	
+	public void setCol(int c) {
+		column = c;
+	}
+	
 	public boolean isFinished() {
 		return turnFinished;
 	}
