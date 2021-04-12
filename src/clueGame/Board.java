@@ -480,7 +480,7 @@ public class Board extends JPanel {
 				currentPlayer.setFinished(false);
 			}else {
 				//doAccustion()
-				move();
+				currentPlayer = 
 				//doSuggestion();
 			}
 		}
