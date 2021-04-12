@@ -22,8 +22,6 @@ public class GameControlPanel extends JPanel {
 	private Board board;
 	
 	public GameControlPanel()  {
-		board = Board.getInstance();
-		
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createControlPanel();
 		add(panel);
@@ -104,7 +102,7 @@ public class GameControlPanel extends JPanel {
 		return guessPanel;
 	}
 
-	public void setTurn(ComputerPlayer player, int roll) {
+	public void setTurn(Player player, int roll) {
 		//set roll and player turn
 		turnField.setText(player.getName());
 		rollField.setText("" + roll);
@@ -114,13 +112,18 @@ public class GameControlPanel extends JPanel {
 	private class ButtonListener implements MouseListener {
 	//  Empty definitions for unused event methods.
 		public void mousePressed (MouseEvent e) {
-			
+			startBoardTurn();
 		}  
 		public void mouseReleased (MouseEvent e) {}  
 		public void mouseEntered (MouseEvent e) {}  
 		public void mouseExited (MouseEvent e) {}  
 		public void mouseClicked (MouseEvent e) { }
 		
+	}
+	
+	public void startBoardTurn() {
+		board = Board.getInstance();
+		board.executeTurn(this);
 	}
 
 	public void setGuess(String guess) {
