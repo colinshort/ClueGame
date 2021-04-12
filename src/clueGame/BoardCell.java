@@ -18,6 +18,7 @@ public class BoardCell {
 	private Set<BoardCell> adjList;
 	private boolean isOccupied;
 	private boolean isRoom;
+	private boolean isTarget;
 
 	public static final char C_WALKWAY = 'W';
 	public static final char C_UNUSED = 'X';
@@ -122,10 +123,18 @@ public class BoardCell {
 	public void setIsRoom(boolean room) {
 		isRoom = room;
 	}
+	
+	public boolean isTarget() {
+		return isTarget;
+	}
+	
+	public void setTarget(boolean b) {
+		isTarget = b;
+	}
 
 	//draws the boardcells
 	//sets the color corresponding to Walkways, Room, and unused cells
-	public void draw(Graphics g, int width, int height, int x, int y) {
+	public void draw(Graphics g, int width, int height, int x, int y, boolean target) {
 		Color border = Color.BLACK;
 		Color fill = Color.BLACK;
 		int row = x;
@@ -139,8 +148,14 @@ public class BoardCell {
 			myWidth -= 1;
 			myHeight -= 1;
 		}else if(isRoom()){
+			
 			border = Color.cyan;
 			fill = Color.cyan;
+		}
+		
+		if(target) {
+			border = Color.YELLOW;
+			fill = Color.YELLOW;
 		}
 
 
@@ -148,9 +163,6 @@ public class BoardCell {
 		g.fillRect(row, col, myWidth, myHeight);
 		g.setColor(border);
 		g.drawRect(row, col, width, height);
-		
-		
-
 	}
 	
 	//draw a doorway on the appropriate side of a cell

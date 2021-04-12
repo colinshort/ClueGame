@@ -12,12 +12,12 @@ Room, Engineering Hall, E
 Space, Unused, X
 Space, Walkway, W
 //People
-Person, John, red, C, 5, 5
+Person, John, red, H, 5, 5
 Person, Mark, cyan, C, 12, 6
 Person, Adam, yellow, C, 21, 6
 Person, Cameron, blue, C, 2, 15
 Person, Colin, white, C, 9, 14
-Person, Henry, orange, H, 19, 15
+Person, Henry, orange, C, 19, 15
 //Weapons
 Weapon, knife
 Weapon, sword

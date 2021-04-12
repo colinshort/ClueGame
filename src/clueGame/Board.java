@@ -12,9 +12,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
@@ -28,7 +30,8 @@ public class Board extends JPanel {
 	private Solution theAnswer;
 	private ArrayList<Player> players;
 	private ArrayList<Card> deck;
-
+	private Player currentPlayer;
+	
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<>();
 
@@ -111,6 +114,7 @@ public class Board extends JPanel {
 						deck.add(c);
 					}
 				}
+				
 			}
 		}finally {
 			in.close();
@@ -325,6 +329,7 @@ public class Board extends JPanel {
 					visited.add(c);
 					if(pathlength == 1 || c.isRoomCenter()) {
 						targets.add(c);
+						c.setTarget(true);
 					}
 					else{
 						findAllTargets(c, pathlength - 1);
@@ -416,7 +421,12 @@ public class Board extends JPanel {
 		int y = 0;
 		for(BoardCell[] row : grid) {
 			for(BoardCell cell : row) {
-				cell.draw(g, cellWidth, cellHeight, x, y);
+				if(cell.isRoom()) {
+					if(roomMap.get(cell.getInitial()).getCenterCell().isTarget()) {
+						cell.setTarget(true);
+					}
+				}
+				cell.draw(g, cellWidth, cellHeight, x, y, cell.isTarget());
 				x += cellWidth;
 			}
 			x = 0;
@@ -452,7 +462,40 @@ public class Board extends JPanel {
 			y += cellHeight;
 		}
 	}
+	
+	public void executeTurn(GameControlPanel panel) {
+		if(!currentPlayer.isFinished()) {
+			JOptionPane.showMessageDialog(null, "You must finish your turn!", "Error", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		else {
+			currentPlayer = nextPlayer();
+			Random random = new Random();
+			int roll = random.nextInt(7) + 1;
+			calcTargets(grid[currentPlayer.getRow()][currentPlayer.getColumn()], roll);
+			panel.setTurn(currentPlayer, roll);
+			
+			if(currentPlayer.isHuman()) {
+				repaint();
+			}
+		}
+	}
+	
+	public void firstTurnSetup(GameControlPanel panel) {
+		currentPlayer = players.get(0);
+		Random random = new Random();
+		int roll = random.nextInt(7) + 1;
+		calcTargets(grid[currentPlayer.getRow()][currentPlayer.getColumn()], roll);
+		panel.setTurn(currentPlayer, roll);
+		repaint();
+		
+	}
 
+	public Player nextPlayer() {
+		int idx = players.indexOf(currentPlayer);
+		return players.get(idx + 1);
+	}
+	
 	public Set<BoardCell> getAdjList(int row, int col){
 		return grid[row][col].getAdjList();
 	}

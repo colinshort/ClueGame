@@ -14,6 +14,7 @@ public abstract class Player {
 	private ArrayList<Card> hand;
 	private boolean isHuman;
 	private ArrayList<Card> seenCards;
+	private boolean turnFinished;
 	
 	public Player(String name, String color, int row, int col) {
 		this.name  = name;
@@ -113,6 +114,14 @@ public abstract class Player {
 
 	public int getColumn() {
 		return column;
+	}
+	
+	public boolean isFinished() {
+		return turnFinished;
+	}
+	
+	public void setFinished(boolean f) {
+		turnFinished = f;
 	}
 
 	//draw a player
