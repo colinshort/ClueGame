@@ -1,3 +1,65 @@
+commit 98e124d0b1ee776254a23f568f0509f1743e9091
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Apr 12 21:13:28 2021 -0600
+
+    Added comments
+
+commit 7deb4507ba3fa22e5839dab68898ed078d88ffe6
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Apr 12 21:03:52 2021 -0600
+
+    added functionality for computer moves
+
+commit df34cb9e9c1a590e7ae84266b87d3c90b08a006a
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Apr 12 16:59:28 2021 -0600
+
+    added functionality to move player
+
+commit b01093590b8cc47b85b31ab53a289a0976d90420
+Merge: 7481185 9f181f6
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Apr 12 15:53:11 2021 -0600
+
+    fixed merge errors
+
+commit 748118537dbabd931b3ac9157c8a787ba28866dc
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Apr 12 15:51:42 2021 -0600
+
+    added functionality to highlight targets
+
+commit 9f181f6da3c7e9d03144bca428e2ff73f4c036d5
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Apr 12 15:50:13 2021 -0600
+
+    Added target display on board
+
+commit 1d5b04ce7eb16cbbc9bdbd07676dda70ba07fd12
+Merge: 50cd1a8 df74b8a
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Apr 12 14:42:39 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame into main
+
+commit 50cd1a89499bcf8437fe67d04e84e770fa100eda
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Mon Apr 12 14:42:33 2021 -0600
+
+    fixing merge error
+
+commit df74b8a8c6c7e6221952ee0d3f63d0c14757eb00
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Apr 12 14:40:48 2021 -0600
+
+    Added Splash Screen and next button listener
+
+commit 8ed0b5677ce0fd7c71a38ecdf9374b0af1f420ff
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 7 17:16:23 2021 -0600
+
+    Updated gitlog.txt
+
 commit 1612878a88dd71a5019dd4b8546d47809f8e1f8c
 Merge: 603ef11 a55e8d9
 Author: Colin Short <colinshort@mymail.mines.edu>
