@@ -109,6 +109,7 @@ public class GameControlPanel extends JPanel {
 		turnField.setBackground(player.colorConvert(player.getColor()));
 	}
 	
+	//listens for click on Next button
 	private class ButtonListener implements MouseListener {
 	//  Empty definitions for unused event methods.
 		public void mousePressed (MouseEvent e) {
@@ -121,6 +122,8 @@ public class GameControlPanel extends JPanel {
 		
 	}
 	
+	
+	//calls Board turn method
 	public void startBoardTurn() {
 		board = Board.getInstance();
 		board.executeTurn(this);

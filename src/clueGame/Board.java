@@ -476,51 +476,70 @@ public class Board extends JPanel {
 	}
 
 	public void executeTurn(GameControlPanel panel) {
+		//check if turn is finished
 		if(!currentPlayer.isFinished()) {
 			JOptionPane.showMessageDialog(null, "You must finish your turn!", "Error", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		else {
+			//move to next player
 			currentPlayer = nextPlayer();
+			//roll die
 			Random random = new Random();
 			int roll = random.nextInt(6) + 1;
+			//calculate player targets
 			calcTargets(grid[currentPlayer.getRow()][currentPlayer.getColumn()], roll);
+			//update game control panel
 			panel.setTurn(currentPlayer, roll);
 
 			if(currentPlayer.isHuman()) {
+				//if player is human repaint and wait for move
 				repaint();
 				currentPlayer.setFinished(false);
 			}else {
 				ComputerPlayer computer = (ComputerPlayer) currentPlayer;
 				//doAccustion()
+				//select computer move
 				BoardCell position = computer.selectMove(targets);
+				//deselect targets for highlighting
 				for(BoardCell c : targets) {
 					c.setTarget(false);
 				}
 				//doSuggestion();
 				if(position.isRoom()) {
 					Room r = roomMap.get(position.getInitial());
+					//check if player is already in room
 					if(currentPlayer.getRoom() != '\0') {
+						//remove player from room's player list
 						roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
 					}				
+					//add player to current room's player list
 					r.addPlayer(currentPlayer);
+					//set player room
 					currentPlayer.setRoom(r.getInitial());
+					//move player
 					currentPlayer.setRow(r.getCenterCell().getRow());
 					currentPlayer.setCol(r.getCenterCell().getCol());
 				}else {
+					//check if player is already in room
 					if(currentPlayer.getRoom() != '\0') {
+						//remove player from room's player list
 						roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
 						currentPlayer.setRoom('\0');	
 					}				
+					//move player
 					currentPlayer.setRow(position.getRow());
 					currentPlayer.setCol(position.getCol());
 				}
+				//player is finished with turn
 				currentPlayer.setFinished(true);
 				repaint();
 			}
 		}
 	}
-
+	
+	//establishes the parameters for first turn of the game
+	//current player is set to human player
 	public void firstTurnSetup(GameControlPanel panel) {
 		currentPlayer = players.get(0);
 		Random random = new Random();
@@ -531,6 +550,8 @@ public class Board extends JPanel {
 
 	}
 
+	//returns the next player in the players arrayList
+	//if index is 5, index returns to start of arrayList
 	public Player nextPlayer() {
 		int idx = players.indexOf(currentPlayer);
 		if(idx == 5) {
@@ -539,6 +560,9 @@ public class Board extends JPanel {
 		return players.get(idx + 1);
 	}
 
+	//implements functionality for when the board is clicked on by user
+	//if player is human board, updates position based on selection
+	//if player is computer, moves player according to AI 
 	private class BoardListener implements MouseListener{
 		//  Empty definitions for unused event methods.
 		public void mousePressed (MouseEvent e) {}
@@ -565,35 +589,45 @@ public class Board extends JPanel {
 				
 				int cellX = c.getCol() * cellWidth;
 				int cellY = c.getRow() * cellHeight;
+				//checks to see if target is in room
 				if(c.isRoom()) {
 					Room r = roomMap.get(c.getInitial());
+					//checking all the cells in a room
 					for(BoardCell cell : r.getCells()) {
 						int roomCellX = cell.getCol() * cellWidth;
 						int roomCellY = cell.getRow() * cellHeight;
-						
+						//check that mouse click is in cell
 						if(x > roomCellX && y > roomCellY && y < roomCellY + cellHeight && x < roomCellX + cellWidth){
 							if(currentPlayer.getRoom() != '\0') {
 								roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
 							}	
+							//update players location
 							currentPlayer.setRow(r.getCenterCell().getRow());
 							currentPlayer.setCol(r.getCenterCell().getCol());
+							//set player to selected room
 							currentPlayer.setRoom(r.getInitial());
 							selected = true;
+							//finish turn
 							currentPlayer.setFinished(true);
 							r.addPlayer(currentPlayer);
 							break;
 						}
 					}
 				}else {
+					//check that mouse click is in cell
 					if(x > cellX && y > cellY && y < cellY + cellHeight && x < cellX + cellWidth){
-						
+						//move player
 						currentPlayer.setRow(c.getRow());
 						currentPlayer.setCol(c.getCol());
+						//check if player is already in room
 						if(currentPlayer.getRoom() != '\0') {
-							roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);						
+							//remove player from room's player list
+							roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);			
+							//set player room to no room
 							currentPlayer.setRoom('\0');
 						}
 						selected = true;
+						//finish turn
 						currentPlayer.setFinished(true);
 						break;
 					}
@@ -601,8 +635,10 @@ public class Board extends JPanel {
 			}
 			
 			if(!selected) {
+				//if invalid cell, show error message
 				JOptionPane.showMessageDialog(null, "That is not a target", "Error", JOptionPane.ERROR_MESSAGE);
 			}else {
+				//deselect targets for highlighting
 				for(BoardCell c : targets) {
 					c.setTarget(false);
 				}
