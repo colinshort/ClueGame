@@ -15,6 +15,7 @@ public abstract class Player {
 	private boolean isHuman;
 	private ArrayList<Card> seenCards;
 	private boolean turnFinished;
+	private char room;
 	
 	public Player(String name, String color, int row, int col) {
 		this.name  = name;
@@ -24,6 +25,7 @@ public abstract class Player {
 		this.column = col;
 		this.hand = new ArrayList<Card>();
 		this.seenCards = new ArrayList<>();
+		this.room = '\0';
 	}
 	
 	public void updateHand(Card card) {
@@ -131,7 +133,15 @@ public abstract class Player {
 	public void setFinished(boolean f) {
 		turnFinished = f;
 	}
+	
+	public void setRoom(char b) {
+		room = b;
+	}
 
+	public char getRoom() {
+		return room;
+	}
+	
 	//draw a player
 	public void draw(Graphics g, int width, int height, int x, int y) {
 		Color color = Color.YELLOW;

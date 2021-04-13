@@ -136,7 +136,7 @@ public class BoardCell {
 
 	//draws the boardcells
 	//sets the color corresponding to Walkways, Room, and unused cells
-	public void draw(Graphics g, int width, int height, int x, int y, boolean target) {
+	public void draw(Graphics g, int width, int height, int x, int y, boolean target, boolean human) {
 		Color border = Color.BLACK;
 		Color fill = Color.BLACK;
 		int row = x;
@@ -150,14 +150,13 @@ public class BoardCell {
 			myWidth -= 1;
 			myHeight -= 1;
 		}else if(isRoom()){
-			
-			border = Color.cyan;
-			fill = Color.cyan;
+			border = Color.MAGENTA;
+			fill = Color.MAGENTA;
 		}
 		
-		if(isTarget()) {
-			border = Color.YELLOW;
-			fill = Color.YELLOW;
+		if(human && isTarget()) {
+			border = Color.PINK;
+			fill = Color.PINK;
 		}
 
 

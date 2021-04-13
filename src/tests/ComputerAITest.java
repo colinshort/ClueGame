@@ -41,7 +41,7 @@ class ComputerAITest {
 		computer.updateHand(new Card("Alderson", CardType.ROOM));
 		computer.updateHand(new Card("Nuke", CardType.WEAPON));
 		
-		Room room = new Room("Green Center");
+		Room room = new Room("Green Center", 'G');
 		
 		Solution suggestion = computer.createSuggestion(board.getDeck(), room);
 		

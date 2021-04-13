@@ -89,7 +89,7 @@ public class Board extends JPanel {
 					}
 
 					if(setUp[0].equals("Room") || setUp[0].equals("Space")) {
-						Room room = new Room(setUp[1]);
+						Room room = new Room(setUp[1], setUp[2].charAt(0));
 						roomMap.put(setUp[2].charAt(0), room);
 						if(setUp[0].equals("Room")){
 							Card c = new Card(setUp[1], CardType.ROOM);
@@ -183,6 +183,7 @@ public class Board extends JPanel {
 					grid[count][i].setInitial(setUp[i].charAt(0));
 					if(setUp[i].charAt(0) != 'W' && setUp[i].charAt(0) != 'X') {
 						grid[count][i].setIsRoom(true);
+						roomMap.get(grid[count][i].getInitial()).addCell(grid[count][i]);
 					}
 
 					handleSpecialCells(setUp[i], count, i);
@@ -427,9 +428,11 @@ public class Board extends JPanel {
 				if(cell.isRoom()) {
 					if(roomMap.get(cell.getInitial()).getCenterCell().isTarget()) {
 						cell.setTarget(true);
+					}else {
+						cell.setTarget(false);
 					}
 				}
-				cell.draw(g, cellWidth, cellHeight, x, y, cell.isTarget());
+				cell.draw(g, cellWidth, cellHeight, x, y, cell.isTarget(), currentPlayer.isHuman());
 				x += cellWidth;
 			}
 			x = 0;
@@ -450,6 +453,12 @@ public class Board extends JPanel {
 		for(Player p : players) {
 			int x1 = p.getColumn() * cellWidth;
 			int y1 = p.getRow() * cellHeight;
+			if(p.getRoom() != '\0') {
+				Room r = roomMap.get(p.getRoom());
+				if(r.getPlayerCount() > 1) {
+					x1 += r.getPlayers().indexOf(p) * cellWidth/4;
+				}
+			}
 			p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
 		}
 
@@ -484,9 +493,30 @@ public class Board extends JPanel {
 			}else {
 				ComputerPlayer computer = (ComputerPlayer) currentPlayer;
 				//doAccustion()
-				computer.selectMove(targets);
+				BoardCell position = computer.selectMove(targets);
+				for(BoardCell c : targets) {
+					c.setTarget(false);
+				}
 				//doSuggestion();
-				currentPlayer.isFinished();
+				if(position.isRoom()) {
+					Room r = roomMap.get(position.getInitial());
+					if(currentPlayer.getRoom() != '\0') {
+						roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
+					}				
+					r.addPlayer(currentPlayer);
+					currentPlayer.setRoom(r.getInitial());
+					currentPlayer.setRow(r.getCenterCell().getRow());
+					currentPlayer.setCol(r.getCenterCell().getCol());
+				}else {
+					if(currentPlayer.getRoom() != '\0') {
+						roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
+						currentPlayer.setRoom('\0');	
+					}				
+					currentPlayer.setRow(position.getRow());
+					currentPlayer.setCol(position.getCol());
+				}
+				currentPlayer.setFinished(true);
+				repaint();
 			}
 		}
 	}
@@ -503,6 +533,9 @@ public class Board extends JPanel {
 
 	public Player nextPlayer() {
 		int idx = players.indexOf(currentPlayer);
+		if(idx == 5) {
+			idx = -1;
+		}
 		return players.get(idx + 1);
 	}
 
@@ -513,36 +546,66 @@ public class Board extends JPanel {
 		public void mouseEntered (MouseEvent e) {}  
 		public void mouseExited (MouseEvent e) {}  
 		public void mouseClicked (MouseEvent e) {
+			if(!currentPlayer.isHuman()) {
+				return;
+			}
 			int x = e.getX();
 			int y = e.getY();
 			
 			//calculate dimensions of cells
 			int cellWidth = (int)(getWidth() / getNumColumns());
 			int cellHeight = (int)(getHeight() / getNumRows());
+			
 
 			boolean selected = false;
 			for(BoardCell c : targets) {
+				if(selected) {
+					break;
+				}
+				
 				int cellX = c.getCol() * cellWidth;
 				int cellY = c.getRow() * cellHeight;
-				if(x > cellX && y > cellY && y < cellY + cellHeight && x < cellX + cellWidth){
-					if(c.isRoom()) {
-						currentPlayer.setRow(roomMap.get(c.getInitial()).getCenterCell().getRow());
-						currentPlayer.setCol(roomMap.get(c.getInitial()).getCenterCell().getCol());
-					}else {
+				if(c.isRoom()) {
+					Room r = roomMap.get(c.getInitial());
+					for(BoardCell cell : r.getCells()) {
+						int roomCellX = cell.getCol() * cellWidth;
+						int roomCellY = cell.getRow() * cellHeight;
+						
+						if(x > roomCellX && y > roomCellY && y < roomCellY + cellHeight && x < roomCellX + cellWidth){
+							if(currentPlayer.getRoom() != '\0') {
+								roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
+							}	
+							currentPlayer.setRow(r.getCenterCell().getRow());
+							currentPlayer.setCol(r.getCenterCell().getCol());
+							currentPlayer.setRoom(r.getInitial());
+							selected = true;
+							currentPlayer.setFinished(true);
+							r.addPlayer(currentPlayer);
+							break;
+						}
+					}
+				}else {
+					if(x > cellX && y > cellY && y < cellY + cellHeight && x < cellX + cellWidth){
+						
 						currentPlayer.setRow(c.getRow());
 						currentPlayer.setCol(c.getCol());
+						if(currentPlayer.getRoom() != '\0') {
+							roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);						
+							currentPlayer.setRoom('\0');
+						}
+						selected = true;
+						currentPlayer.setFinished(true);
+						break;
 					}
-					selected = true;
-					break;
 				}
 			}
 			
 			if(!selected) {
 				JOptionPane.showMessageDialog(null, "That is not a target", "Error", JOptionPane.ERROR_MESSAGE);
-			}
-			
-			for(BoardCell c : targets) {
-				c.setTarget(false);
+			}else {
+				for(BoardCell c : targets) {
+					c.setTarget(false);
+				}
 			}
 			repaint();
 		} 
