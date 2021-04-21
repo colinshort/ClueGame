@@ -154,6 +154,7 @@ public class BoardCell {
 			fill = Color.MAGENTA;
 		}
 		
+		//highlight targets
 		if(human && isTarget()) {
 			border = Color.PINK;
 			fill = Color.PINK;

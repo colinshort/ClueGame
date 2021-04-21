@@ -33,7 +33,10 @@ public class Board extends JPanel {
 	private ArrayList<Player> players;
 	private ArrayList<Card> deck;
 	private Player currentPlayer;
-
+	private boolean accusationMade;
+	private HumanPlayer humanPlayer;
+	private SuggestionDialog suggestion;
+	
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<>();
 
@@ -102,6 +105,7 @@ public class Board extends JPanel {
 						if(setUp[3].charAt(0) == 'H') {
 							HumanPlayer human = new HumanPlayer(setUp[1], setUp[2], Integer.parseInt(setUp[4]), Integer.parseInt(setUp[5]));
 							players.add(human);
+							this.humanPlayer = human;
 							human.setHuman(true);
 
 						}else if(setUp[3].charAt(0) == 'C') {
@@ -379,6 +383,7 @@ public class Board extends JPanel {
 			if(deck.get(i).getDealt()== false) {
 				players.get(j).updateHand(deck.get(i));
 				deck.get(i).setDealt(true);
+				deck.get(i).setSource(players.get(j));
 				j++;
 			}
 		}
@@ -401,15 +406,25 @@ public class Board extends JPanel {
 
 	//returns first card that can disprove a suggestion
 	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> myPlayers) {
+		Card givenCard;
 		for(Player p : myPlayers) {
 			if(!p.equals(accuser)) {
-				Card givenCard = p.disproveSuggestion(suggestion);
+				givenCard = p.disproveSuggestion(suggestion);
 				if(givenCard != null) {
+					updateSeen(givenCard, p);
 					return givenCard;
 				}
 			}
 		}
 		return null;
+	}
+	
+	public void updateSeen(Card c, Player disprover) {
+		for(Player p : players) {
+			if(!p.equals(disprover)) {
+				p.updateSeen(c);
+			}
+		}
 	}
 
 	//Paint the board
@@ -607,6 +622,9 @@ public class Board extends JPanel {
 							//set player to selected room
 							currentPlayer.setRoom(r.getInitial());
 							selected = true;
+							
+							suggestion = new SuggestionDialog();
+							suggestion.setVisible(true);
 							//finish turn
 							currentPlayer.setFinished(true);
 							r.addPlayer(currentPlayer);
@@ -654,6 +672,7 @@ public class Board extends JPanel {
 	public Set<BoardCell> getTargets(){
 		return targets;
 	}
+	
 	public Room getRoom(BoardCell cell) {
 		return roomMap.get(cell.getInitial());
 	}
@@ -686,4 +705,24 @@ public class Board extends JPanel {
 		return theAnswer;
 	}
 
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+	
+	public HumanPlayer getHumanPlayer() {
+		return humanPlayer;
+	}
+	
+	public void setAccusationMade(boolean b) {
+		accusationMade = b;
+	}
+	
+	public Card getCard(String name, CardType type) {
+		for(Card c : deck) {
+			if(c.getCardType() == type && c.getName().equals(name)) {
+				return c;
+			}
+		}
+		return null;
+	}
 }

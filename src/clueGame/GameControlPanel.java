@@ -1,6 +1,7 @@
 package clueGame;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -8,6 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -18,10 +20,15 @@ public class GameControlPanel extends JPanel {
 	private JTextField theResult;
 	private JTextField turnField;
 	private JTextField rollField;
+	private JButton next;
+	private JButton accusation;
+	private AccusationDialog dialog;
 	
 	private Board board;
+	private static GameControlPanel gcp = new GameControlPanel();
 	
 	public GameControlPanel()  {
+		board = Board.getInstance();
 		setLayout(new GridLayout(2,0));
 		JPanel panel = createControlPanel();
 		add(panel);
@@ -29,6 +36,10 @@ public class GameControlPanel extends JPanel {
 		add(panel);
 	}
 
+	public static GameControlPanel getInstance() {
+		return gcp;
+	}
+	
 	public static void main(String[] args) {
 		GameControlPanel panel = new GameControlPanel();  // create the panel
 		JFrame frame = new JFrame();  // create the frame 
@@ -66,9 +77,10 @@ public class GameControlPanel extends JPanel {
 		controlPanel.add(rollPanel);
 		
 		//create buttons to make accusation or move to next turn
-		JButton accusation = new JButton("Make Accusation");
-		JButton next = new JButton("NEXT!");
-		next.addMouseListener(new ButtonListener());
+		accusation = new JButton("Make Accusation");
+		accusation.addActionListener(new ButtonListener());
+		next = new JButton("Next");
+		next.addActionListener(new ButtonListener());
 		controlPanel.add(accusation);
 		controlPanel.add(next);
 		
@@ -110,22 +122,27 @@ public class GameControlPanel extends JPanel {
 	}
 	
 	//listens for click on Next button
-	private class ButtonListener implements MouseListener {
+	private class ButtonListener implements ActionListener {
 	//  Empty definitions for unused event methods.
-		public void mousePressed (MouseEvent e) {
-			startBoardTurn();
-		}  
-		public void mouseReleased (MouseEvent e) {}  
-		public void mouseEntered (MouseEvent e) {}  
-		public void mouseExited (MouseEvent e) {}  
-		public void mouseClicked (MouseEvent e) { }
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == next) {
+				startBoardTurn();
+			}else {
+				if(board.getCurrentPlayer().isHuman() && !board.getCurrentPlayer().isFinished()) {
+					dialog = new AccusationDialog();
+					dialog.setVisible(true);
+				}else {
+					JOptionPane.showMessageDialog(null, "Please wait for your turn.", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		}
 		
 	}
 	
 	
 	//calls Board turn method
 	public void startBoardTurn() {
-		board = Board.getInstance();
 		board.executeTurn(this);
 	}
 

@@ -12,23 +12,24 @@ public class ClueGame extends JFrame {
 	private static GameControlPanel gcp;
 
 	public ClueGame() {
-		//create and add Known Cards Panel
-		kcp = new KnownCardsPanel();
-		add(kcp, BorderLayout.EAST);
-
-		//create and add Game Control Panel
-		gcp = new GameControlPanel();
-		add(gcp, BorderLayout.SOUTH);
-
-
-		//create and add board panel
+		//create Game Control Panel
+		gcp = GameControlPanel.getInstance();
+		
+		//create  board panel
 		board = Board.getInstance();
 		board.setPreferredSize(new Dimension(800, 800));
 		board.setConfigFiles("ClueBoard.csv", "ClueSetup.txt");		
 		board.initialize();
 		board.firstTurnSetup(gcp);
-		add(board, BorderLayout.CENTER);
+		
 
+		//create Known Cards Panel
+		kcp = KnownCardsPanel.getInstance();
+		
+		//add panels
+		add(board, BorderLayout.CENTER);
+		add(gcp, BorderLayout.SOUTH);
+		add(kcp, BorderLayout.EAST);
 	}
 
 
@@ -39,7 +40,7 @@ public class ClueGame extends JFrame {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // allow it to close
 		frame.setVisible(true); // make it visible
-		
+
 		//show splash screen
 		JOptionPane.showMessageDialog(null, "You are John.\nCan you find the solution before the Computer players?", "Welcome to Clue!", JOptionPane.INFORMATION_MESSAGE);
 

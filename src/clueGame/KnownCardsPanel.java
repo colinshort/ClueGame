@@ -18,11 +18,19 @@ public class KnownCardsPanel extends JPanel{
 	private ArrayList<JTextField> peopleSeen;
 	private ArrayList<JTextField> weaponHand;
 	private ArrayList<JTextField> weaponSeen;
+	private ArrayList<Card> peopleCards;
+	private ArrayList<Card> roomCards;
+	private ArrayList<Card> weaponCards;
 	private JPanel people;
 	private JPanel rooms;
 	private JPanel weapons;
+	private Board board;
 
+	private static KnownCardsPanel kcp = new KnownCardsPanel();
+	
 	public KnownCardsPanel() {
+		board = Board.getInstance();
+
 		setLayout(new GridLayout(3,1));
 		setBorder(new TitledBorder(new EtchedBorder(), "Known Cards"));
 
@@ -33,6 +41,10 @@ public class KnownCardsPanel extends JPanel{
 		peopleSeen = new ArrayList<>();
 		roomSeen = new ArrayList<>();
 		weaponSeen = new ArrayList<>();
+		
+		roomCards = new ArrayList<>();
+		peopleCards = new ArrayList<>();
+		weaponCards = new ArrayList<>();
 
 		people = new JPanel();
 		createPeoplePanel();
@@ -45,6 +57,12 @@ public class KnownCardsPanel extends JPanel{
 		weapons = new JPanel();
 		createWeaponPanel();
 		add(weapons);
+		
+		update();
+	}
+	
+	public static KnownCardsPanel getInstance() {
+		return kcp;
 	}
 
 	public static void main(String[] args) {
@@ -74,7 +92,7 @@ public class KnownCardsPanel extends JPanel{
 		panel.setWeaponsHand(weaponHand);
 
 		panel.update();
-		
+
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -112,10 +130,10 @@ public class KnownCardsPanel extends JPanel{
 		rooms.setLayout(new GridLayout(4,1));
 		rooms.setBorder(new TitledBorder(new EtchedBorder(), "Room"));
 		//create room panels
-		
+
 		JLabel roomHandLabel = new JLabel("In Hand:");
 		JLabel roomSeenLabel = new JLabel("Seen:");
-		
+
 		//add labels and text fields
 		rooms.add(roomHandLabel);
 		if(roomHand.isEmpty()) {
@@ -134,7 +152,7 @@ public class KnownCardsPanel extends JPanel{
 			//add text field for each room seen
 			addTextFields(rooms, roomSeen);
 		}
-		
+
 		rooms.setLayout(new BoxLayout(rooms, BoxLayout.Y_AXIS));	
 		rooms.setBorder(new TitledBorder(new EtchedBorder(), "Room"));
 
@@ -143,7 +161,7 @@ public class KnownCardsPanel extends JPanel{
 	private void createWeaponPanel() {
 		JLabel weaponHandLabel = new JLabel("In Hand:");
 		JLabel weaponSeenLabel = new JLabel("Seen:");
-		
+
 		//add labels and text fields
 		weapons.add(weaponHandLabel);
 		if(weaponHand.isEmpty()) {
@@ -163,7 +181,7 @@ public class KnownCardsPanel extends JPanel{
 			//add text field for each weapon seen
 			addTextFields(weapons, weaponSeen);
 		}
-		
+
 		weapons.setLayout(new BoxLayout(weapons, BoxLayout.Y_AXIS));	
 		weapons.setBorder(new TitledBorder(new EtchedBorder(), "Weapons"));
 	}
@@ -174,58 +192,105 @@ public class KnownCardsPanel extends JPanel{
 		people.removeAll();
 		rooms.removeAll();
 		weapons.removeAll();
+
+		updateLists();
 		
 		createPeoplePanel();
 		createRoomPanel();
 		createWeaponPanel();
+		
+		revalidate();
 	}
 
 	//create list of text fields for each person in hand
 	public void setPeopleHand(ArrayList<Card> people) {
 		for(Card p : people) {
-			peopleHand.add(new JTextField(p.getName(), 15));	
+			if(p.getCardType() == CardType.PERSON && peopleCards.indexOf(p) == -1) {
+				JTextField f = new JTextField(p.getName(), 15);
+				f.setBackground(p.getSource().colorConvert(p.getSource().getColor()));
+				peopleCards.add(p);
+				peopleHand.add(f);	
+			}
 		}
 	}
 
 	//create list of text fields for each person seen
 	public void setPeopleSeen(ArrayList<Card> people) {
 		for(Card p : people) {
-			peopleSeen.add(new JTextField(p.getName(), 15));	
+			if(p.getCardType() == CardType.PERSON && peopleCards.indexOf(p) == -1) {
+				JTextField f = new JTextField(p.getName(), 15);
+				f.setBackground(p.getSource().colorConvert(p.getSource().getColor()));
+				peopleCards.add(p);
+				peopleSeen.add(f);	
+			}
 		}
 	}
 
 	//create list of text fields for each room in hand
 	public void setRoomHand(ArrayList<Card> rooms) {
 		for(Card r : rooms) {
-			roomHand.add(new JTextField(r.getName(), 15));
+			if(r.getCardType() == CardType.ROOM && roomCards.indexOf(r) == -1) {
+				JTextField f = new JTextField(r.getName(), 15);
+				f.setBackground(r.getSource().colorConvert(r.getSource().getColor()));
+				roomCards.add(r);
+				roomHand.add(f);	
+			}
 		}
 	}
 
 	//create list of text fields for each room seen
 	public void setRoomSeen(ArrayList<Card> rooms) {
 		for(Card r : rooms) {
-			roomSeen.add(new JTextField(r.getName(), 15));
+			if(r.getCardType() == CardType.ROOM && roomCards.indexOf(r) == -1) {
+				JTextField f = new JTextField(r.getName(), 15);
+				f.setBackground(r.getSource().colorConvert(r.getSource().getColor()));
+				roomCards.add(r);
+				roomSeen.add(f);	
+			}		
 		}
 	}
 
 	//create list of text fields for each weapon in hand
 	public void setWeaponsHand(ArrayList<Card> weapons) {
 		for(Card w : weapons) {
-			weaponHand.add(new JTextField(w.getName(), 15));
+			if(w.getCardType() == CardType.WEAPON && weaponCards.indexOf(w) == -1) {
+				JTextField f = new JTextField(w.getName(), 15);
+				f.setBackground(w.getSource().colorConvert(w.getSource().getColor()));
+				weaponCards.add(w);
+				weaponHand.add(f);	
+			}
 		}
 	}
 	//create list of text fields for each weapon seen
 	public void setWeaponSeen(ArrayList<Card> weapons) {
 		for(Card w : weapons) {
-			weaponSeen.add(new JTextField(w.getName(), 15));
+			if(w.getCardType() == CardType.WEAPON && weaponCards.indexOf(w) == -1) {
+				JTextField f = new JTextField(w.getName(), 15);
+				f.setBackground(w.getSource().colorConvert(w.getSource().getColor()));
+				weaponCards.add(w);
+				weaponSeen.add(f);	
+			}
 		}
-}
+	}
 
 	//add list of text fields to given panel
 	public void addTextFields(JPanel panel, ArrayList<JTextField> fields) {
 		for(JTextField f : fields) {
 			panel.add(f);
 		}
+	}
+	
+	public void updateLists() {
+		ArrayList<Card> hand = board.getHumanPlayer().getHand();
+		ArrayList<Card> seen = board.getHumanPlayer().getSeenCards();
+		
+		setRoomHand(hand);
+		setPeopleHand(hand);
+		setWeaponsHand(hand);
+		
+		setRoomSeen(seen);
+		setPeopleSeen(seen);
+		setWeaponSeen(seen);
 	}
 }
 
