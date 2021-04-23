@@ -127,13 +127,13 @@ public class SuggestionDialog extends JDialog{
 				if(result == null) {
 					b.setDisproved(false);
 					String m = "Not Disproven";
-					String guess = person.getName() + "," + room.getName() + "," + weapon.getName();
+					String guess = person.getName() + ", " + room.getName() + ", " + weapon.getName();
 					gcp.setGuessResult(m);
 					gcp.setGuess(guess);
 				}
 				else {
 					String p = result.getName();
-					String guess = person.getName() + "," + room.getName() + "," + weapon.getName();
+					String guess = person.getName() + ", " + room.getName() + ", " + weapon.getName();
 					gcp.setGuessResult(p);
 					gcp.setGuess(guess);
 					kcp.update();	

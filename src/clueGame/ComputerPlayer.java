@@ -38,7 +38,7 @@ public class ComputerPlayer extends Player{
 					weapon = myCard;
 				}
 
-				else if((myCard.getCardType() == CardType.PERSON) && !personFound) {
+				else if((myCard.getCardType() == CardType.PERSON) && !personFound && !myCard.getName().equals(this.getName())) {
 					personFound = true;
 					person = myCard;
 				}

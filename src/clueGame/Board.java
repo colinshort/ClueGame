@@ -411,12 +411,15 @@ public class Board extends JPanel {
 	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> myPlayers) {
 		Card givenCard;
 		Player accused = getPlayer(suggestion.getPerson().getName());
-		if(accused.getRoom() != accuser.getRoom()) {
+		if(accused.getRoom() != accuser.getRoom() && !accuser.equals(accused)) {
+			roomMap.get(accuser.getRoom()).addPlayer(accused);
+			if(accused.getRoom() != '\0') {
+				roomMap.get(accused.getRoom()).removePlayer(accused);
+			}
 			accused.setRoom(accuser.getRoom());
+			accused.setRow(roomMap.get(accuser.getRoom()).getCenterCell().getRow());
+			accused.setCol(roomMap.get(accuser.getRoom()).getCenterCell().getCol());
 		}
-		roomMap.get(accuser.getRoom()).addPlayer(accused);
-		accused.setRow(roomMap.get(accuser.getRoom()).getCenterCell().getRow());
-		accused.setCol(roomMap.get(accuser.getRoom()).getCenterCell().getCol());
 		repaint();
 		for(Player p : myPlayers) {
 			if(!p.equals(accuser)) {
@@ -479,9 +482,10 @@ public class Board extends JPanel {
 		@SuppressWarnings("unchecked")
 		ArrayList<Player> toPaint = (ArrayList<Player>) players.clone();
 		
-		for(Entry<Character, Room> entry : roomMap.entrySet()) {
-			for(Player p : entry.getValue().getPlayers()) {
-				int x1 = (p.getColumn() * cellWidth) + (entry.getValue().getPlayers().indexOf(p) * cellWidth/4);
+		for(Entry<Character,Room> entry : roomMap.entrySet()) {
+			Room test = (Room)entry.getValue();
+			for(Player p : ((Room)entry.getValue()).getPlayers()) {
+				int x1 = (p.getColumn() * cellWidth) + (((Room)entry.getValue()).getPlayers().indexOf(p) * cellWidth/4);
 				int y1 = p.getRow() * cellHeight;
 				p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
 				toPaint.remove(p);
@@ -547,17 +551,19 @@ public class Board extends JPanel {
 				}
 				//select computer move
 				BoardCell position = computer.selectMove(targets);
+				
 				//deselect targets for highlighting
 				for(BoardCell c : targets) {
 					c.setTarget(false);
 				}
-				//doSuggestion();
 				if(position.isRoom()) {
 					Room r = roomMap.get(position.getInitial());
+					
 					//check if player is already in room
 					if(currentPlayer.getRoom() != '\0') {
 						//remove player from room's player list
 						roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
+						currentPlayer.setRoom('\0');
 					}				
 					//add player to current room's player list
 					r.addPlayer(currentPlayer);
@@ -565,6 +571,23 @@ public class Board extends JPanel {
 					currentPlayer.setRoom(r.getInitial());
 					
 					Solution compSugg = computer.createSuggestion(deck, roomMap.get(position.getInitial()));
+					GameControlPanel gcp = GameControlPanel.getInstance();
+					Card result = handleSuggestion(compSugg, computer, players);
+					
+					if(result == null) {
+						suggestionDisproved = false;
+						String m = "Not Disproven";
+						String guess = compSugg.getPerson().getName() + ", " + compSugg.getRoom().getName() + ", " + compSugg.getWeapon().getName();
+						gcp.setGuessResult(m);
+						gcp.setGuess(guess);
+					}
+					else {
+						String p = result.getName();
+						String guess = compSugg.getPerson().getName() + ", " + compSugg.getRoom().getName() + ", " + compSugg.getWeapon().getName();
+						gcp.setGuessResult(p);
+						gcp.setGuess(guess);
+					}
+					
 					computer.setCurrentSolution(compSugg);
 					
 					for(Player p : players) {
@@ -660,6 +683,7 @@ public class Board extends JPanel {
 						if(x > roomCellX && y > roomCellY && y < roomCellY + cellHeight && x < roomCellX + cellWidth){
 							if(currentPlayer.getRoom() != '\0') {
 								roomMap.get(currentPlayer.getRoom()).removePlayer(currentPlayer);
+								currentPlayer.setRoom('\0');
 							}	
 							//update players location
 							currentPlayer.setRow(r.getCenterCell().getRow());
