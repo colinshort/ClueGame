@@ -81,10 +81,6 @@ public abstract class Player {
 		}
 	}
 	
-	public Solution makeAccusation() {
-		return null;
-	}
-	
 	public String getName() {
 		return name;
 	}

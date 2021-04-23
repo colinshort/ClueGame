@@ -8,6 +8,7 @@ import java.util.Set;
 
 public class ComputerPlayer extends Player{
 	private static Random rn = new Random();
+	private Solution currentSoln;
 	
 	public ComputerPlayer(String name, String color, int row, int col) {
 		super(name, color, row, col);
@@ -81,5 +82,17 @@ public class ComputerPlayer extends Player{
 			}
 		}
 		return false;
+	}
+	
+	public Solution createAccusation() {
+		return currentSoln;
+	}
+	
+	public void setCurrentSolution(Solution s) {
+		currentSoln = s;
+	}
+	
+	public Solution getCurrentSolution() {
+		return currentSoln;
 	}
 }

@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -36,6 +37,7 @@ public class Board extends JPanel {
 	private boolean accusationMade;
 	private HumanPlayer humanPlayer;
 	private SuggestionDialog suggestion;
+	private boolean suggestionDisproved;
 	
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<>();
@@ -46,6 +48,7 @@ public class Board extends JPanel {
 	// constructor is private to ensure only one can be created
 	private Board() {
 		super() ;
+		this.suggestionDisproved = true;
 		this.targets = new HashSet<>();
 		this.visited = new HashSet<>();
 		this.players = new ArrayList<>();
@@ -407,6 +410,14 @@ public class Board extends JPanel {
 	//returns first card that can disprove a suggestion
 	public Card handleSuggestion(Solution suggestion, Player accuser, ArrayList<Player> myPlayers) {
 		Card givenCard;
+		Player accused = getPlayer(suggestion.getPerson().getName());
+		if(accused.getRoom() != accuser.getRoom()) {
+			accused.setRoom(accuser.getRoom());
+		}
+		roomMap.get(accuser.getRoom()).addPlayer(accused);
+		accused.setRow(roomMap.get(accuser.getRoom()).getCenterCell().getRow());
+		accused.setCol(roomMap.get(accuser.getRoom()).getCenterCell().getCol());
+		repaint();
 		for(Player p : myPlayers) {
 			if(!p.equals(accuser)) {
 				givenCard = p.disproveSuggestion(suggestion);
@@ -465,7 +476,19 @@ public class Board extends JPanel {
 		}
 
 		//paint players
-		for(Player p : players) {
+		@SuppressWarnings("unchecked")
+		ArrayList<Player> toPaint = (ArrayList<Player>) players.clone();
+		
+		for(Entry<Character, Room> entry : roomMap.entrySet()) {
+			for(Player p : entry.getValue().getPlayers()) {
+				int x1 = (p.getColumn() * cellWidth) + (entry.getValue().getPlayers().indexOf(p) * cellWidth/4);
+				int y1 = p.getRow() * cellHeight;
+				p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
+				toPaint.remove(p);
+			}
+		}
+		
+		for(Player p : toPaint) {
 			int x1 = p.getColumn() * cellWidth;
 			int y1 = p.getRow() * cellHeight;
 			if(p.getRoom() != '\0') {
@@ -513,7 +536,15 @@ public class Board extends JPanel {
 				currentPlayer.setFinished(false);
 			}else {
 				ComputerPlayer computer = (ComputerPlayer) currentPlayer;
-				//doAccustion()
+				if(suggestionDisproved == false && computer.getCurrentSolution() != null) {
+					if(checkAccusation(theAnswer, computer.createAccusation())) {
+						JOptionPane.showMessageDialog(null, computer.getName() + " wins! The answer was " + theAnswer.getPerson().getName() 
+								+ ", " + theAnswer.getRoom().getName() + ", " + theAnswer.getWeapon().getName());
+						System.exit(0);
+					}else {
+						suggestionDisproved = true;
+					}
+				}
 				//select computer move
 				BoardCell position = computer.selectMove(targets);
 				//deselect targets for highlighting
@@ -532,9 +563,23 @@ public class Board extends JPanel {
 					r.addPlayer(currentPlayer);
 					//set player room
 					currentPlayer.setRoom(r.getInitial());
+					
+					Solution compSugg = computer.createSuggestion(deck, roomMap.get(position.getInitial()));
+					computer.setCurrentSolution(compSugg);
+					
+					for(Player p : players) {
+						if(!p.equals(currentPlayer)) {
+							Card givenCard = p.disproveSuggestion(compSugg);
+							if(givenCard == null) {
+								suggestionDisproved = false;
+							}
+						}
+					}
+					
 					//move player
 					currentPlayer.setRow(r.getCenterCell().getRow());
 					currentPlayer.setCol(r.getCenterCell().getCol());
+					
 				}else {
 					//check if player is already in room
 					if(currentPlayer.getRoom() != '\0') {
@@ -724,5 +769,18 @@ public class Board extends JPanel {
 			}
 		}
 		return null;
+	}
+	
+	public Player getPlayer(String name) {
+		for(Player p : players) {
+			if(p.getName().equals(name)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public void setDisproved(boolean b) {
+		suggestionDisproved = b;
 	}
 }

@@ -125,6 +125,7 @@ public class SuggestionDialog extends JDialog{
 				Board b = Board.getInstance();
 				Card result = (b.handleSuggestion(suggestion, b.getCurrentPlayer(), b.getPlayers()));
 				if(result == null) {
+					b.setDisproved(false);
 					String m = "Not Disproven";
 					String guess = person.getName() + "," + room.getName() + "," + weapon.getName();
 					gcp.setGuessResult(m);
