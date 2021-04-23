@@ -353,6 +353,7 @@ public class Board extends JPanel {
 
 	//create the solution hand, and deal a hand of cards to each player
 	public void deal() {
+		Random ran = new Random();
 		ArrayList<Card> people = new ArrayList<Card>();
 		ArrayList<Card> rooms = new ArrayList<Card>();
 		ArrayList<Card> weapons = new ArrayList<Card>();
@@ -369,14 +370,15 @@ public class Board extends JPanel {
 			}
 		}
 
-		Card person = people.get((int)Math.random()%people.size());
+		Card person = people.get((int)ran.nextInt(people.size()));
 		person.setDealt(true);
-		Card room = rooms.get((int)Math.random()%rooms.size());
+		Card room = rooms.get((int)ran.nextInt(rooms.size()));
 		room.setDealt(true);
-		Card weapon = weapons.get((int)Math.random()%weapons.size());
+		Card weapon = weapons.get((int)ran.nextInt(weapons.size()));
 		weapon.setDealt(true);
 
 		theAnswer.setSolution(person, room, weapon);
+		System.out.println("Answer: " + theAnswer + "\n");
 
 		int j = 0;
 		for(int i = 0; i < deck.size(); i++) {
@@ -541,11 +543,14 @@ public class Board extends JPanel {
 			}else {
 				ComputerPlayer computer = (ComputerPlayer) currentPlayer;
 				if(suggestionDisproved == false && computer.getCurrentSolution() != null) {
-					if(checkAccusation(theAnswer, computer.createAccusation())) {
+					Solution accusation = computer.createAccusation();
+					System.out.println("Accusation made: " + accusation);
+					if(checkAccusation(theAnswer, accusation)) {
 						JOptionPane.showMessageDialog(null, computer.getName() + " wins! The answer was " + theAnswer.getPerson().getName() 
 								+ ", " + theAnswer.getRoom().getName() + ", " + theAnswer.getWeapon().getName());
 						System.exit(0);
 					}else {
+						System.out.println(" 	Accusation wrong");
 						suggestionDisproved = true;
 					}
 				}
@@ -590,14 +595,14 @@ public class Board extends JPanel {
 					
 					computer.setCurrentSolution(compSugg);
 					
-					for(Player p : players) {
-						if(!p.equals(currentPlayer)) {
-							Card givenCard = p.disproveSuggestion(compSugg);
-							if(givenCard == null) {
-								suggestionDisproved = false;
-							}
-						}
-					}
+//					for(Player p : players) {
+//						if(!p.equals(currentPlayer)) {
+//							Card givenCard = p.disproveSuggestion(compSugg);
+//							if(givenCard == null) {
+//								suggestionDisproved = false;
+//							}
+//						}
+//					}
 					
 					//move player
 					currentPlayer.setRow(r.getCenterCell().getRow());
