@@ -9,6 +9,7 @@ import java.util.Set;
 public class ComputerPlayer extends Player{
 	private static Random rn = new Random();
 	private Solution currentSoln;
+	private Board b;
 	
 	public ComputerPlayer(String name, String color, int row, int col) {
 		super(name, color, row, col);
@@ -18,6 +19,7 @@ public class ComputerPlayer extends Player{
 	//room is contrainted to be room computer player is in
 	//pick a weapon and person card
 	public Solution createSuggestion(ArrayList<Card> deck, Room room) {
+		b = Board.getInstance();
 		Random rn = new Random();
 		boolean personFound = false;
 		boolean weaponFound = false;
@@ -46,7 +48,7 @@ public class ComputerPlayer extends Player{
 			myCard = deck.get(rn.nextInt(deck.size()));
 		}
 		
-		Card roomCard = new Card(room.getName(), CardType.ROOM);
+		Card roomCard = b.getCard(room.getName(), CardType.ROOM);
 		Solution solution = new Solution();
 		solution.setSolution(person, roomCard, weapon);
 		return solution;
