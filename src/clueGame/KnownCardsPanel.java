@@ -18,9 +18,12 @@ public class KnownCardsPanel extends JPanel{
 	private ArrayList<JTextField> peopleSeen;
 	private ArrayList<JTextField> weaponHand;
 	private ArrayList<JTextField> weaponSeen;
-	private ArrayList<Card> peopleCards;
-	private ArrayList<Card> roomCards;
-	private ArrayList<Card> weaponCards;
+	private ArrayList<Card> peopleHandCards;
+	private ArrayList<Card> roomHandCards;
+	private ArrayList<Card> weaponHandCards;
+	private ArrayList<Card> peopleSeenCards;
+	private ArrayList<Card> roomSeenCards;
+	private ArrayList<Card> weaponSeenCards;
 	private JPanel people;
 	private JPanel rooms;
 	private JPanel weapons;
@@ -42,9 +45,13 @@ public class KnownCardsPanel extends JPanel{
 		roomSeen = new ArrayList<>();
 		weaponSeen = new ArrayList<>();
 		
-		roomCards = new ArrayList<>();
-		peopleCards = new ArrayList<>();
-		weaponCards = new ArrayList<>();
+		roomHandCards = new ArrayList<>();
+		peopleHandCards = new ArrayList<>();
+		weaponHandCards = new ArrayList<>();
+		
+		roomSeenCards = new ArrayList<>();
+		peopleSeenCards = new ArrayList<>();
+		weaponSeenCards = new ArrayList<>();
 
 		people = new JPanel();
 		createPeoplePanel();
@@ -205,10 +212,10 @@ public class KnownCardsPanel extends JPanel{
 	//create list of text fields for each person in hand
 	public void setPeopleHand(ArrayList<Card> people) {
 		for(Card p : people) {
-			if(p.getCardType() == CardType.PERSON && peopleCards.indexOf(p) == -1) {
+			if(p.getCardType() == CardType.PERSON && peopleHandCards.indexOf(p) == -1) {
 				JTextField f = new JTextField(p.getName(), 15);
 				f.setBackground(p.getSource().colorConvert(p.getSource().getColor()));
-				peopleCards.add(p);
+				peopleHandCards.add(p);
 				peopleHand.add(f);	
 			}
 		}
@@ -217,10 +224,10 @@ public class KnownCardsPanel extends JPanel{
 	//create list of text fields for each person seen
 	public void setPeopleSeen(ArrayList<Card> people) {
 		for(Card p : people) {
-			if(p.getCardType() == CardType.PERSON && peopleCards.indexOf(p) == -1) {
+			if(p.getCardType() == CardType.PERSON && peopleSeenCards.indexOf(p) == -1) {
 				JTextField f = new JTextField(p.getName(), 15);
 				f.setBackground(p.getSource().colorConvert(p.getSource().getColor()));
-				peopleCards.add(p);
+				peopleSeenCards.add(p);
 				peopleSeen.add(f);	
 			}
 		}
@@ -229,10 +236,10 @@ public class KnownCardsPanel extends JPanel{
 	//create list of text fields for each room in hand
 	public void setRoomHand(ArrayList<Card> rooms) {
 		for(Card r : rooms) {
-			if(r.getCardType() == CardType.ROOM && roomCards.indexOf(r) == -1) {
+			if(r.getCardType() == CardType.ROOM && roomHandCards.indexOf(r) == -1) {
 				JTextField f = new JTextField(r.getName(), 15);
 				f.setBackground(r.getSource().colorConvert(r.getSource().getColor()));
-				roomCards.add(r);
+				roomHandCards.add(r);
 				roomHand.add(f);	
 			}
 		}
@@ -241,10 +248,10 @@ public class KnownCardsPanel extends JPanel{
 	//create list of text fields for each room seen
 	public void setRoomSeen(ArrayList<Card> rooms) {
 		for(Card r : rooms) {
-			if(r.getCardType() == CardType.ROOM && roomCards.indexOf(r) == -1) {
+			if(r.getCardType() == CardType.ROOM && roomSeenCards.indexOf(r) == -1) {
 				JTextField f = new JTextField(r.getName(), 15);
 				f.setBackground(r.getSource().colorConvert(r.getSource().getColor()));
-				roomCards.add(r);
+				roomSeenCards.add(r);
 				roomSeen.add(f);	
 			}		
 		}
@@ -253,10 +260,10 @@ public class KnownCardsPanel extends JPanel{
 	//create list of text fields for each weapon in hand
 	public void setWeaponsHand(ArrayList<Card> weapons) {
 		for(Card w : weapons) {
-			if(w.getCardType() == CardType.WEAPON && weaponCards.indexOf(w) == -1) {
+			if(w.getCardType() == CardType.WEAPON && weaponHandCards.indexOf(w) == -1) {
 				JTextField f = new JTextField(w.getName(), 15);
 				f.setBackground(w.getSource().colorConvert(w.getSource().getColor()));
-				weaponCards.add(w);
+				weaponHandCards.add(w);
 				weaponHand.add(f);	
 			}
 		}
@@ -264,10 +271,10 @@ public class KnownCardsPanel extends JPanel{
 	//create list of text fields for each weapon seen
 	public void setWeaponSeen(ArrayList<Card> weapons) {
 		for(Card w : weapons) {
-			if(w.getCardType() == CardType.WEAPON && weaponCards.indexOf(w) == -1) {
+			if(w.getCardType() == CardType.WEAPON && weaponSeenCards.indexOf(w) == -1) {
 				JTextField f = new JTextField(w.getName(), 15);
 				f.setBackground(w.getSource().colorConvert(w.getSource().getColor()));
-				weaponCards.add(w);
+				weaponSeenCards.add(w);
 				weaponSeen.add(f);	
 			}
 		}

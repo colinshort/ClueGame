@@ -2,6 +2,7 @@
 package clueGame;
 
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -38,6 +39,7 @@ public class Board extends JPanel {
 	private HumanPlayer humanPlayer;
 	private SuggestionDialog suggestion;
 	private boolean suggestionDisproved;
+	private Solution currentSoln;
 	
 	//Stores Character as key and Room as entry
 	private Map<Character, Room> roomMap = new HashMap<>();
@@ -378,7 +380,6 @@ public class Board extends JPanel {
 		weapon.setDealt(true);
 
 		theAnswer.setSolution(person, room, weapon);
-		System.out.println("Answer: " + theAnswer + "\n");
 
 		int j = 0;
 		for(int i = 0; i < deck.size(); i++) {
@@ -427,20 +428,12 @@ public class Board extends JPanel {
 			if(!p.equals(accuser)) {
 				givenCard = p.disproveSuggestion(suggestion);
 				if(givenCard != null) {
-					updateSeen(givenCard, p);
+					givenCard.setSource(p);
 					return givenCard;
 				}
 			}
 		}
 		return null;
-	}
-	
-	public void updateSeen(Card c, Player disprover) {
-		for(Player p : players) {
-			if(!p.equals(disprover)) {
-				p.updateSeen(c);
-			}
-		}
 	}
 
 	//Paint the board
@@ -542,16 +535,15 @@ public class Board extends JPanel {
 				currentPlayer.setFinished(false);
 			}else {
 				ComputerPlayer computer = (ComputerPlayer) currentPlayer;
-				if(suggestionDisproved == false && computer.getCurrentSolution() != null) {
-					Solution accusation = computer.createAccusation();
-					System.out.println("Accusation made: " + accusation);
+				if(suggestionDisproved == false && getCurrentSolution() != null) {
+					Solution accusation = createAccusation();
 					if(checkAccusation(theAnswer, accusation)) {
 						JOptionPane.showMessageDialog(null, computer.getName() + " wins! The answer was " + theAnswer.getPerson().getName() 
 								+ ", " + theAnswer.getRoom().getName() + ", " + theAnswer.getWeapon().getName());
 						System.exit(0);
 					}else {
-						System.out.println(" 	Accusation wrong");
 						suggestionDisproved = true;
+						setCurrentSolution(null);
 					}
 				}
 				//select computer move
@@ -578,31 +570,22 @@ public class Board extends JPanel {
 					Solution compSugg = computer.createSuggestion(deck, roomMap.get(position.getInitial()));
 					GameControlPanel gcp = GameControlPanel.getInstance();
 					Card result = handleSuggestion(compSugg, computer, players);
-					
 					if(result == null) {
 						suggestionDisproved = false;
+						setCurrentSolution(compSugg);
 						String m = "Not Disproven";
 						String guess = compSugg.getPerson().getName() + ", " + compSugg.getRoom().getName() + ", " + compSugg.getWeapon().getName();
-						gcp.setGuessResult(m);
-						gcp.setGuess(guess);
+						gcp.setGuessResult(m, Color.WHITE);
+						gcp.setGuess(guess, computer.colorConvert(computer.getColor()));
 					}
 					else {
+						computer.updateSeen(result);
 						String p = result.getName();
 						String guess = compSugg.getPerson().getName() + ", " + compSugg.getRoom().getName() + ", " + compSugg.getWeapon().getName();
-						gcp.setGuessResult(p);
-						gcp.setGuess(guess);
+						gcp.setGuessResult(p, result.getSource().colorConvert(result.getSource().getColor()));
+						gcp.setGuess(guess, computer.colorConvert(computer.getColor()));
 					}
 					
-					computer.setCurrentSolution(compSugg);
-					
-//					for(Player p : players) {
-//						if(!p.equals(currentPlayer)) {
-//							Card givenCard = p.disproveSuggestion(compSugg);
-//							if(givenCard == null) {
-//								suggestionDisproved = false;
-//							}
-//						}
-//					}
 					
 					//move player
 					currentPlayer.setRow(r.getCenterCell().getRow());
@@ -738,6 +721,10 @@ public class Board extends JPanel {
 			repaint();
 		} 
 	}
+	
+	public Solution createAccusation() {
+		return currentSoln;
+	}
 
 	public Set<BoardCell> getAdjList(int row, int col){
 		return grid[row][col].getAdjList();
@@ -789,6 +776,14 @@ public class Board extends JPanel {
 	
 	public void setAccusationMade(boolean b) {
 		accusationMade = b;
+	}
+	
+	public void setCurrentSolution(Solution s) {
+		currentSoln = s;
+	}
+	
+	public Solution getCurrentSolution() {
+		return currentSoln;
 	}
 	
 	public Card getCard(String name, CardType type) {

@@ -1,5 +1,7 @@
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,12 +74,12 @@ public class SuggestionDialog extends JDialog{
 		add(weaponLabel);
 		
 		weaponSelect = new JComboBox<String>();
-		weaponSelect.addItem("knife");
-		weaponSelect.addItem("sword");
-		weaponSelect.addItem("slingshot");
-		weaponSelect.addItem("spoon");
-		weaponSelect.addItem("rocket");
-		weaponSelect.addItem("nuke");
+		weaponSelect.addItem("Knife");
+		weaponSelect.addItem("Sword");
+		weaponSelect.addItem("Slingshot");
+		weaponSelect.addItem("Spoon");
+		weaponSelect.addItem("Rocket");
+		weaponSelect.addItem("Nuke");
 		weaponSelect.addActionListener(new ComboListener());
 		add(weaponSelect);
 		
@@ -126,16 +128,18 @@ public class SuggestionDialog extends JDialog{
 				Card result = (b.handleSuggestion(suggestion, b.getCurrentPlayer(), b.getPlayers()));
 				if(result == null) {
 					b.setDisproved(false);
+					b.setCurrentSolution(suggestion);
 					String m = "Not Disproven";
 					String guess = person.getName() + ", " + room.getName() + ", " + weapon.getName();
-					gcp.setGuessResult(m);
-					gcp.setGuess(guess);
+					gcp.setGuessResult(m, Color.WHITE);
+					gcp.setGuess(guess, b.getCurrentPlayer().colorConvert(b.getCurrentPlayer().getColor()));
 				}
 				else {
+					b.getCurrentPlayer().updateSeen(result);
 					String p = result.getName();
 					String guess = person.getName() + ", " + room.getName() + ", " + weapon.getName();
-					gcp.setGuessResult(p);
-					gcp.setGuess(guess);
+					gcp.setGuessResult(p, result.getSource().colorConvert(result.getSource().getColor()));
+					gcp.setGuess(guess, b.getCurrentPlayer().colorConvert(b.getCurrentPlayer().getColor()));
 					kcp.update();	
 				}
 				setVisible(false);

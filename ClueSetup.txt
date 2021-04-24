@@ -15,13 +15,13 @@ Space, Walkway, W
 Person, John, red, H, 5, 5
 Person, Mark, cyan, C, 12, 6
 Person, Adam, yellow, C, 21, 6
-Person, Cameron, blue, C, 2, 15
+Person, Cameron, gray, C, 2, 15
 Person, Colin, white, C, 9, 14
 Person, Henry, orange, C, 19, 15
 //Weapons
-Weapon, knife
-Weapon, sword
-Weapon, slingshot
-Weapon, spoon
-Weapon, rocket
-Weapon, nuke
+Weapon, Knife
+Weapon, Sword
+Weapon, Slingshot
+Weapon, Spoon
+Weapon, Rocket
+Weapon, Nuke

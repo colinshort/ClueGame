@@ -50,6 +50,8 @@ public abstract class Player {
 			return Color.WHITE;
 		}else if(colorName.equals("orange")) {
 			return Color.ORANGE;
+		}else if(colorName.equals("gray")){
+			return Color.LIGHT_GRAY;
 		}else {
 			return null;
 		}
@@ -156,7 +158,7 @@ public abstract class Player {
 				color = Color.YELLOW;
 				break;
 			case "Cameron":
-				color = Color.BLUE;
+				color = Color.LIGHT_GRAY;
 				break;
 			case "Colin":
 				color = Color.WHITE;
@@ -169,7 +171,7 @@ public abstract class Player {
 				break;
 			}
 		
-		g.setColor(color);
+		g.setColor(Color.BLACK);
 		g.drawOval(x, y, width, height);
 		g.setColor(color);
 		g.fillOval(x, y, width, height);

@@ -1,5 +1,6 @@
 package clueGame;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,8 +51,8 @@ public class GameControlPanel extends JPanel {
 
 		// test filling in the data
 		panel.setTurn(new ComputerPlayer("Mark", "cyan", 12, 6), 5);
-		panel.setGuess( "I have no guess!");
-		panel.setGuessResult( "So you have nothing?");
+		panel.setGuess( "I have no guess!", Color.WHITE);
+		panel.setGuessResult( "So you have nothing?", Color.WHITE);
 	}
 
 	private JPanel createControlPanel() {
@@ -146,13 +147,15 @@ public class GameControlPanel extends JPanel {
 		board.executeTurn(this);
 	}
 
-	public void setGuess(String guess) {
+	public void setGuess(String guess, Color c) {
 		//set guess
 		theGuess.setText(guess);
+		theGuess.setBackground(c);
 	}
 
-	public void setGuessResult(String result) {
+	public void setGuessResult(String result, Color c) {
 		//set result of guess
 		theResult.setText(result);
+		theResult.setBackground(c);
 	}
 }
