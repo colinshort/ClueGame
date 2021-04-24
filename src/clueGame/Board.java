@@ -439,14 +439,22 @@ public class Board extends JPanel {
 	//Paint the board
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
+		setBackground(Color.BLACK);
 
-		//calculate dimensions of cells
-		int cellWidth = (int)(getWidth() / getNumColumns());
+		//calculate dimensions of cell
 		int cellHeight = (int)(getHeight() / getNumRows());
-
+		int cellWidth = (int)(getWidth() / getNumColumns());
+		
+		if(cellHeight < cellWidth) {
+			cellWidth = cellHeight;
+		}else {
+			cellHeight = cellWidth;
+		}
+		
 		//paint each cell
-		int x = 0;
-		int y = 0;
+		int x = this.getX() + ((getWidth() - cellWidth * getNumColumns())/2);
+		int y = this.getY();
 		for(BoardCell[] row : grid) {
 			for(BoardCell cell : row) {
 				if(cell.isRoom()) {
@@ -459,17 +467,17 @@ public class Board extends JPanel {
 				cell.draw(g, cellWidth, cellHeight, x, y, cell.isTarget(), currentPlayer.isHuman());
 				x += cellWidth;
 			}
-			x = 0;
+			x = this.getX() + ((getWidth() - cellWidth * getNumColumns())/2);
 			y += cellHeight;
 		}
 
 		//paint room names
 		for(Map.Entry<Character, Room> entry : roomMap.entrySet()) {
 			Room r = entry.getValue();
-			Font font = new Font("Dialog", Font.BOLD, 14);
+			Font font = new Font("Dialog", Font.BOLD, cellWidth/2);
 			g.setFont(font);
 			if(r.getLabelCell() != null) {
-				g.drawString(r.getName(), r.getLabelCell().getCol() * cellWidth, r.getLabelCell().getRow() * cellHeight);
+				g.drawString(r.getName(), r.getLabelCell().getCol() * cellWidth + ((getWidth() - cellWidth * getNumColumns())/2), r.getLabelCell().getRow() * cellHeight);
 			}
 		}
 
@@ -478,25 +486,25 @@ public class Board extends JPanel {
 		ArrayList<Player> toPaint = (ArrayList<Player>) players.clone();
 		
 		for(Entry<Character,Room> entry : roomMap.entrySet()) {
-			Room test = (Room)entry.getValue();
+			//Room test = (Room)entry.getValue();
 			for(Player p : ((Room)entry.getValue()).getPlayers()) {
 				int x1 = (p.getColumn() * cellWidth) + (((Room)entry.getValue()).getPlayers().indexOf(p) * cellWidth/4);
 				int y1 = p.getRow() * cellHeight;
-				p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
+				p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1 + ((getWidth() - cellWidth * getNumColumns())/2), y1 + 1);
 				toPaint.remove(p);
 			}
 		}
 		
 		for(Player p : toPaint) {
-			int x1 = p.getColumn() * cellWidth;
-			int y1 = p.getRow() * cellHeight;
+			int x1 = this.getX() + p.getColumn() * cellWidth;
+			int y1 = this.getY() + p.getRow() * cellHeight;
 			if(p.getRoom() != '\0') {
 				Room r = roomMap.get(p.getRoom());
 				if(r.getPlayerCount() > 1) {
 					x1 += r.getPlayers().indexOf(p) * cellWidth/4;
 				}
 			}
-			p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1, y1 + 1);
+			p.draw(g, cellWidth - 3, cellHeight - 3, x1 + 1 + ((getWidth() - cellWidth * getNumColumns())/2), y1 + 1);
 		}
 
 		//paint doors
@@ -504,7 +512,7 @@ public class Board extends JPanel {
 		y = 0;
 		for(BoardCell[] row : grid) {
 			for(BoardCell cell : row) {
-				cell.drawDoor(g, cellWidth, cellHeight, x, y);
+				cell.drawDoor(g, cellWidth, cellHeight, x + ((getWidth() - cellWidth * getNumColumns())/2), y);
 				x += cellWidth;
 			}
 			x = 0;
@@ -643,30 +651,36 @@ public class Board extends JPanel {
 		public void mouseClicked (MouseEvent e) {
 			if(!currentPlayer.isHuman()) {
 				return;
+			}		
+			
+			//calculate dimensions of cells
+			int cellWidth = (int)(theInstance.getWidth() / getNumColumns());
+			int cellHeight = (int)(theInstance.getHeight() / getNumRows());
+			
+			if(cellHeight < cellWidth) {
+				cellWidth = cellHeight;
+			}else {
+				cellHeight = cellWidth;
 			}
+
 			int x = e.getX();
 			int y = e.getY();
 			
-			//calculate dimensions of cells
-			int cellWidth = (int)(getWidth() / getNumColumns());
-			int cellHeight = (int)(getHeight() / getNumRows());
-			
-
 			boolean selected = false;
 			for(BoardCell c : targets) {
 				if(selected) {
 					break;
 				}
 				
-				int cellX = c.getCol() * cellWidth;
-				int cellY = c.getRow() * cellHeight;
+				int cellX = theInstance.getX() + c.getCol() * cellWidth + ((theInstance.getWidth() - cellWidth * theInstance.getNumColumns())/2);
+				int cellY = theInstance.getY() + c.getRow() * cellHeight;
 				//checks to see if target is in room
 				if(c.isRoom()) {
 					Room r = roomMap.get(c.getInitial());
 					//checking all the cells in a room
 					for(BoardCell cell : r.getCells()) {
-						int roomCellX = cell.getCol() * cellWidth;
-						int roomCellY = cell.getRow() * cellHeight;
+						int roomCellX = theInstance.getX() + cell.getCol() * cellWidth + ((theInstance.getWidth() - cellWidth * theInstance.getNumColumns())/2);
+						int roomCellY = theInstance.getY() + cell.getRow() * cellHeight;
 						//check that mouse click is in cell
 						if(x > roomCellX && y > roomCellY && y < roomCellY + cellHeight && x < roomCellX + cellWidth){
 							if(currentPlayer.getRoom() != '\0') {
