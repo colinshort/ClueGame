@@ -1,3 +1,58 @@
+commit aaaef3d1bb6fa10bcf5a036e422a3f29e4740e0a
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Fri Apr 23 22:47:06 2021 -0600
+
+    Updated accusation logic and GUI look and feel
+
+commit 6466f885ee8f24a680fbbbc591e5c47b4c5eba0a
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Fri Apr 23 20:45:57 2021 -0600
+
+    added final touches to clue board
+
+commit 5b738632e06f3ad3e43b68813ced7fd430f94b74
+Merge: 3d8b72f 32e51bc
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Apr 22 22:17:15 2021 -0600
+
+    Merge branch 'main' of https://github.com/colinshort/ClueGame into main
+
+commit 3d8b72f9be5e29916e1a77e3bd7d8747bc36859c
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Apr 22 22:17:03 2021 -0600
+
+    pull
+
+commit 32e51bc24fe52f668fe6c6284eb779c7fe596f16
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Apr 22 22:15:55 2021 -0600
+
+    Updated suggestion/accusation
+
+commit 2e220051fb26a0d0f258279d256c0cc44cf6e49a
+Author: cameron-fitz <fitzgerald@mymail.mines.edu>
+Date:   Thu Apr 22 21:25:16 2021 -0600
+
+    added functionality for computer accusation
+
+commit 82b210a646dac6d8ec47c990fcfd2dc0df95ec1e
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Thu Apr 22 20:04:09 2021 -0600
+
+    Added computer player suggestions and accusations
+
+commit c4017c5cfbcfe487e4888f7e3210a4f0c69749ac
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Wed Apr 21 16:18:01 2021 -0600
+
+    Added human suggestion and accusation making
+
+commit 56ab93f2300c285ab99bea31c388d992202e101b
+Author: Colin Short <colinshort@mymail.mines.edu>
+Date:   Mon Apr 12 21:14:09 2021 -0600
+
+    Updated gitlog.txt
+
 commit 98e124d0b1ee776254a23f568f0509f1743e9091
 Author: Colin Short <colinshort@mymail.mines.edu>
 Date:   Mon Apr 12 21:13:28 2021 -0600
